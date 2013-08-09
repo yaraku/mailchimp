@@ -8,13 +8,13 @@ class Mailchimp_Campaigns {
     /**
      * Get the content (both html and text) for a campaign either as it would appear in the campaign archive or as the raw, original content
      * @param string $cid
-     * @param struct $options
+     * @param associative_array $options
      *     - view string optional one of "archive" (default), "preview" (like our popup-preview) or "raw"
-     *     - email struct optional if provided, view is "archive" or "preview", the campaign's list still exists, and the requested record is subscribed to the list. the returned content will be populated with member data populated. a struct with one of the following keys - failing to provide anything will produce an error relating to the email address. Providing multiples and will use the first we see in this same order.
+     *     - email associative_array optional if provided, view is "archive" or "preview", the campaign's list still exists, and the requested record is subscribed to the list. the returned content will be populated with member data populated. a struct with one of the following keys - failing to provide anything will produce an error relating to the email address. Providing multiples and will use the first we see in this same order.
      *         - email string an email address
      *         - euid string the unique id for an email address (not list related) - the email "id" returned from listMemberInfo, Webhooks, Campaigns, etc.
      *         - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
-     * @return struct containing all content for the campaign
+     * @return associative_array containing all content for the campaign
      *     - html string The HTML content used for the campaign with merge tags intact
      *     - text string The Text content used for the campaign with merge tags intact
      */
@@ -26,7 +26,7 @@ class Mailchimp_Campaigns {
     /**
      * Create a new draft campaign to send. You <strong>can not</strong> have more than 32,000 campaigns in your account.
      * @param string $type
-     * @param struct $options
+     * @param associative_array $options
      *     - list_id string the list to send this campaign to- get lists using lists()
      *     - subject string the subject line for your campaign message
      *     - from_email string the From: email address for your campaign message
@@ -36,13 +36,13 @@ class Mailchimp_Campaigns {
      *     - gallery_template_id int optional - use a template from the public gallery to generate the HTML content of the campaign (takes precendence over base template options)
      *     - base_template_id int optional - use this a base/start-from-scratch template to generate the HTML content of the campaign
      *     - folder_id int optional - automatically file the new campaign in the folder_id passed. Get using folders() - note that Campaigns and Autoresponders have separate folder setupsn
-     *     - tracking struct optional - set which recipient actions will be tracked. Click tracking can not be disabled for Free accounts.
+     *     - tracking associative_array optional - set which recipient actions will be tracked. Click tracking can not be disabled for Free accounts.
      *         - opens bool whether to track opens, defaults to true
      *         - html_clicks bool whether to track clicks in HTML content, defaults to true
      *         - text_clicks bool whether to track clicks in Text content, defaults to false
      *     - title string optional - an internal name to use for this campaign.  By default, the campaign subject will be used.
      *     - authenticate boolean optional - set to true to enable SenderID, DomainKeys, and DKIM authentication, defaults to false.
-     *     - analytics struct optional - one or more of these keys set to the tag to use - that can be any custom text (up to 50 bytes)
+     *     - analytics associative_array optional - one or more of these keys set to the tag to use - that can be any custom text (up to 50 bytes)
      *         - google string for Google Analytics  tracking
      *         - clicktale string for ClickTale  tracking
      *         - gooal string for Goo.al tracking
@@ -55,30 +55,30 @@ class Mailchimp_Campaigns {
      *     - timewarp boolean optional If set, this campaign must be scheduled 24 hours in advance of sending - default to false. Only valid for "regular" campaigns and "absplit" campaigns that split on schedule_time.
      *     - ecomm360 boolean optional If set, our <a href="http://www.mailchimp.com/blog/ecommerce-tracking-plugin/" target="_blank">Ecommerce360 tracking</a> will be enabled for links in the campaign
      *     - crm_tracking array optional If set, an array of structs to enable CRM tracking for:
-     *         - salesforce struct optional Enable SalesForce push back
+     *         - salesforce associative_array optional Enable SalesForce push back
      *             - campaign bool optional - if true, create a Campaign object and update it with aggregate stats
      *             - notes bool optional - if true, attempt to update Contact notes based on email address
-     *         - highrise struct optional Enable Highrise push back
+     *         - highrise associative_array optional Enable Highrise push back
      *             - campaign bool optional - if true, create a Kase object and update it with aggregate stats
      *             - notes bool optional - if true, attempt to update Contact notes based on email address
-     *         - capsule struct optional Enable Capsule push back (only notes are supported)
+     *         - capsule associative_array optional Enable Capsule push back (only notes are supported)
      *             - notes bool optional - if true, attempt to update Contact notes based on email address
-     * @param struct $content
+     * @param associative_array $content
      *     - html string for raw/pasted HTML content
-     *     - sections struct when using a template instead of raw HTML, each key should be the unique mc:edit area name from the template.
+     *     - sections associative_array when using a template instead of raw HTML, each key should be the unique mc:edit area name from the template.
      *     - text string for the plain-text version
      *     - url string to have us pull in content from a URL. Note, this will override any other content options - for lists with Email Format options, you'll need to turn on generate_text as well
      *     - archive string to send a Base64 encoded archive file for us to import all media from. Note, this will override any other content options - for lists with Email Format options, you'll need to turn on generate_text as well
      *     - archive_type string optional - only necessary for the "archive" option. Supported formats are: zip, tar.gz, tar.bz2, tar, tgz, tbz . If not included, we will default to zip
-     * @param struct $segment_opts
-     * @param struct $type_opts
-     *     - rss struct For RSS Campaigns this, struct should contain:
+     * @param associative_array $segment_opts
+     * @param associative_array $type_opts
+     *     - rss associative_array For RSS Campaigns this, struct should contain:
      *         - url string the URL to pull RSS content from - it will be verified and must exist
      *         - schedule string optional one of "daily", "weekly", "monthly" - defaults to "daily"
      *         - schedule_hour string optional an hour between 0 and 24 - default to 4 (4am <em>local time</em>) - applies to all schedule types
      *         - schedule_weekday string optional for "weekly" only, a number specifying the day of the week to send: 0 (Sunday) - 6 (Saturday) - defaults to 1 (Monday)
      *         - schedule_monthday string optional for "monthly" only, a number specifying the day of the month to send (1 - 28) or "last" for the last day of a given month. Defaults to the 1st day of the month
-     *         - days struct optional used for "daily" schedules only, an array of the <a href="http://en.wikipedia.org/wiki/ISO-8601#Week_dates" target="_blank">ISO-8601 weekday numbers</a> to send on
+     *         - days associative_array optional used for "daily" schedules only, an array of the <a href="http://en.wikipedia.org/wiki/ISO-8601#Week_dates" target="_blank">ISO-8601 weekday numbers</a> to send on
      *             - 1 bool optional Monday, defaults to true
      *             - 2 bool optional Tuesday, defaults to true
      *             - 3 bool optional Wednesday, defaults to true
@@ -86,7 +86,7 @@ class Mailchimp_Campaigns {
      *             - 5 bool optional Friday, defaults to true
      *             - 6 bool optional Saturday, defaults to true
      *             - 7 bool optional Sunday, defaults to true
-     *     - absplit struct For A/B Split campaigns, this struct should contain:
+     *     - absplit associative_array For A/B Split campaigns, this struct should contain:
      *         - split_test string The values to segment based on. Currently, one of: "subject", "from_name", "schedule". NOTE, for "schedule", you will need to call campaignSchedule() separately!
      *         - pick_winner string How the winner will be picked, one of: "opens" (by the open_rate), "clicks" (by the click rate), "manual" (you pick manually)
      *         - wait_units int optional the default time unit to wait before auto-selecting a winner - use "3600" for hours, "86400" for days. Defaults to 86400.
@@ -98,7 +98,7 @@ class Mailchimp_Campaigns {
      *         - from_email_b string optional sort of, required when split_test is "from_name"
      *         - subject_a string optional sort of, required when split_test is "subject"
      *         - subject_b string optional sort of, required when split_test is "subject"
-     *     - auto struct For AutoResponder campaigns, this struct should contain:
+     *     - auto associative_array For AutoResponder campaigns, this struct should contain:
      *         - offset-units string one of "hourly", "day", "week", "month", "year" - required
      *         - offset-time string optional, sort of - the number of units must be a number greater than 0 for signup based autoresponders, ignored for "hourly"
      *         - offset-dir string either "before" or "after", ignored for "hourly"
@@ -108,7 +108,7 @@ class Mailchimp_Campaigns {
      *         - campaign_url string optional sort of, required for "campaignClicko"
      *         - schedule_hour int The hour of the day - 24 hour format in GMT - the autoresponder should be triggered, ignored for "hourly"
      *         - use_import_time boolean whether or not imported subscribers (ie, <em>any</em> non-double optin subscribers) will receive
-     *         - days struct optional used for "daily" schedules only, an array of the <a href="http://en.wikipedia.org/wiki/ISO-8601#Week_dates" target="_blank">ISO-8601 weekday numbers</a> to send on<
+     *         - days associative_array optional used for "daily" schedules only, an array of the <a href="http://en.wikipedia.org/wiki/ISO-8601#Week_dates" target="_blank">ISO-8601 weekday numbers</a> to send on<
      *             - 1 bool optional Monday, defaults to true
      *             - 2 bool optional Tuesday, defaults to true
      *             - 3 bool optional Wednesday, defaults to true
@@ -116,7 +116,7 @@ class Mailchimp_Campaigns {
      *             - 5 bool optional Friday, defaults to true
      *             - 6 bool optional Saturday, defaults to true
      *             - 7 bool optional Sunday, defaults to true
-     * @return struct the new campaign's details - will return same data as single campaign from campaigns/list()
+     * @return associative_array the new campaign's details - will return same data as single campaign from campaigns/list()
      */
     public function create($type, $options, $content, $segment_opts=null, $type_opts=null) {
         $_params = array("type" => $type, "options" => $options, "content" => $content, "segment_opts" => $segment_opts, "type_opts" => $type_opts);
@@ -126,7 +126,7 @@ class Mailchimp_Campaigns {
     /**
      * Delete a campaign. Seriously, "poof, gone!" - be careful! Seriously, no one can undelete these.
      * @param string $cid
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
      */
     public function delete($cid) {
@@ -136,7 +136,7 @@ class Mailchimp_Campaigns {
 
     /**
      * Get the list of campaigns and their details matching the specified filters
-     * @param array $filters
+     * @param associative_array $filters
      *     - campaign_id string optional - return the campaign using a know campaign_id.  Accepts multiples separated by commas when not using exact matching.
      *     - parent_id string optional - return the child campaigns using a known parent campaign_id.  Accepts multiples separated by commas when not using exact matching.
      *     - list_id string optional - the list to send this campaign to - get lists using lists(). Accepts multiples separated by commas when not using exact matching.
@@ -156,7 +156,7 @@ class Mailchimp_Campaigns {
      * @param int $limit
      * @param string $sort_field
      * @param string $sort_dir
-     * @return struct containing a count of all matching campaigns, the specific ones for the current page, and any errors from the filters provided
+     * @return associative_array containing a count of all matching campaigns, the specific ones for the current page, and any errors from the filters provided
      *     - total int the total number of campaigns matching the filters passed in
      *     - data array structs for each campaign being returned
      *         - id string Campaign Id (used for all other campaign functions)
@@ -187,16 +187,16 @@ class Mailchimp_Campaigns {
      *         - timewarp boolean Whether or not the campaign used Timewarp
      *         - timewarp_schedule string The time, in GMT, that the Timewarp campaign is being sent. For A/B Split campaigns, this is blank and is instead in their schedule_a and schedule_b in the type_opts array
      *         - parent_id string the unique id of the parent campaign (currently only valid for rss children)
-     *         - tracking struct the various tracking options used
+     *         - tracking associative_array the various tracking options used
      *             - html_clicks boolean whether or not tracking for html clicks was enabled.
      *             - text_clicks boolean whether or not tracking for text clicks was enabled.
      *             - opens boolean whether or not opens tracking was enabled.
      *         - segment_text string a string marked-up with HTML explaining the segment used for the campaign in plain English
      *         - segment_opts array the segment used for the campaign - can be passed to campaigns/segment-test or campaigns/create
-     *         - type_opts struct the type-specific options for the campaign - can be passed to campaigns/create
+     *         - type_opts associative_array the type-specific options for the campaign - can be passed to campaigns/create
      *         - comments_total int total number of comments left on this campaign
      *         - comments_unread int total number of unread comments for this campaign based on the login the apikey belongs to
-     *         - summary struct if available, the basic aggregate stats returned by reports/summary
+     *         - summary associative_array if available, the basic aggregate stats returned by reports/summary
      *     - errors array structs of any errors found while loading lists - usually just from providing invalid list ids
      *         - filter string the filter that caused the failure
      *         - value string the filter value that caused the failure
@@ -211,7 +211,7 @@ class Mailchimp_Campaigns {
     /**
      * Pause an AutoResponder or RSS campaign from sending
      * @param string $cid
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
      */
     public function pause($cid) {
@@ -222,7 +222,7 @@ class Mailchimp_Campaigns {
     /**
      * Returns information on whether a campaign is ready to send and possible issues we may have detected with it - very similar to the confirmation step in the app.
      * @param string $cid
-     * @return struct the matching campaign's details - will return same data as single campaign from campaigns/list()
+     * @return associative_array the matching campaign's details - will return same data as single campaign from campaigns/list()
      */
     public function ready($cid) {
         $_params = array("cid" => $cid);
@@ -232,7 +232,7 @@ class Mailchimp_Campaigns {
     /**
      * Replicate a campaign.
      * @param string $cid
-     * @return struct the matching campaign's details - will return same data as single campaign from campaigns/list()
+     * @return associative_array the matching campaign's details - will return same data as single campaign from campaigns/list()
      */
     public function replicate($cid) {
         $_params = array("cid" => $cid);
@@ -242,7 +242,7 @@ class Mailchimp_Campaigns {
     /**
      * Resume sending an AutoResponder or RSS campaign
      * @param string $cid
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
      */
     public function resume($cid) {
@@ -255,7 +255,7 @@ class Mailchimp_Campaigns {
      * @param string $cid
      * @param string $schedule_time
      * @param string $schedule_time_b
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
      */
     public function schedule($cid, $schedule_time, $schedule_time_b=null) {
@@ -269,7 +269,7 @@ class Mailchimp_Campaigns {
      * @param string $schedule_time
      * @param int $num_batches
      * @param int $stagger_mins
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
      */
     public function scheduleBatch($cid, $schedule_time, $num_batches=2, $stagger_mins=5) {
@@ -280,10 +280,10 @@ class Mailchimp_Campaigns {
     /**
      * Allows one to test their segmentation rules before creating a campaign using them
      * @param string $list_id
-     * @param struct $options
+     * @param associative_array $options
      *     - match string controls whether to use AND or OR when applying your options - expects "<strong>any</strong>" (for OR) or "<strong>all</strong>" (for AND)
      *     - conditions array of up to 5 structs for different criteria to apply while segmenting. Each criteria row must contain 3 keys - "<strong>field</strong>", "<strong>op</strong>", and "<strong>value</strong>" - and possibly a fourth, "<strong>extra</strong>", based on these definitions:
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - total int The total number of subscribers matching your segmentation options
      */
     public function segmentTest($list_id, $options) {
@@ -294,7 +294,7 @@ class Mailchimp_Campaigns {
     /**
      * Send a given campaign immediately. For RSS campaigns, this will "start" them.
      * @param string $cid
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
      */
     public function send($cid) {
@@ -307,7 +307,7 @@ class Mailchimp_Campaigns {
      * @param string $cid
      * @param array $test_emails
      * @param string $send_type
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
      */
     public function sendTest($cid, $test_emails=array(), $send_type='html') {
@@ -319,7 +319,7 @@ class Mailchimp_Campaigns {
      * Get the HTML template content sections for a campaign. Note that this <strong>will</strong> return very jagged, non-standard results based on the template
 a campaign is using. You only want to use this if you want to allow editing template sections in your application.
      * @param string $cid
-     * @return struct content containing all content section for the campaign - section name are dependent upon the template used and thus can't be documented
+     * @return associative_array content containing all content section for the campaign - section name are dependent upon the template used and thus can't be documented
      */
     public function templateContent($cid) {
         $_params = array("cid" => $cid);
@@ -329,7 +329,7 @@ a campaign is using. You only want to use this if you want to allow editing temp
     /**
      * Unschedule a campaign that is scheduled to be sent in the future
      * @param string $cid
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
      */
     public function unschedule($cid) {
@@ -348,8 +348,8 @@ Caveats:<br/><ul class='bullets'>
      * @param string $cid
      * @param string $name
      * @param array $value
-     * @return struct updated campaign details and any errors
-     *     - data struct the update campaign details - will return same data as single campaign from campaigns/list()
+     * @return associative_array updated campaign details and any errors
+     *     - data associative_array the update campaign details - will return same data as single campaign from campaigns/list()
      *     - errors array for "options" only - structs containing:
      *         - code int the error code
      *         - message string the full error message

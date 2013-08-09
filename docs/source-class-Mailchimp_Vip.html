@@ -204,7 +204,7 @@
 </span></span><span id="20" class="l"><a class="l" href="#20"> 20: </a><span class="php-comment">     *     - lname string IF a LNAME merge field exists on the list, that value for the member
 </span></span><span id="21" class="l"><a class="l" href="#21"> 21: </a><span class="php-comment">     *     - member_rating int the rating of the subscriber. This will be 1 - 5 as described &lt;a href=&quot;http://eepurl.com/f-2P&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;
 </span></span><span id="22" class="l"><a class="l" href="#22"> 22: </a><span class="php-comment">     *     - member_since string the datetime the member was added and/or confirmed
-</span></span><span id="23" class="l"><a class="l" href="#23"> 23: </a><span class="php-comment">     *     - geo struct the geographic information if we have it. including:
+</span></span><span id="23" class="l"><a class="l" href="#23"> 23: </a><span class="php-comment">     *     - geo associative_array the geographic information if we have it. including:
 </span></span><span id="24" class="l"><a class="l" href="#24"> 24: </a><span class="php-comment">     *         - latitude string the latitude
 </span></span><span id="25" class="l"><a class="l" href="#25"> 25: </a><span class="php-comment">     *         - longitude string the longitude
 </span></span><span id="26" class="l"><a class="l" href="#26"> 26: </a><span class="php-comment">     *         - gmtoff string GMT offset
@@ -222,21 +222,21 @@
 </span></span><span id="38" class="l"><a class="l" href="#38"> 38: </a><span class="php-comment">     * Add VIPs (previously called Golden Monkeys)
 </span></span><span id="39" class="l"><a class="l" href="#39"> 39: </a><span class="php-comment">     * @param string $id
 </span></span><span id="40" class="l"><a class="l" href="#40"> 40: </a><span class="php-comment">     * @param array $emails
-</span></span><span id="41" class="l"><a class="l" href="#41"> 41: </a><span class="php-comment">     *     - email string an email address
+</span></span><span id="41" class="l"><a class="l" href="#41"> 41: </a><span class="php-comment">     *     - email string an email address - for new subscribers obviously this should be used
 </span></span><span id="42" class="l"><a class="l" href="#42"> 42: </a><span class="php-comment">     *     - euid string the unique id for an email address (not list related) - the email &quot;id&quot; returned from listMemberInfo, Webhooks, Campaigns, etc.
 </span></span><span id="43" class="l"><a class="l" href="#43"> 43: </a><span class="php-comment">     *     - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
-</span></span><span id="44" class="l"><a class="l" href="#44"> 44: </a><span class="php-comment">     * @return struct of data and success/error counts
+</span></span><span id="44" class="l"><a class="l" href="#44"> 44: </a><span class="php-comment">     * @return associative_array of data and success/error counts
 </span></span><span id="45" class="l"><a class="l" href="#45"> 45: </a><span class="php-comment">     *     - success_count int the number of successful adds
 </span></span><span id="46" class="l"><a class="l" href="#46"> 46: </a><span class="php-comment">     *     - error_count int the number of unsuccessful adds
 </span></span><span id="47" class="l"><a class="l" href="#47"> 47: </a><span class="php-comment">     *     - errors array array of error structs including:
-</span></span><span id="48" class="l"><a class="l" href="#48"> 48: </a><span class="php-comment">     *         - email struct whatever was passed in the email parameter
+</span></span><span id="48" class="l"><a class="l" href="#48"> 48: </a><span class="php-comment">     *         - email associative_array whatever was passed in the email parameter
 </span></span><span id="49" class="l"><a class="l" href="#49"> 49: </a><span class="php-comment">     *             - email string the email address added
 </span></span><span id="50" class="l"><a class="l" href="#50"> 50: </a><span class="php-comment">     *             - euid string the email unique id
 </span></span><span id="51" class="l"><a class="l" href="#51"> 51: </a><span class="php-comment">     *             - leid string the list member's truly unique id
 </span></span><span id="52" class="l"><a class="l" href="#52"> 52: </a><span class="php-comment">     *         - code string the error code
 </span></span><span id="53" class="l"><a class="l" href="#53"> 53: </a><span class="php-comment">     *         - error string the error message
 </span></span><span id="54" class="l"><a class="l" href="#54"> 54: </a><span class="php-comment">     *     - data array array of structs for each member added
-</span></span><span id="55" class="l"><a class="l" href="#55"> 55: </a><span class="php-comment">     *         - email struct whatever was passed in the email parameter
+</span></span><span id="55" class="l"><a class="l" href="#55"> 55: </a><span class="php-comment">     *         - email associative_array whatever was passed in the email parameter
 </span></span><span id="56" class="l"><a class="l" href="#56"> 56: </a><span class="php-comment">     *             - email string the email address added
 </span></span><span id="57" class="l"><a class="l" href="#57"> 57: </a><span class="php-comment">     *             - euid string the email unique id
 </span></span><span id="58" class="l"><a class="l" href="#58"> 58: </a><span class="php-comment">     *             - leid string the list member's truly unique id
@@ -250,21 +250,21 @@
 </span></span><span id="66" class="l"><a class="l" href="#66"> 66: </a><span class="php-comment">     * Remove VIPs - this does not affect list membership
 </span></span><span id="67" class="l"><a class="l" href="#67"> 67: </a><span class="php-comment">     * @param string $id
 </span></span><span id="68" class="l"><a class="l" href="#68"> 68: </a><span class="php-comment">     * @param array $emails
-</span></span><span id="69" class="l"><a class="l" href="#69"> 69: </a><span class="php-comment">     *     - email string an email address
+</span></span><span id="69" class="l"><a class="l" href="#69"> 69: </a><span class="php-comment">     *     - email string an email address - for new subscribers obviously this should be used
 </span></span><span id="70" class="l"><a class="l" href="#70"> 70: </a><span class="php-comment">     *     - euid string the unique id for an email address (not list related) - the email &quot;id&quot; returned from listMemberInfo, Webhooks, Campaigns, etc.
 </span></span><span id="71" class="l"><a class="l" href="#71"> 71: </a><span class="php-comment">     *     - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
-</span></span><span id="72" class="l"><a class="l" href="#72"> 72: </a><span class="php-comment">     * @return struct of data and success/error counts
+</span></span><span id="72" class="l"><a class="l" href="#72"> 72: </a><span class="php-comment">     * @return associative_array of data and success/error counts
 </span></span><span id="73" class="l"><a class="l" href="#73"> 73: </a><span class="php-comment">     *     - success_count int the number of successful deletions
 </span></span><span id="74" class="l"><a class="l" href="#74"> 74: </a><span class="php-comment">     *     - error_count int the number of unsuccessful deletions
 </span></span><span id="75" class="l"><a class="l" href="#75"> 75: </a><span class="php-comment">     *     - errors array array of error structs including:
-</span></span><span id="76" class="l"><a class="l" href="#76"> 76: </a><span class="php-comment">     *         - email struct whatever was passed in the email parameter
+</span></span><span id="76" class="l"><a class="l" href="#76"> 76: </a><span class="php-comment">     *         - email associative_array whatever was passed in the email parameter
 </span></span><span id="77" class="l"><a class="l" href="#77"> 77: </a><span class="php-comment">     *             - email string the email address
 </span></span><span id="78" class="l"><a class="l" href="#78"> 78: </a><span class="php-comment">     *             - euid string the email unique id
 </span></span><span id="79" class="l"><a class="l" href="#79"> 79: </a><span class="php-comment">     *             - leid string the list member's truly unique id
 </span></span><span id="80" class="l"><a class="l" href="#80"> 80: </a><span class="php-comment">     *         - code string the error code
 </span></span><span id="81" class="l"><a class="l" href="#81"> 81: </a><span class="php-comment">     *         - msg string the error message
 </span></span><span id="82" class="l"><a class="l" href="#82"> 82: </a><span class="php-comment">     *     - data array array of structs for each member deleted
-</span></span><span id="83" class="l"><a class="l" href="#83"> 83: </a><span class="php-comment">     *         - email struct whatever was passed in the email parameter
+</span></span><span id="83" class="l"><a class="l" href="#83"> 83: </a><span class="php-comment">     *         - email associative_array whatever was passed in the email parameter
 </span></span><span id="84" class="l"><a class="l" href="#84"> 84: </a><span class="php-comment">     *             - email string the email address
 </span></span><span id="85" class="l"><a class="l" href="#85"> 85: </a><span class="php-comment">     *             - euid string the email unique id
 </span></span><span id="86" class="l"><a class="l" href="#86"> 86: </a><span class="php-comment">     *             - leid string the list member's truly unique id

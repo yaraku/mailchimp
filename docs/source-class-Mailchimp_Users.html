@@ -194,7 +194,7 @@
 </span></span><span id="10" class="l"><a class="l" href="#10">10: </a><span class="php-comment">     * @param string $email
 </span></span><span id="11" class="l"><a class="l" href="#11">11: </a><span class="php-comment">     * @param string $role
 </span></span><span id="12" class="l"><a class="l" href="#12">12: </a><span class="php-comment">     * @param string $msg
-</span></span><span id="13" class="l"><a class="l" href="#13">13: </a><span class="php-comment">     * @return struct the method completion status
+</span></span><span id="13" class="l"><a class="l" href="#13">13: </a><span class="php-comment">     * @return associative_array the method completion status
 </span></span><span id="14" class="l"><a class="l" href="#14">14: </a><span class="php-comment">     *     - status string The status (success) of the call if it completed. Otherwise an error is thrown.
 </span></span><span id="15" class="l"><a class="l" href="#15">15: </a><span class="php-comment">     */</span>
 </span><span id="16" class="l"><a class="l" href="#16">16: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_invite" href="#_invite">invite</a>(<span class="php-var">$email</span>, <span class="php-var">$role</span>=<span class="php-quote">'viewer'</span>, <span class="php-var">$msg</span>=<span class="php-quote">''</span>) {
@@ -205,7 +205,7 @@
 </span><span id="21" class="l"><a class="l" href="#21">21: </a>    <span class="php-comment">/**
 </span></span><span id="22" class="l"><a class="l" href="#22">22: </a><span class="php-comment">     * Resend an invite a user to your account. Note, if the same address has been invited multiple times, this will simpy re-send the most recent invite
 </span></span><span id="23" class="l"><a class="l" href="#23">23: </a><span class="php-comment">     * @param string $email
-</span></span><span id="24" class="l"><a class="l" href="#24">24: </a><span class="php-comment">     * @return struct the method completion status
+</span></span><span id="24" class="l"><a class="l" href="#24">24: </a><span class="php-comment">     * @return associative_array the method completion status
 </span></span><span id="25" class="l"><a class="l" href="#25">25: </a><span class="php-comment">     *     - status string The status (success) of the call if it completed. Otherwise an error is thrown.
 </span></span><span id="26" class="l"><a class="l" href="#26">26: </a><span class="php-comment">     */</span>
 </span><span id="27" class="l"><a class="l" href="#27">27: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_inviteResend" href="#_inviteResend">inviteResend</a>(<span class="php-var">$email</span>) {
@@ -216,7 +216,7 @@
 </span><span id="32" class="l"><a class="l" href="#32">32: </a>    <span class="php-comment">/**
 </span></span><span id="33" class="l"><a class="l" href="#33">33: </a><span class="php-comment">     * Revoke an invitation sent to a user to your account. Note, if the same address has been invited multiple times, this will simpy revoke the most recent invite
 </span></span><span id="34" class="l"><a class="l" href="#34">34: </a><span class="php-comment">     * @param string $email
-</span></span><span id="35" class="l"><a class="l" href="#35">35: </a><span class="php-comment">     * @return struct the method completion status
+</span></span><span id="35" class="l"><a class="l" href="#35">35: </a><span class="php-comment">     * @return associative_array the method completion status
 </span></span><span id="36" class="l"><a class="l" href="#36">36: </a><span class="php-comment">     *     - status string The status (success) of the call if it completed. Otherwise an error is thrown.
 </span></span><span id="37" class="l"><a class="l" href="#37">37: </a><span class="php-comment">     */</span>
 </span><span id="38" class="l"><a class="l" href="#38">38: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_inviteRevoke" href="#_inviteRevoke">inviteRevoke</a>(<span class="php-var">$email</span>) {
@@ -241,7 +241,7 @@
 </span><span id="57" class="l"><a class="l" href="#57">57: </a>    <span class="php-comment">/**
 </span></span><span id="58" class="l"><a class="l" href="#58">58: </a><span class="php-comment">     * Revoke access for a specified login
 </span></span><span id="59" class="l"><a class="l" href="#59">59: </a><span class="php-comment">     * @param string $username
-</span></span><span id="60" class="l"><a class="l" href="#60">60: </a><span class="php-comment">     * @return struct the method completion status
+</span></span><span id="60" class="l"><a class="l" href="#60">60: </a><span class="php-comment">     * @return associative_array the method completion status
 </span></span><span id="61" class="l"><a class="l" href="#61">61: </a><span class="php-comment">     *     - status string The status (success) of the call if it completed. Otherwise an error is thrown.
 </span></span><span id="62" class="l"><a class="l" href="#62">62: </a><span class="php-comment">     */</span>
 </span><span id="63" class="l"><a class="l" href="#63">63: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_loginRevoke" href="#_loginRevoke">loginRevoke</a>(<span class="php-var">$username</span>) {
@@ -257,16 +257,17 @@
 </span></span><span id="73" class="l"><a class="l" href="#73">73: </a><span class="php-comment">     *     - name string a display name for the account - empty first/last names will return the username
 </span></span><span id="74" class="l"><a class="l" href="#74">74: </a><span class="php-comment">     *     - email string the email tied to the account used for passwords resets and the ilk
 </span></span><span id="75" class="l"><a class="l" href="#75">75: </a><span class="php-comment">     *     - role string the role assigned to the account
-</span></span><span id="76" class="l"><a class="l" href="#76">76: </a><span class="php-comment">     */</span>
-</span><span id="77" class="l"><a class="l" href="#77">77: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_logins" href="#_logins">logins</a>() {
-</span><span id="78" class="l"><a class="l" href="#78">78: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>();
-</span><span id="79" class="l"><a class="l" href="#79">79: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'users/logins'</span>, <span class="php-var">$_params</span>);
-</span><span id="80" class="l"><a class="l" href="#80">80: </a>    }
-</span><span id="81" class="l"><a class="l" href="#81">81: </a>
-</span><span id="82" class="l"><a class="l" href="#82">82: </a>}
-</span><span id="83" class="l"><a class="l" href="#83">83: </a>
+</span></span><span id="76" class="l"><a class="l" href="#76">76: </a><span class="php-comment">     *     - avatar string if available, the url for the login's avatar
+</span></span><span id="77" class="l"><a class="l" href="#77">77: </a><span class="php-comment">     */</span>
+</span><span id="78" class="l"><a class="l" href="#78">78: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_logins" href="#_logins">logins</a>() {
+</span><span id="79" class="l"><a class="l" href="#79">79: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>();
+</span><span id="80" class="l"><a class="l" href="#80">80: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'users/logins'</span>, <span class="php-var">$_params</span>);
+</span><span id="81" class="l"><a class="l" href="#81">81: </a>    }
+</span><span id="82" class="l"><a class="l" href="#82">82: </a>
+</span><span id="83" class="l"><a class="l" href="#83">83: </a>}
 </span><span id="84" class="l"><a class="l" href="#84">84: </a>
-</span><span id="85" class="l"><a class="l" href="#85">85: </a></span></code></pre>
+</span><span id="85" class="l"><a class="l" href="#85">85: </a>
+</span><span id="86" class="l"><a class="l" href="#86">86: </a></span></code></pre>
 
 	<div id="footer">
 		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

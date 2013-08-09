@@ -191,14 +191,14 @@
 </span><span id="7" class="l"><a class="l" href="#7"> 7: </a>
 </span><span id="8" class="l"><a class="l" href="#8"> 8: </a>    <span class="php-comment">/**
 </span></span><span id="9" class="l"><a class="l" href="#9"> 9: </a><span class="php-comment">     * Return a section of the image gallery
-</span></span><span id="10" class="l"><a class="l" href="#10">10: </a><span class="php-comment">     * @param struct $opts
+</span></span><span id="10" class="l"><a class="l" href="#10">10: </a><span class="php-comment">     * @param associative_array $opts
 </span></span><span id="11" class="l"><a class="l" href="#11">11: </a><span class="php-comment">     *     - type string optional the gallery type to return - images or files - default to images
 </span></span><span id="12" class="l"><a class="l" href="#12">12: </a><span class="php-comment">     *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
 </span></span><span id="13" class="l"><a class="l" href="#13">13: </a><span class="php-comment">     *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
 </span></span><span id="14" class="l"><a class="l" href="#14">14: </a><span class="php-comment">     *     - sort_by string optional field to sort by - one of size, time, name - defaults to time
 </span></span><span id="15" class="l"><a class="l" href="#15">15: </a><span class="php-comment">     *     - sort_dir string optional field to sort by - one of asc, desc - defaults to desc
 </span></span><span id="16" class="l"><a class="l" href="#16">16: </a><span class="php-comment">     *     - search_term string optional a term to search for in names
-</span></span><span id="17" class="l"><a class="l" href="#17">17: </a><span class="php-comment">     * @return struct the matching gallery items
+</span></span><span id="17" class="l"><a class="l" href="#17">17: </a><span class="php-comment">     * @return associative_array the matching gallery items
 </span></span><span id="18" class="l"><a class="l" href="#18">18: </a><span class="php-comment">     *     - total int the total matching items
 </span></span><span id="19" class="l"><a class="l" href="#19">19: </a><span class="php-comment">     *     - data array structs for each item included in the set, including:
 </span></span><span id="20" class="l"><a class="l" href="#20">20: </a><span class="php-comment">     *         - name string the file name

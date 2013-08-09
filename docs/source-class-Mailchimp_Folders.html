@@ -193,7 +193,7 @@
 </span></span><span id="9" class="l"><a class="l" href="#9"> 9: </a><span class="php-comment">     * Add a new folder to file campaigns, autoresponders, or templates in
 </span></span><span id="10" class="l"><a class="l" href="#10">10: </a><span class="php-comment">     * @param string $name
 </span></span><span id="11" class="l"><a class="l" href="#11">11: </a><span class="php-comment">     * @param string $type
-</span></span><span id="12" class="l"><a class="l" href="#12">12: </a><span class="php-comment">     * @return struct with a single value:
+</span></span><span id="12" class="l"><a class="l" href="#12">12: </a><span class="php-comment">     * @return associative_array with a single value:
 </span></span><span id="13" class="l"><a class="l" href="#13">13: </a><span class="php-comment">     *     - folder_id int the folder_id of the newly created folder.
 </span></span><span id="14" class="l"><a class="l" href="#14">14: </a><span class="php-comment">     */</span>
 </span><span id="15" class="l"><a class="l" href="#15">15: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_add" href="#_add">add</a>(<span class="php-var">$name</span>, <span class="php-var">$type</span>) {
@@ -205,7 +205,7 @@
 </span></span><span id="21" class="l"><a class="l" href="#21">21: </a><span class="php-comment">     * Delete a campaign, autoresponder, or template folder. Note that this will simply make whatever was in the folder appear unfiled, no other data is removed
 </span></span><span id="22" class="l"><a class="l" href="#22">22: </a><span class="php-comment">     * @param int $fid
 </span></span><span id="23" class="l"><a class="l" href="#23">23: </a><span class="php-comment">     * @param string $type
-</span></span><span id="24" class="l"><a class="l" href="#24">24: </a><span class="php-comment">     * @return struct with a single entry:
+</span></span><span id="24" class="l"><a class="l" href="#24">24: </a><span class="php-comment">     * @return associative_array with a single entry:
 </span></span><span id="25" class="l"><a class="l" href="#25">25: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
 </span></span><span id="26" class="l"><a class="l" href="#26">26: </a><span class="php-comment">     */</span>
 </span><span id="27" class="l"><a class="l" href="#27">27: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_del" href="#_del">del</a>(<span class="php-var">$fid</span>, <span class="php-var">$type</span>) {
@@ -233,7 +233,7 @@
 </span></span><span id="49" class="l"><a class="l" href="#49">49: </a><span class="php-comment">     * @param int $fid
 </span></span><span id="50" class="l"><a class="l" href="#50">50: </a><span class="php-comment">     * @param string $name
 </span></span><span id="51" class="l"><a class="l" href="#51">51: </a><span class="php-comment">     * @param string $type
-</span></span><span id="52" class="l"><a class="l" href="#52">52: </a><span class="php-comment">     * @return struct with a single entry:
+</span></span><span id="52" class="l"><a class="l" href="#52">52: </a><span class="php-comment">     * @return associative_array with a single entry:
 </span></span><span id="53" class="l"><a class="l" href="#53">53: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
 </span></span><span id="54" class="l"><a class="l" href="#54">54: </a><span class="php-comment">     */</span>
 </span><span id="55" class="l"><a class="l" href="#55">55: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_update" href="#_update">update</a>(<span class="php-var">$fid</span>, <span class="php-var">$name</span>, <span class="php-var">$type</span>) {

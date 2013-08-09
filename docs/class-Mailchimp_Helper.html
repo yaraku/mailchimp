@@ -239,7 +239,7 @@
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -272,7 +272,7 @@ like Credit Card numbers is available.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>containing the details for the account tied to this API Key - username string
+					<code>associative_array</code><br>containing the details for the account tied to this API Key - username string
 The Account username - user_id string The Account user unique id (for building
 some links) - is_trial bool Whether the Account is in Trial mode (can only send
 campaigns to less than 100 emails) - is_approved bool Whether the Account has
@@ -290,27 +290,28 @@ first payment - last_payment string date of most recent payment -
 times_logged_in int total number of times the account has been logged into via
 the web - last_login string date/time of last login via the web - affiliate_link
 string Monkey Rewards link for our Affiliate program - industry string the
-user's selected industry - contact struct Contact details for the account -
-fname string First Name - lname string Last Name - email string Email Address -
-company string Company Name - address1 string Address Line 1 - address2 string
-Address Line 2 - city string City - state string State or Province - zip string
-Zip or Postal Code - country string Country name - url string Website URL -
-phone string Phone number - fax string Fax number - modules array a struct for
-each addon module installed in the account - id string An internal module id -
-name string The module name - added string The date the module was added - data
-struct Any extra data associated with this module as key=&gt;value pairs -
-orders array a struct for each order for the account - order_id int The order id
-- type string The order type - either "monthly" or "credits" - amount double The
-order amount - date string The order date - credits_used double The total
-credits used - rewards struct Rewards details for the account including credits
-&amp; inspections earned, number of referrals, referral details, and rewards
-used - referrals_this_month int the total number of referrals this month -
-notify_on string whether or not we notify the user when rewards are earned -
-notify_email string the email address address used for rewards notifications -
-credits struct Email credits earned: - this_month int credits earned this month
-- total_earned int credits earned all time - remaining int credits remaining -
-inspections struct Inbox Inspections earned: - this_month int credits earned
-this month - total_earned int credits earned all time - remaining int credits
+user's selected industry - contact associative_array Contact details for the
+account - fname string First Name - lname string Last Name - email string Email
+Address - company string Company Name - address1 string Address Line 1 -
+address2 string Address Line 2 - city string City - state string State or
+Province - zip string Zip or Postal Code - country string Country name - url
+string Website URL - phone string Phone number - fax string Fax number - modules
+array a struct for each addon module installed in the account - id string An
+internal module id - name string The module name - added string The date the
+module was added - data associative_array Any extra data associated with this
+module as key=&gt;value pairs - orders array a struct for each order for the
+account - order_id int The order id - type string The order type - either
+"monthly" or "credits" - amount double The order amount - date string The order
+date - credits_used double The total credits used - rewards associative_array
+Rewards details for the account including credits &amp; inspections earned,
+number of referrals, referral details, and rewards used - referrals_this_month
+int the total number of referrals this month - notify_on string whether or not
+we notify the user when rewards are earned - notify_email string the email
+address address used for rewards notifications - credits associative_array Email
+credits earned: - this_month int credits earned this month - total_earned int
+credits earned all time - remaining int credits remaining - inspections
+associative_array Inbox Inspections earned: - this_month int credits earned this
+month - total_earned int credits earned all time - remaining int credits
 remaining - referrals array a struct for each referral, including: - name string
 the name of the account - email string the email address associated with the
 account - signup_date string the signup date for the account - type string the
@@ -345,7 +346,7 @@ page<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_campaignsForEmail">#</a>
-		<code><a href="source-class-Mailchimp_Helper.html#94-112" title="Go to source code">campaignsForEmail</a>( <span>struct <var>$email</var></span>, <span>struct <var>$options</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-Mailchimp_Helper.html#94-112" title="Go to source code">campaignsForEmail</a>( <span>associative_array <var>$email</var></span>, <span>associative_array <var>$options</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -362,13 +363,13 @@ page<br />
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$email</var></dt>
-					<dd><code>struct</code><br>$email - email string an email address - euid string the unique id for an email
+					<dd><code>associative_array</code><br>$email - email string an email address - euid string the unique id for an email
 address (not list related) - the email "id" returned from listMemberInfo,
 Webhooks, Campaigns, etc. - leid string the list email id (previously called
 web_id) for a list-member-info type call. this doesn't change when the email
 address changes</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>struct</code><br>$options - list_id string optional A list_id to limit the campaigns to</dd>
+					<dd><code>associative_array</code><br>$options - list_id string optional A list_id to limit the campaigns to</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -435,14 +436,14 @@ date/time the message was last updated<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_generateText">#</a>
-		<code><a href="source-class-Mailchimp_Helper.html#129-146" title="Go to source code">generateText</a>( <span>string <var>$type</var></span>, <span>struct <var>$content</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Helper.html#129-146" title="Go to source code">generateText</a>( <span>string <var>$type</var></span>, <span>associative_array <var>$content</var></span> )</code>
 
 		<div class="description short">
 			
@@ -469,7 +470,7 @@ template layouts - your mileage may vary.</p>
 					<dt><var>$type</var></dt>
 					<dd><code>string</code><br>$type</dd>
 					<dt><var>$content</var></dt>
-					<dd><code>struct</code><br>$content - html string optional a single string value, - cid string a valid
+					<dd><code>associative_array</code><br>$content - html string optional a single string value, - cid string a valid
 Campaign Id - user_template_id string the id of a user template -
 base_template_id string the id of a built in base/basic template -
 gallery_template_id string the id of a built in gallery template - url string a
@@ -478,7 +479,7 @@ valid &amp; public URL to pull html content from</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>the content pass in converted to text. - text string the converted html<br />
+					<code>associative_array</code><br>the content pass in converted to text. - text string the converted html<br />
 				</div>
 
 
@@ -491,7 +492,7 @@ valid &amp; public URL to pull html content from</dd>
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -524,7 +525,7 @@ original styles.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>with a "html" key - html string Your HTML content with all CSS inlined, just
+					<code>associative_array</code><br>with a "html" key - html string Your HTML content with all CSS inlined, just
 like if we sent it.<br />
 				</div>
 
@@ -545,7 +546,7 @@ like if we sent it.<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_listsForEmail">#</a>
-		<code><a href="source-class-Mailchimp_Helper.html#160-174" title="Go to source code">listsForEmail</a>( <span>struct <var>$email</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Helper.html#160-174" title="Go to source code">listsForEmail</a>( <span>associative_array <var>$email</var></span> )</code>
 
 		<div class="description short">
 			
@@ -562,7 +563,7 @@ like if we sent it.<br />
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$email</var></dt>
-					<dd><code>struct</code><br>$email - email string an email address - euid string the unique id for an email
+					<dd><code>associative_array</code><br>$email - email string an email address - euid string the unique id for an email
 address (not list related) - the email "id" returned from listMemberInfo,
 Webhooks, Campaigns, etc. - leid string the list email id (previously called
 web_id) for a list-member-info type call. this doesn't change when the email
@@ -586,7 +587,7 @@ name list name<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -618,7 +619,7 @@ on.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>a with a "msg" key - msg string containing "Everything's Chimpy!" if everything
+					<code>associative_array</code><br>a with a "msg" key - msg string containing "Everything's Chimpy!" if everything
 is chimpy, otherwise returns an error message<br />
 				</div>
 
@@ -632,7 +633,7 @@ is chimpy, otherwise returns an error message<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -667,12 +668,12 @@ is chimpy, otherwise returns an error message<br />
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>containing the total matches and current results - total int total campaigns
+					<code>associative_array</code><br>containing the total matches and current results - total int total campaigns
 matching - results array matching campaigns and snippets - snippet string the
-matching snippet for the campaign - campaign struct the matching campaign's
-details - will return same data as single campaign from campaigns() - summary
-struct if available, the matching campaign's report/summary data, other wise
-empty<br />
+matching snippet for the campaign - campaign associative_array the matching
+campaign's details - will return same data as single campaign from campaigns() -
+summary associative_array if available, the matching campaign's report/summary
+data, other wise empty<br />
 				</div>
 
 
@@ -685,7 +686,7 @@ empty<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -718,13 +719,13 @@ empty<br />
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>An array of both exact matches and partial matches over a full search -
-exact_matches struct containing the total matches and current results - total
-int total members matching - members array each entry will be struct matching
-the data format for a single member as returned by listMemberInfo() -
-full_search struct containing the total matches and current results - total int
-total members matching - members array each entry will be struct matching the
-data format for a single member as returned by listMemberInfo()<br />
+					<code>associative_array</code><br>An array of both exact matches and partial matches over a full search -
+exact_matches associative_array containing the total matches and current results
+- total int total members matching - members array each entry will be struct
+matching the data format for a single member as returned by listMemberInfo() -
+full_search associative_array containing the total matches and current results -
+total int total members matching - members array each entry will be struct
+matching the data format for a single member as returned by listMemberInfo()<br />
 				</div>
 
 

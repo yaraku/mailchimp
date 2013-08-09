@@ -192,11 +192,11 @@
 </span><span id="8" class="l"><a class="l" href="#8">  8: </a>    <span class="php-comment">/**
 </span></span><span id="9" class="l"><a class="l" href="#9">  9: </a><span class="php-comment">     * Get all email addresses that complained about a given campaign
 </span></span><span id="10" class="l"><a class="l" href="#10"> 10: </a><span class="php-comment">     * @param string $cid
-</span></span><span id="11" class="l"><a class="l" href="#11"> 11: </a><span class="php-comment">     * @param struct $opts
+</span></span><span id="11" class="l"><a class="l" href="#11"> 11: </a><span class="php-comment">     * @param associative_array $opts
 </span></span><span id="12" class="l"><a class="l" href="#12"> 12: </a><span class="php-comment">     *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
 </span></span><span id="13" class="l"><a class="l" href="#13"> 13: </a><span class="php-comment">     *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
 </span></span><span id="14" class="l"><a class="l" href="#14"> 14: </a><span class="php-comment">     *     - since string optional pull only messages since this time - 24 hour format in &lt;strong&gt;GMT&lt;/strong&gt;, eg &quot;2013-12-30 20:30:00&quot;
-</span></span><span id="15" class="l"><a class="l" href="#15"> 15: </a><span class="php-comment">     * @return struct abuse report data for this campaign
+</span></span><span id="15" class="l"><a class="l" href="#15"> 15: </a><span class="php-comment">     * @return associative_array abuse report data for this campaign
 </span></span><span id="16" class="l"><a class="l" href="#16"> 16: </a><span class="php-comment">     *     - total int the total reports matched
 </span></span><span id="17" class="l"><a class="l" href="#17"> 17: </a><span class="php-comment">     *     - data array a struct for the each report, including:
 </span></span><span id="18" class="l"><a class="l" href="#18"> 18: </a><span class="php-comment">     *         - date string date/time the abuse report was received and processed
@@ -225,13 +225,13 @@
 </span></span><span id="41" class="l"><a class="l" href="#41"> 41: </a><span class="php-comment">     * Retrieve the most recent full bounce message for a specific email address on the given campaign.
 </span></span><span id="42" class="l"><a class="l" href="#42"> 42: </a><span class="php-comment">Messages over 30 days old are subject to being removed
 </span></span><span id="43" class="l"><a class="l" href="#43"> 43: </a><span class="php-comment">     * @param string $cid
-</span></span><span id="44" class="l"><a class="l" href="#44"> 44: </a><span class="php-comment">     * @param struct $email
+</span></span><span id="44" class="l"><a class="l" href="#44"> 44: </a><span class="php-comment">     * @param associative_array $email
 </span></span><span id="45" class="l"><a class="l" href="#45"> 45: </a><span class="php-comment">     *     - email string an email address - this is recommended for this method
 </span></span><span id="46" class="l"><a class="l" href="#46"> 46: </a><span class="php-comment">     *     - euid string the unique id for an email address (not list related) - the email &quot;id&quot; returned from listMemberInfo, Webhooks, Campaigns, etc.
 </span></span><span id="47" class="l"><a class="l" href="#47"> 47: </a><span class="php-comment">     *     - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
-</span></span><span id="48" class="l"><a class="l" href="#48"> 48: </a><span class="php-comment">     * @return struct the full bounce message for this email+campaign along with some extra data.
+</span></span><span id="48" class="l"><a class="l" href="#48"> 48: </a><span class="php-comment">     * @return associative_array the full bounce message for this email+campaign along with some extra data.
 </span></span><span id="49" class="l"><a class="l" href="#49"> 49: </a><span class="php-comment">     *     - date string date the bounce was received and processed
-</span></span><span id="50" class="l"><a class="l" href="#50"> 50: </a><span class="php-comment">     *     - member struct the member record as returned by lists/member-info
+</span></span><span id="50" class="l"><a class="l" href="#50"> 50: </a><span class="php-comment">     *     - member associative_array the member record as returned by lists/member-info
 </span></span><span id="51" class="l"><a class="l" href="#51"> 51: </a><span class="php-comment">     *     - message string the entire bounce message received
 </span></span><span id="52" class="l"><a class="l" href="#52"> 52: </a><span class="php-comment">     */</span>
 </span><span id="53" class="l"><a class="l" href="#53"> 53: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_bounceMessage" href="#_bounceMessage">bounceMessage</a>(<span class="php-var">$cid</span>, <span class="php-var">$email</span>) {
@@ -244,15 +244,15 @@
 </span></span><span id="60" class="l"><a class="l" href="#60"> 60: </a><span class="php-comment">of data depending on how large the campaign was and how much cruft the bounce provider returned. Also,
 </span></span><span id="61" class="l"><a class="l" href="#61"> 61: </a><span class="php-comment">messages over 30 days old are subject to being removed
 </span></span><span id="62" class="l"><a class="l" href="#62"> 62: </a><span class="php-comment">     * @param string $cid
-</span></span><span id="63" class="l"><a class="l" href="#63"> 63: </a><span class="php-comment">     * @param struct $opts
+</span></span><span id="63" class="l"><a class="l" href="#63"> 63: </a><span class="php-comment">     * @param associative_array $opts
 </span></span><span id="64" class="l"><a class="l" href="#64"> 64: </a><span class="php-comment">     *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
 </span></span><span id="65" class="l"><a class="l" href="#65"> 65: </a><span class="php-comment">     *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
 </span></span><span id="66" class="l"><a class="l" href="#66"> 66: </a><span class="php-comment">     *     - since string optional pull only messages since this time - 24 hour format in &lt;strong&gt;GMT&lt;/strong&gt;, eg &quot;2013-12-30 20:30:00&quot;
-</span></span><span id="67" class="l"><a class="l" href="#67"> 67: </a><span class="php-comment">     * @return struct data for the full bounce messages for this campaign
+</span></span><span id="67" class="l"><a class="l" href="#67"> 67: </a><span class="php-comment">     * @return associative_array data for the full bounce messages for this campaign
 </span></span><span id="68" class="l"><a class="l" href="#68"> 68: </a><span class="php-comment">     *     - total int that total number of bounce messages for the campaign
 </span></span><span id="69" class="l"><a class="l" href="#69"> 69: </a><span class="php-comment">     *     - data array structs containing the data for this page
 </span></span><span id="70" class="l"><a class="l" href="#70"> 70: </a><span class="php-comment">     *         - date string date the bounce was received and processed
-</span></span><span id="71" class="l"><a class="l" href="#71"> 71: </a><span class="php-comment">     *         - member struct the member record as returned by lists/member-info
+</span></span><span id="71" class="l"><a class="l" href="#71"> 71: </a><span class="php-comment">     *         - member associative_array the member record as returned by lists/member-info
 </span></span><span id="72" class="l"><a class="l" href="#72"> 72: </a><span class="php-comment">     *         - message string the entire bounce message received
 </span></span><span id="73" class="l"><a class="l" href="#73"> 73: </a><span class="php-comment">     */</span>
 </span><span id="74" class="l"><a class="l" href="#74"> 74: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_bounceMessages" href="#_bounceMessages">bounceMessages</a>(<span class="php-var">$cid</span>, <span class="php-var">$opts</span>=<span class="php-keyword1">array</span>()) {
@@ -264,15 +264,15 @@
 </span></span><span id="80" class="l"><a class="l" href="#80"> 80: </a><span class="php-comment">     * Return the list of email addresses that clicked on a given url, and how many times they clicked
 </span></span><span id="81" class="l"><a class="l" href="#81"> 81: </a><span class="php-comment">     * @param string $cid
 </span></span><span id="82" class="l"><a class="l" href="#82"> 82: </a><span class="php-comment">     * @param int $tid
-</span></span><span id="83" class="l"><a class="l" href="#83"> 83: </a><span class="php-comment">     * @param struct $opts
+</span></span><span id="83" class="l"><a class="l" href="#83"> 83: </a><span class="php-comment">     * @param associative_array $opts
 </span></span><span id="84" class="l"><a class="l" href="#84"> 84: </a><span class="php-comment">     *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
 </span></span><span id="85" class="l"><a class="l" href="#85"> 85: </a><span class="php-comment">     *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
 </span></span><span id="86" class="l"><a class="l" href="#86"> 86: </a><span class="php-comment">     *     - sort_field string optional the data to sort by - &quot;clicked&quot; (order clicks occurred, default) or &quot;clicks&quot; (total number of opens). Invalid fields will fall back on the default.
 </span></span><span id="87" class="l"><a class="l" href="#87"> 87: </a><span class="php-comment">     *     - sort_dir string optional the direct - ASC or DESC. defaults to ASC (case insensitive)
-</span></span><span id="88" class="l"><a class="l" href="#88"> 88: </a><span class="php-comment">     * @return struct containing the total records matched and the specific records for this page
+</span></span><span id="88" class="l"><a class="l" href="#88"> 88: </a><span class="php-comment">     * @return associative_array containing the total records matched and the specific records for this page
 </span></span><span id="89" class="l"><a class="l" href="#89"> 89: </a><span class="php-comment">     *     - total int the total number of records matched
 </span></span><span id="90" class="l"><a class="l" href="#90"> 90: </a><span class="php-comment">     *     - data array structs for each email addresses that click the requested url
-</span></span><span id="91" class="l"><a class="l" href="#91"> 91: </a><span class="php-comment">     *         - member struct the member record as returned by lists/member-info
+</span></span><span id="91" class="l"><a class="l" href="#91"> 91: </a><span class="php-comment">     *         - member associative_array the member record as returned by lists/member-info
 </span></span><span id="92" class="l"><a class="l" href="#92"> 92: </a><span class="php-comment">     *         - clicks int Total number of times the URL was clicked by this email address
 </span></span><span id="93" class="l"><a class="l" href="#93"> 93: </a><span class="php-comment">     */</span>
 </span><span id="94" class="l"><a class="l" href="#94"> 94: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_clickDetail" href="#_clickDetail">clickDetail</a>(<span class="php-var">$cid</span>, <span class="php-var">$tid</span>, <span class="php-var">$opts</span>=<span class="php-keyword1">array</span>()) {
@@ -283,7 +283,7 @@
 </span><span id="99" class="l"><a class="l" href="#99"> 99: </a>    <span class="php-comment">/**
 </span></span><span id="100" class="l"><a class="l" href="#100">100: </a><span class="php-comment">     * The urls tracked and their click counts for a given campaign.
 </span></span><span id="101" class="l"><a class="l" href="#101">101: </a><span class="php-comment">     * @param string $cid
-</span></span><span id="102" class="l"><a class="l" href="#102">102: </a><span class="php-comment">     * @return struct including:
+</span></span><span id="102" class="l"><a class="l" href="#102">102: </a><span class="php-comment">     * @return associative_array including:
 </span></span><span id="103" class="l"><a class="l" href="#103">103: </a><span class="php-comment">     *     - total array structs for each url tracked for the full campaign
 </span></span><span id="104" class="l"><a class="l" href="#104">104: </a><span class="php-comment">     *         - url string the url being tracked - urls are tracked individually, so duplicates can exist with vastly different stats
 </span></span><span id="105" class="l"><a class="l" href="#105">105: </a><span class="php-comment">     *         - clicks int Number of times the specific link was clicked
@@ -314,17 +314,17 @@
 </span><span id="130" class="l"><a class="l" href="#130">130: </a>    <span class="php-comment">/**
 </span></span><span id="131" class="l"><a class="l" href="#131">131: </a><span class="php-comment">     * Retrieve the Ecommerce Orders tracked by campaignEcommOrderAdd()
 </span></span><span id="132" class="l"><a class="l" href="#132">132: </a><span class="php-comment">     * @param string $cid
-</span></span><span id="133" class="l"><a class="l" href="#133">133: </a><span class="php-comment">     * @param struct $opts
+</span></span><span id="133" class="l"><a class="l" href="#133">133: </a><span class="php-comment">     * @param associative_array $opts
 </span></span><span id="134" class="l"><a class="l" href="#134">134: </a><span class="php-comment">     *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
 </span></span><span id="135" class="l"><a class="l" href="#135">135: </a><span class="php-comment">     *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
 </span></span><span id="136" class="l"><a class="l" href="#136">136: </a><span class="php-comment">     *     - since string optional pull only messages since this time - 24 hour format in &lt;strong&gt;GMT&lt;/strong&gt;, eg &quot;2013-12-30 20:30:00&quot;
-</span></span><span id="137" class="l"><a class="l" href="#137">137: </a><span class="php-comment">     * @return struct the total matching orders and the specific orders for the requested page
+</span></span><span id="137" class="l"><a class="l" href="#137">137: </a><span class="php-comment">     * @return associative_array the total matching orders and the specific orders for the requested page
 </span></span><span id="138" class="l"><a class="l" href="#138">138: </a><span class="php-comment">     *     - total int the total matching orders
 </span></span><span id="139" class="l"><a class="l" href="#139">139: </a><span class="php-comment">     *     - data array structs for the actual data for each order being returned
 </span></span><span id="140" class="l"><a class="l" href="#140">140: </a><span class="php-comment">     *     - store_id string the store id generated by the plugin used to uniquely identify a store
 </span></span><span id="141" class="l"><a class="l" href="#141">141: </a><span class="php-comment">     *     - store_name string the store name collected by the plugin - often the domain name
 </span></span><span id="142" class="l"><a class="l" href="#142">142: </a><span class="php-comment">     *     - order_id string the internal order id the store tracked this order by
-</span></span><span id="143" class="l"><a class="l" href="#143">143: </a><span class="php-comment">     *     - member struct the member record as returned by lists/member-info that received this campaign and is associated with this order
+</span></span><span id="143" class="l"><a class="l" href="#143">143: </a><span class="php-comment">     *     - member associative_array the member record as returned by lists/member-info that received this campaign and is associated with this order
 </span></span><span id="144" class="l"><a class="l" href="#144">144: </a><span class="php-comment">     *     - order_total double the order total
 </span></span><span id="145" class="l"><a class="l" href="#145">145: </a><span class="php-comment">     *     - tax_total double the total tax for the order (if collected)
 </span></span><span id="146" class="l"><a class="l" href="#146">146: </a><span class="php-comment">     *     - ship_total double the shipping total for the order (if collected)
@@ -347,8 +347,8 @@
 </span><span id="163" class="l"><a class="l" href="#163">163: </a>    <span class="php-comment">/**
 </span></span><span id="164" class="l"><a class="l" href="#164">164: </a><span class="php-comment">     * Retrieve the eepurl stats from the web/Twitter mentions for this campaign
 </span></span><span id="165" class="l"><a class="l" href="#165">165: </a><span class="php-comment">     * @param string $cid
-</span></span><span id="166" class="l"><a class="l" href="#166">166: </a><span class="php-comment">     * @return struct containing tweets, retweets, clicks, and referrer related to using the campaign's eepurl
-</span></span><span id="167" class="l"><a class="l" href="#167">167: </a><span class="php-comment">     *     - twitter struct various Twitter related stats
+</span></span><span id="166" class="l"><a class="l" href="#166">166: </a><span class="php-comment">     * @return associative_array containing tweets, retweets, clicks, and referrer related to using the campaign's eepurl
+</span></span><span id="167" class="l"><a class="l" href="#167">167: </a><span class="php-comment">     *     - twitter associative_array various Twitter related stats
 </span></span><span id="168" class="l"><a class="l" href="#168">168: </a><span class="php-comment">     *         - tweets int Total number of tweets seen
 </span></span><span id="169" class="l"><a class="l" href="#169">169: </a><span class="php-comment">     *         - first_tweet string date and time of the first tweet seen
 </span></span><span id="170" class="l"><a class="l" href="#170">170: </a><span class="php-comment">     *         - last_tweet string date and time of the last tweet seen
@@ -361,7 +361,7 @@
 </span></span><span id="177" class="l"><a class="l" href="#177">177: </a><span class="php-comment">     *             - status_id string the status id of the tweet (they are really unsigned 64 bit ints)
 </span></span><span id="178" class="l"><a class="l" href="#178">178: </a><span class="php-comment">     *             - datetime string the date/time of the tweet
 </span></span><span id="179" class="l"><a class="l" href="#179">179: </a><span class="php-comment">     *             - is_retweet bool whether or not this was a retweet
-</span></span><span id="180" class="l"><a class="l" href="#180">180: </a><span class="php-comment">     *     - clicks struct stats related to click-throughs on the eepurl
+</span></span><span id="180" class="l"><a class="l" href="#180">180: </a><span class="php-comment">     *     - clicks associative_array stats related to click-throughs on the eepurl
 </span></span><span id="181" class="l"><a class="l" href="#181">181: </a><span class="php-comment">     *         - clicks int Total number of clicks seen
 </span></span><span id="182" class="l"><a class="l" href="#182">182: </a><span class="php-comment">     *         - first_click string date and time of the first click seen
 </span></span><span id="183" class="l"><a class="l" href="#183">183: </a><span class="php-comment">     *         - last_click string date and time of the first click seen
@@ -388,7 +388,7 @@
 </span></span><span id="204" class="l"><a class="l" href="#204">204: </a><span class="php-comment">     *     - email string an email address
 </span></span><span id="205" class="l"><a class="l" href="#205">205: </a><span class="php-comment">     *     - euid string the unique id for an email address (not list related) - the email &quot;id&quot; returned from listMemberInfo, Webhooks, Campaigns, etc.
 </span></span><span id="206" class="l"><a class="l" href="#206">206: </a><span class="php-comment">     *     - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
-</span></span><span id="207" class="l"><a class="l" href="#207">207: </a><span class="php-comment">     * @return struct of data and success/error counts
+</span></span><span id="207" class="l"><a class="l" href="#207">207: </a><span class="php-comment">     * @return associative_array of data and success/error counts
 </span></span><span id="208" class="l"><a class="l" href="#208">208: </a><span class="php-comment">     *     - success_count int the number of subscribers successfully found on the list
 </span></span><span id="209" class="l"><a class="l" href="#209">209: </a><span class="php-comment">     *     - error_count int the number of subscribers who were not found on the list
 </span></span><span id="210" class="l"><a class="l" href="#210">210: </a><span class="php-comment">     *     - errors array array of error structs including:
@@ -402,7 +402,7 @@
 </span></span><span id="218" class="l"><a class="l" href="#218">218: </a><span class="php-comment">     *             - email string the email address added
 </span></span><span id="219" class="l"><a class="l" href="#219">219: </a><span class="php-comment">     *             - euid string the email unique id
 </span></span><span id="220" class="l"><a class="l" href="#220">220: </a><span class="php-comment">     *             - leid string the list member's truly unique id
-</span></span><span id="221" class="l"><a class="l" href="#221">221: </a><span class="php-comment">     *         - member struct the member record as returned by lists/member-info
+</span></span><span id="221" class="l"><a class="l" href="#221">221: </a><span class="php-comment">     *         - member associative_array the member record as returned by lists/member-info
 </span></span><span id="222" class="l"><a class="l" href="#222">222: </a><span class="php-comment">     *         - activity array an array of structs containing the activity, including:
 </span></span><span id="223" class="l"><a class="l" href="#223">223: </a><span class="php-comment">     *             - action string The action name - either open or click
 </span></span><span id="224" class="l"><a class="l" href="#224">224: </a><span class="php-comment">     *             - timestamp string The date/time of the action (GMT)
@@ -417,10 +417,10 @@
 </span><span id="233" class="l"><a class="l" href="#233">233: </a>    <span class="php-comment">/**
 </span></span><span id="234" class="l"><a class="l" href="#234">234: </a><span class="php-comment">     * Retrieve the list of email addresses that did not open a given campaign
 </span></span><span id="235" class="l"><a class="l" href="#235">235: </a><span class="php-comment">     * @param string $cid
-</span></span><span id="236" class="l"><a class="l" href="#236">236: </a><span class="php-comment">     * @param struct $opts
+</span></span><span id="236" class="l"><a class="l" href="#236">236: </a><span class="php-comment">     * @param associative_array $opts
 </span></span><span id="237" class="l"><a class="l" href="#237">237: </a><span class="php-comment">     *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
 </span></span><span id="238" class="l"><a class="l" href="#238">238: </a><span class="php-comment">     *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
-</span></span><span id="239" class="l"><a class="l" href="#239">239: </a><span class="php-comment">     * @return struct a total of all matching emails and the specific emails for this page
+</span></span><span id="239" class="l"><a class="l" href="#239">239: </a><span class="php-comment">     * @return associative_array a total of all matching emails and the specific emails for this page
 </span></span><span id="240" class="l"><a class="l" href="#240">240: </a><span class="php-comment">     *     - total int the total number of members who didn't open the campaign
 </span></span><span id="241" class="l"><a class="l" href="#241">241: </a><span class="php-comment">     *     - data array structs for each campaign member matching as returned by lists/member-info
 </span></span><span id="242" class="l"><a class="l" href="#242">242: </a><span class="php-comment">     */</span>
@@ -432,7 +432,7 @@
 </span><span id="248" class="l"><a class="l" href="#248">248: </a>    <span class="php-comment">/**
 </span></span><span id="249" class="l"><a class="l" href="#249">249: </a><span class="php-comment">     * Retrieve the list of email addresses that opened a given campaign with how many times they opened
 </span></span><span id="250" class="l"><a class="l" href="#250">250: </a><span class="php-comment">     * @param string $cid
-</span></span><span id="251" class="l"><a class="l" href="#251">251: </a><span class="php-comment">     * @param struct $opts
+</span></span><span id="251" class="l"><a class="l" href="#251">251: </a><span class="php-comment">     * @param associative_array $opts
 </span></span><span id="252" class="l"><a class="l" href="#252">252: </a><span class="php-comment">     *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
 </span></span><span id="253" class="l"><a class="l" href="#253">253: </a><span class="php-comment">     *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
 </span></span><span id="254" class="l"><a class="l" href="#254">254: </a><span class="php-comment">     *     - sort_field string optional the data to sort by - &quot;opened&quot; (order opens occurred, default) or &quot;opens&quot; (total number of opens). Invalid fields will fall back on the default.
@@ -440,7 +440,7 @@
 </span></span><span id="256" class="l"><a class="l" href="#256">256: </a><span class="php-comment">     * @return array array containing the total records matched and the specific records for this page
 </span></span><span id="257" class="l"><a class="l" href="#257">257: </a><span class="php-comment">     *     - total int the total number of records matched
 </span></span><span id="258" class="l"><a class="l" href="#258">258: </a><span class="php-comment">     *     - data array structs for the actual opens data, including:
-</span></span><span id="259" class="l"><a class="l" href="#259">259: </a><span class="php-comment">     *         - member struct the member record as returned by lists/member-info
+</span></span><span id="259" class="l"><a class="l" href="#259">259: </a><span class="php-comment">     *         - member associative_array the member record as returned by lists/member-info
 </span></span><span id="260" class="l"><a class="l" href="#260">260: </a><span class="php-comment">     *         - opens int Total number of times the campaign was opened by this email address
 </span></span><span id="261" class="l"><a class="l" href="#261">261: </a><span class="php-comment">     */</span>
 </span><span id="262" class="l"><a class="l" href="#262">262: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_opened" href="#_opened">opened</a>(<span class="php-var">$cid</span>, <span class="php-var">$opts</span>=<span class="php-keyword1">array</span>()) {
@@ -515,14 +515,14 @@
 </span><span id="331" class="l"><a class="l" href="#331">331: </a>    <span class="php-comment">/**
 </span></span><span id="332" class="l"><a class="l" href="#332">332: </a><span class="php-comment">     * Get email addresses the campaign was sent to
 </span></span><span id="333" class="l"><a class="l" href="#333">333: </a><span class="php-comment">     * @param string $cid
-</span></span><span id="334" class="l"><a class="l" href="#334">334: </a><span class="php-comment">     * @param struct $opts
+</span></span><span id="334" class="l"><a class="l" href="#334">334: </a><span class="php-comment">     * @param associative_array $opts
 </span></span><span id="335" class="l"><a class="l" href="#335">335: </a><span class="php-comment">     *     - status string optional the status to pull - one of 'sent', 'hard' (bounce), or 'soft' (bounce). By default, all records are returned
 </span></span><span id="336" class="l"><a class="l" href="#336">336: </a><span class="php-comment">     *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
 </span></span><span id="337" class="l"><a class="l" href="#337">337: </a><span class="php-comment">     *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
-</span></span><span id="338" class="l"><a class="l" href="#338">338: </a><span class="php-comment">     * @return struct a total of all matching emails and the specific emails for this page
+</span></span><span id="338" class="l"><a class="l" href="#338">338: </a><span class="php-comment">     * @return associative_array a total of all matching emails and the specific emails for this page
 </span></span><span id="339" class="l"><a class="l" href="#339">339: </a><span class="php-comment">     *     - total int the total number of members for the campaign and status
 </span></span><span id="340" class="l"><a class="l" href="#340">340: </a><span class="php-comment">     *     - data array structs for each campaign member matching
-</span></span><span id="341" class="l"><a class="l" href="#341">341: </a><span class="php-comment">     *         - member struct the member record as returned by lists/member-info
+</span></span><span id="341" class="l"><a class="l" href="#341">341: </a><span class="php-comment">     *         - member associative_array the member record as returned by lists/member-info
 </span></span><span id="342" class="l"><a class="l" href="#342">342: </a><span class="php-comment">     *         - status string the status of the send - one of 'sent', 'hard', 'soft'
 </span></span><span id="343" class="l"><a class="l" href="#343">343: </a><span class="php-comment">     *         - absplit_group string if this was an absplit campaign, one of 'a','b', or 'winner'
 </span></span><span id="344" class="l"><a class="l" href="#344">344: </a><span class="php-comment">     *         - tz_group string if this was an timewarp campaign the timezone GMT offset the member was included in
@@ -539,7 +539,7 @@
 </span></span><span id="355" class="l"><a class="l" href="#355">355: </a><span class="php-comment">     *     - to_email string optional - optional, comma delimited list of email addresses to share the report with - no value means an email will not be sent
 </span></span><span id="356" class="l"><a class="l" href="#356">356: </a><span class="php-comment">     *     - theme_id int optional - either a global or a user-specific theme id. Currently this needs to be pulled out of either the Share Report or Cobranding web views by grabbing the &quot;theme&quot; attribute from the list presented.
 </span></span><span id="357" class="l"><a class="l" href="#357">357: </a><span class="php-comment">     *     - css_url string optional - a link to an external CSS file to be included after our default CSS (http://vip-reports.net/css/vip.css) &lt;strong&gt;only if&lt;/strong&gt; loaded via the &quot;secure_url&quot; - max 255 bytes
-</span></span><span id="358" class="l"><a class="l" href="#358">358: </a><span class="php-comment">     * @return struct details for the shared report, including:
+</span></span><span id="358" class="l"><a class="l" href="#358">358: </a><span class="php-comment">     * @return associative_array details for the shared report, including:
 </span></span><span id="359" class="l"><a class="l" href="#359">359: </a><span class="php-comment">     *     - title string The Title of the Campaign being shared
 </span></span><span id="360" class="l"><a class="l" href="#360">360: </a><span class="php-comment">     *     - url string The URL to the shared report
 </span></span><span id="361" class="l"><a class="l" href="#361">361: </a><span class="php-comment">     *     - secure_url string The URL to the shared report, including the password (good for loading in an IFRAME). For non-secure reports, this will not be returned
@@ -553,7 +553,7 @@
 </span><span id="369" class="l"><a class="l" href="#369">369: </a>    <span class="php-comment">/**
 </span></span><span id="370" class="l"><a class="l" href="#370">370: </a><span class="php-comment">     * Retrieve relevant aggregate campaign statistics (opens, bounces, clicks, etc.)
 </span></span><span id="371" class="l"><a class="l" href="#371">371: </a><span class="php-comment">     * @param string $cid
-</span></span><span id="372" class="l"><a class="l" href="#372">372: </a><span class="php-comment">     * @return struct the statistics for this campaign
+</span></span><span id="372" class="l"><a class="l" href="#372">372: </a><span class="php-comment">     * @return associative_array the statistics for this campaign
 </span></span><span id="373" class="l"><a class="l" href="#373">373: </a><span class="php-comment">     *     - syntax_errors int Number of email addresses in campaign that had syntactical errors.
 </span></span><span id="374" class="l"><a class="l" href="#374">374: </a><span class="php-comment">     *     - hard_bounces int Number of email addresses in campaign that hard bounced.
 </span></span><span id="375" class="l"><a class="l" href="#375">375: </a><span class="php-comment">     *     - soft_bounces int Number of email addresses in campaign that soft bounced.
@@ -572,7 +572,7 @@
 </span></span><span id="388" class="l"><a class="l" href="#388">388: </a><span class="php-comment">     *     - unique_likes int total number of unique likes (Facebook)
 </span></span><span id="389" class="l"><a class="l" href="#389">389: </a><span class="php-comment">     *     - recipient_likes int total number of recipients who liked (Facebook) the campaign
 </span></span><span id="390" class="l"><a class="l" href="#390">390: </a><span class="php-comment">     *     - facebook_likes int total number of likes (Facebook) that came from Facebook
-</span></span><span id="391" class="l"><a class="l" href="#391">391: </a><span class="php-comment">     *     - absplit struct If this was an absplit campaign, stats for the A and B groups will be returned - otherwise this is empty
+</span></span><span id="391" class="l"><a class="l" href="#391">391: </a><span class="php-comment">     *     - absplit associative_array If this was an absplit campaign, stats for the A and B groups will be returned - otherwise this is empty
 </span></span><span id="392" class="l"><a class="l" href="#392">392: </a><span class="php-comment">     *         - bounces_a int bounces for the A group
 </span></span><span id="393" class="l"><a class="l" href="#393">393: </a><span class="php-comment">     *         - bounces_b int bounces for the B group
 </span></span><span id="394" class="l"><a class="l" href="#394">394: </a><span class="php-comment">     *         - forwards_a int forwards for the A group
@@ -615,10 +615,10 @@
 </span><span id="431" class="l"><a class="l" href="#431">431: </a>    <span class="php-comment">/**
 </span></span><span id="432" class="l"><a class="l" href="#432">432: </a><span class="php-comment">     * Get all unsubscribed email addresses for a given campaign
 </span></span><span id="433" class="l"><a class="l" href="#433">433: </a><span class="php-comment">     * @param string $cid
-</span></span><span id="434" class="l"><a class="l" href="#434">434: </a><span class="php-comment">     * @param struct $opts
+</span></span><span id="434" class="l"><a class="l" href="#434">434: </a><span class="php-comment">     * @param associative_array $opts
 </span></span><span id="435" class="l"><a class="l" href="#435">435: </a><span class="php-comment">     *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
 </span></span><span id="436" class="l"><a class="l" href="#436">436: </a><span class="php-comment">     *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
-</span></span><span id="437" class="l"><a class="l" href="#437">437: </a><span class="php-comment">     * @return struct a total of all unsubscribed emails and the specific members for this page
+</span></span><span id="437" class="l"><a class="l" href="#437">437: </a><span class="php-comment">     * @return associative_array a total of all unsubscribed emails and the specific members for this page
 </span></span><span id="438" class="l"><a class="l" href="#438">438: </a><span class="php-comment">     *     - total int the total number of unsubscribes for the campaign
 </span></span><span id="439" class="l"><a class="l" href="#439">439: </a><span class="php-comment">     *     - data array structs for the email addresses that unsubscribed
 </span></span><span id="440" class="l"><a class="l" href="#440">440: </a><span class="php-comment">     *         - member string the member that unsubscribed as returned by lists/member-info

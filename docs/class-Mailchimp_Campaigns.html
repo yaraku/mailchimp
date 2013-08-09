@@ -239,14 +239,14 @@
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_content">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#8-24" title="Go to source code">content</a>( <span>string <var>$cid</var></span>, <span>struct <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#8-24" title="Go to source code">content</a>( <span>string <var>$cid</var></span>, <span>associative_array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -267,22 +267,22 @@ in the campaign archive or as the raw, original content</p>
 					<dt><var>$cid</var></dt>
 					<dd><code>string</code><br>$cid</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>struct</code><br>$options - view string optional one of "archive" (default), "preview" (like our
-popup-preview) or "raw" - email struct optional if provided, view is "archive"
-or "preview", the campaign's list still exists, and the requested record is
-subscribed to the list. the returned content will be populated with member data
-populated. a struct with one of the following keys - failing to provide anything
-will produce an error relating to the email address. Providing multiples and
-will use the first we see in this same order. - email string an email address -
-euid string the unique id for an email address (not list related) - the email
-"id" returned from listMemberInfo, Webhooks, Campaigns, etc. - leid string the
-list email id (previously called web_id) for a list-member-info type call. this
-doesn't change when the email address changes</dd>
+					<dd><code>associative_array</code><br>$options - view string optional one of "archive" (default), "preview" (like our
+popup-preview) or "raw" - email associative_array optional if provided, view is
+"archive" or "preview", the campaign's list still exists, and the requested
+record is subscribed to the list. the returned content will be populated with
+member data populated. a struct with one of the following keys - failing to
+provide anything will produce an error relating to the email address. Providing
+multiples and will use the first we see in this same order. - email string an
+email address - euid string the unique id for an email address (not list
+related) - the email "id" returned from listMemberInfo, Webhooks, Campaigns,
+etc. - leid string the list email id (previously called web_id) for a
+list-member-info type call. this doesn't change when the email address changes</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>containing all content for the campaign - html string The HTML content used for
+					<code>associative_array</code><br>containing all content for the campaign - html string The HTML content used for
 the campaign with merge tags intact - text string The Text content used for the
 campaign with merge tags intact<br />
 				</div>
@@ -297,14 +297,14 @@ campaign with merge tags intact<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_create">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#26-124" title="Go to source code">create</a>( <span>string <var>$type</var></span>, <span>struct <var>$options</var></span>, <span>struct <var>$content</var></span>, <span>struct <var>$segment_opts</var> = <span class="php-keyword1">null</span></span>, <span>struct <var>$type_opts</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#26-124" title="Go to source code">create</a>( <span>string <var>$type</var></span>, <span>associative_array <var>$options</var></span>, <span>associative_array <var>$content</var></span>, <span>associative_array <var>$segment_opts</var> = <span class="php-keyword1">null</span></span>, <span>associative_array <var>$type_opts</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -325,7 +325,7 @@ have more than 32,000 campaigns in your account.</p>
 					<dt><var>$type</var></dt>
 					<dd><code>string</code><br>$type</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>struct</code><br>$options - list_id string the list to send this campaign to- get lists using
+					<dd><code>associative_array</code><br>$options - list_id string the list to send this campaign to- get lists using
 lists() - subject string the subject line for your campaign message - from_email
 string the From: email address for your campaign message - from_name string the
 From: name for your campaign message (not an email address) - to_name string the
@@ -338,30 +338,30 @@ base_template_id int optional - use this a base/start-from-scratch template to
 generate the HTML content of the campaign - folder_id int optional -
 automatically file the new campaign in the folder_id passed. Get using folders()
 - note that Campaigns and Autoresponders have separate folder setupsn - tracking
-struct optional - set which recipient actions will be tracked. Click tracking
-can not be disabled for Free accounts. - opens bool whether to track opens,
-defaults to true - html_clicks bool whether to track clicks in HTML content,
-defaults to true - text_clicks bool whether to track clicks in Text content,
-defaults to false - title string optional - an internal name to use for this
-campaign. By default, the campaign subject will be used. - authenticate boolean
-optional - set to true to enable SenderID, DomainKeys, and DKIM authentication,
-defaults to false. - analytics struct optional - one or more of these keys set
-to the tag to use - that can be any custom text (up to 50 bytes) - google string
-for Google Analytics tracking - clicktale string for ClickTale tracking - gooal
-string for Goo.al tracking - auto_footer boolean optional Whether or not we
-should auto-generate the footer for your content. Mostly useful for content from
-URLs or Imports - inline_css boolean optional Whether or not css should be
-automatically inlined when this campaign is sent, defaults to false. -
-generate_text boolean optional Whether of not to auto-generate your Text content
-from the HTML content. Note that this will be ignored if the Text part of the
-content passed is not empty, defaults to false. - auto_tweet boolean optional If
-set, this campaign will be auto-tweeted when it is sent - defaults to false.
-Note that if a Twitter account isn't linked, this will be silently ignored. -
-auto_fb_post array optional If set, this campaign will be auto-posted to the
-page_ids contained in the array. If a Facebook account isn't linked or the
-account does not have permission to post to the page_ids requested, those
-failures will be silently ignored. - fb_comments boolean optional If true, the
-Facebook comments (and thus the <a
+associative_array optional - set which recipient actions will be tracked. Click
+tracking can not be disabled for Free accounts. - opens bool whether to track
+opens, defaults to true - html_clicks bool whether to track clicks in HTML
+content, defaults to true - text_clicks bool whether to track clicks in Text
+content, defaults to false - title string optional - an internal name to use for
+this campaign. By default, the campaign subject will be used. - authenticate
+boolean optional - set to true to enable SenderID, DomainKeys, and DKIM
+authentication, defaults to false. - analytics associative_array optional - one
+or more of these keys set to the tag to use - that can be any custom text (up to
+50 bytes) - google string for Google Analytics tracking - clicktale string for
+ClickTale tracking - gooal string for Goo.al tracking - auto_footer boolean
+optional Whether or not we should auto-generate the footer for your content.
+Mostly useful for content from URLs or Imports - inline_css boolean optional
+Whether or not css should be automatically inlined when this campaign is sent,
+defaults to false. - generate_text boolean optional Whether of not to
+auto-generate your Text content from the HTML content. Note that this will be
+ignored if the Text part of the content passed is not empty, defaults to false.
+- auto_tweet boolean optional If set, this campaign will be auto-tweeted when it
+is sent - defaults to false. Note that if a Twitter account isn't linked, this
+will be silently ignored. - auto_fb_post array optional If set, this campaign
+will be auto-posted to the page_ids contained in the array. If a Facebook
+account isn't linked or the account does not have permission to post to the
+page_ids requested, those failures will be silently ignored. - fb_comments
+boolean optional If true, the Facebook comments (and thus the <a
 href="http://kb.mailchimp.com/article/i-dont-want-an-archiave-of-my-campaign-can-i-turn-it-off/"
 target="_blank">archive bar</a> will be displayed. If false, Facebook comments
 will not be enabled (does not imply no archive bar, see previous link). Defaults
@@ -372,21 +372,21 @@ boolean optional If set, our <a
 href="http://www.mailchimp.com/blog/ecommerce-tracking-plugin/"
 target="_blank">Ecommerce360 tracking</a> will be enabled for links in the
 campaign - crm_tracking array optional If set, an array of structs to enable CRM
-tracking for: - salesforce struct optional Enable SalesForce push back -
-campaign bool optional - if true, create a Campaign object and update it with
-aggregate stats - notes bool optional - if true, attempt to update Contact notes
-based on email address - highrise struct optional Enable Highrise push back -
-campaign bool optional - if true, create a Kase object and update it with
-aggregate stats - notes bool optional - if true, attempt to update Contact notes
-based on email address - capsule struct optional Enable Capsule push back (only
-notes are supported) - notes bool optional - if true, attempt to update Contact
-notes based on email address</dd>
+tracking for: - salesforce associative_array optional Enable SalesForce push
+back - campaign bool optional - if true, create a Campaign object and update it
+with aggregate stats - notes bool optional - if true, attempt to update Contact
+notes based on email address - highrise associative_array optional Enable
+Highrise push back - campaign bool optional - if true, create a Kase object and
+update it with aggregate stats - notes bool optional - if true, attempt to
+update Contact notes based on email address - capsule associative_array optional
+Enable Capsule push back (only notes are supported) - notes bool optional - if
+true, attempt to update Contact notes based on email address</dd>
 					<dt><var>$content</var></dt>
-					<dd><code>struct</code><br>$content - html string for raw/pasted HTML content - sections struct when using
-a template instead of raw HTML, each key should be the unique mc:edit area name
-from the template. - text string for the plain-text version - url string to have
-us pull in content from a URL. Note, this will override any other content
-options - for lists with Email Format options, you'll need to turn on
+					<dd><code>associative_array</code><br>$content - html string for raw/pasted HTML content - sections associative_array
+when using a template instead of raw HTML, each key should be the unique mc:edit
+area name from the template. - text string for the plain-text version - url
+string to have us pull in content from a URL. Note, this will override any other
+content options - for lists with Email Format options, you'll need to turn on
 generate_text as well - archive string to send a Base64 encoded archive file for
 us to import all media from. Note, this will override any other content options
 - for lists with Email Format options, you'll need to turn on generate_text as
@@ -394,60 +394,60 @@ well - archive_type string optional - only necessary for the "archive" option.
 Supported formats are: zip, tar.gz, tar.bz2, tar, tgz, tbz . If not included, we
 will default to zip</dd>
 					<dt><var>$segment_opts</var></dt>
-					<dd><code>struct</code><br>$segment_opts</dd>
+					<dd><code>associative_array</code><br>$segment_opts</dd>
 					<dt><var>$type_opts</var></dt>
-					<dd><code>struct</code><br>$type_opts - rss struct For RSS Campaigns this, struct should contain: - url
-string the URL to pull RSS content from - it will be verified and must exist -
-schedule string optional one of "daily", "weekly", "monthly" - defaults to
-"daily" - schedule_hour string optional an hour between 0 and 24 - default to 4
-(4am &lt;em&gt;local time&lt;/em&gt;) - applies to all schedule types -
-schedule_weekday string optional for "weekly" only, a number specifying the day
-of the week to send: 0 (Sunday) - 6 (Saturday) - defaults to 1 (Monday) -
-schedule_monthday string optional for "monthly" only, a number specifying the
+					<dd><code>associative_array</code><br>$type_opts - rss associative_array For RSS Campaigns this, struct should
+contain: - url string the URL to pull RSS content from - it will be verified and
+must exist - schedule string optional one of "daily", "weekly", "monthly" -
+defaults to "daily" - schedule_hour string optional an hour between 0 and 24 -
+default to 4 (4am &lt;em&gt;local time&lt;/em&gt;) - applies to all schedule
+types - schedule_weekday string optional for "weekly" only, a number specifying
+the day of the week to send: 0 (Sunday) - 6 (Saturday) - defaults to 1 (Monday)
+- schedule_monthday string optional for "monthly" only, a number specifying the
 day of the month to send (1 - 28) or "last" for the last day of a given month.
-Defaults to the 1st day of the month - days struct optional used for "daily"
-schedules only, an array of the <a
+Defaults to the 1st day of the month - days associative_array optional used for
+"daily" schedules only, an array of the <a
 href="http://en.wikipedia.org/wiki/ISO-8601#Week_dates" target="_blank">ISO-8601
 weekday numbers</a> to send on - 1 bool optional Monday, defaults to true - 2
 bool optional Tuesday, defaults to true - 3 bool optional Wednesday, defaults to
 true - 4 bool optional Thursday, defaults to true - 5 bool optional Friday,
 defaults to true - 6 bool optional Saturday, defaults to true - 7 bool optional
-Sunday, defaults to true - absplit struct For A/B Split campaigns, this struct
-should contain: - split_test string The values to segment based on. Currently,
-one of: "subject", "from_name", "schedule". NOTE, for "schedule", you will need
-to call campaignSchedule() separately! - pick_winner string How the winner will
-be picked, one of: "opens" (by the open_rate), "clicks" (by the click rate),
-"manual" (you pick manually) - wait_units int optional the default time unit to
-wait before auto-selecting a winner - use "3600" for hours, "86400" for days.
-Defaults to 86400. - wait_time int optional the number of units to wait before
-auto-selecting a winner - defaults to 1, so if not set, a winner will be
-selected after 1 Day. - split_size int optional this is a percentage of what
-size the Campaign's List plus any segmentation options results in. "schedule"
-type forces 50%, all others default to 10% - from_name_a string optional sort
-of, required when split_test is "from_name" - from_name_b string optional sort
-of, required when split_test is "from_name" - from_email_a string optional sort
-of, required when split_test is "from_name" - from_email_b string optional sort
-of, required when split_test is "from_name" - subject_a string optional sort of,
-required when split_test is "subject" - subject_b string optional sort of,
-required when split_test is "subject" - auto struct For AutoResponder campaigns,
-this struct should contain: - offset-units string one of "hourly", "day",
-"week", "month", "year" - required - offset-time string optional, sort of - the
-number of units must be a number greater than 0 for signup based autoresponders,
-ignored for "hourly" - offset-dir string either "before" or "after", ignored for
-"hourly" - event string optional "signup" (default) to base this members added
-to a list, "date", "annual", or "birthday" to base this on merge field in the
-list, "campaignOpen" or "campaignClicka" to base this on any activity for a
-campaign, "campaignClicko" to base this on clicks on a specific URL in a
-campaign, "mergeChanged" to base this on a specific merge field being changed to
-a specific value - event-datemerge string optional sort of, this is required if
-the event is "date", "annual", "birthday", or "mergeChanged" - campaign_id
-string optional sort of, required for "campaignOpen", "campaignClicka", or
-"campaignClicko" - campaign_url string optional sort of, required for
-"campaignClicko" - schedule_hour int The hour of the day - 24 hour format in GMT
-- the autoresponder should be triggered, ignored for "hourly" - use_import_time
-boolean whether or not imported subscribers (ie, &lt;em&gt;any&lt;/em&gt;
-non-double optin subscribers) will receive - days struct optional used for
-"daily" schedules only, an array of the <a
+Sunday, defaults to true - absplit associative_array For A/B Split campaigns,
+this struct should contain: - split_test string The values to segment based on.
+Currently, one of: "subject", "from_name", "schedule". NOTE, for "schedule", you
+will need to call campaignSchedule() separately! - pick_winner string How the
+winner will be picked, one of: "opens" (by the open_rate), "clicks" (by the
+click rate), "manual" (you pick manually) - wait_units int optional the default
+time unit to wait before auto-selecting a winner - use "3600" for hours, "86400"
+for days. Defaults to 86400. - wait_time int optional the number of units to
+wait before auto-selecting a winner - defaults to 1, so if not set, a winner
+will be selected after 1 Day. - split_size int optional this is a percentage of
+what size the Campaign's List plus any segmentation options results in.
+"schedule" type forces 50%, all others default to 10% - from_name_a string
+optional sort of, required when split_test is "from_name" - from_name_b string
+optional sort of, required when split_test is "from_name" - from_email_a string
+optional sort of, required when split_test is "from_name" - from_email_b string
+optional sort of, required when split_test is "from_name" - subject_a string
+optional sort of, required when split_test is "subject" - subject_b string
+optional sort of, required when split_test is "subject" - auto associative_array
+For AutoResponder campaigns, this struct should contain: - offset-units string
+one of "hourly", "day", "week", "month", "year" - required - offset-time string
+optional, sort of - the number of units must be a number greater than 0 for
+signup based autoresponders, ignored for "hourly" - offset-dir string either
+"before" or "after", ignored for "hourly" - event string optional "signup"
+(default) to base this members added to a list, "date", "annual", or "birthday"
+to base this on merge field in the list, "campaignOpen" or "campaignClicka" to
+base this on any activity for a campaign, "campaignClicko" to base this on
+clicks on a specific URL in a campaign, "mergeChanged" to base this on a
+specific merge field being changed to a specific value - event-datemerge string
+optional sort of, this is required if the event is "date", "annual", "birthday",
+or "mergeChanged" - campaign_id string optional sort of, required for
+"campaignOpen", "campaignClicka", or "campaignClicko" - campaign_url string
+optional sort of, required for "campaignClicko" - schedule_hour int The hour of
+the day - 24 hour format in GMT - the autoresponder should be triggered, ignored
+for "hourly" - use_import_time boolean whether or not imported subscribers (ie,
+&lt;em&gt;any&lt;/em&gt; non-double optin subscribers) will receive - days
+associative_array optional used for "daily" schedules only, an array of the <a
 href="http://en.wikipedia.org/wiki/ISO-8601#Week_dates" target="_blank">ISO-8601
 weekday numbers</a> to send on&lt; - 1 bool optional Monday, defaults to true -
 2 bool optional Tuesday, defaults to true - 3 bool optional Wednesday, defaults
@@ -458,7 +458,7 @@ Sunday, defaults to true</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>the new campaign's details - will return same data as single campaign from
+					<code>associative_array</code><br>the new campaign's details - will return same data as single campaign from
 campaigns/list()<br />
 				</div>
 
@@ -472,7 +472,7 @@ campaigns/list()<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -503,7 +503,7 @@ can undelete these.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>with a single entry: - complete bool whether the call worked. reallistically
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
 this will always be true as errors will be thrown otherwise.<br />
 				</div>
 
@@ -517,14 +517,14 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getList">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#137-209" title="Go to source code">getList</a>( <span>array <var>$filters</var> = <span class="php-keyword1">array</span>()</span>, <span>integer <var>$start</var> = <span class="php-num">0</span></span>, <span>integer <var>$limit</var> = <span class="php-num">25</span></span>, <span>string <var>$sort_field</var> = <span class="php-quote">'create_time'</span></span>, <span>string <var>$sort_dir</var> = <span class="php-quote">'DESC'</span></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#137-209" title="Go to source code">getList</a>( <span>associative_array <var>$filters</var> = <span class="php-keyword1">array</span>()</span>, <span>integer <var>$start</var> = <span class="php-num">0</span></span>, <span>integer <var>$limit</var> = <span class="php-num">25</span></span>, <span>string <var>$sort_field</var> = <span class="php-quote">'create_time'</span></span>, <span>string <var>$sort_dir</var> = <span class="php-quote">'DESC'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -543,7 +543,7 @@ filters</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$filters</var></dt>
-					<dd><code>array</code><br>$filters - campaign_id string optional - return the campaign using a know
+					<dd><code>associative_array</code><br>$filters - campaign_id string optional - return the campaign using a know
 campaign_id. Accepts multiples separated by commas when not using exact
 matching. - parent_id string optional - return the child campaigns using a known
 parent campaign_id. Accepts multiples separated by commas when not using exact
@@ -585,7 +585,7 @@ multiples.</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>containing a count of all matching campaigns, the specific ones for the current
+					<code>associative_array</code><br>containing a count of all matching campaigns, the specific ones for the current
 page, and any errors from the filters provided - total int the total number of
 campaigns matching the filters passed in - data array structs for each campaign
 being returned - id string Campaign Id (used for all other campaign functions) -
@@ -615,21 +615,22 @@ Whether or not the campaign used Timewarp - timewarp_schedule string The time,
 in GMT, that the Timewarp campaign is being sent. For A/B Split campaigns, this
 is blank and is instead in their schedule_a and schedule_b in the type_opts
 array - parent_id string the unique id of the parent campaign (currently only
-valid for rss children) - tracking struct the various tracking options used -
-html_clicks boolean whether or not tracking for html clicks was enabled. -
-text_clicks boolean whether or not tracking for text clicks was enabled. - opens
-boolean whether or not opens tracking was enabled. - segment_text string a
-string marked-up with HTML explaining the segment used for the campaign in plain
-English - segment_opts array the segment used for the campaign - can be passed
-to campaigns/segment-test or campaigns/create - type_opts struct the
-type-specific options for the campaign - can be passed to campaigns/create -
-comments_total int total number of comments left on this campaign -
-comments_unread int total number of unread comments for this campaign based on
-the login the apikey belongs to - summary struct if available, the basic
-aggregate stats returned by reports/summary - errors array structs of any errors
-found while loading lists - usually just from providing invalid list ids -
-filter string the filter that caused the failure - value string the filter value
-that caused the failure - code int the error code - error int the error message<br />
+valid for rss children) - tracking associative_array the various tracking
+options used - html_clicks boolean whether or not tracking for html clicks was
+enabled. - text_clicks boolean whether or not tracking for text clicks was
+enabled. - opens boolean whether or not opens tracking was enabled. -
+segment_text string a string marked-up with HTML explaining the segment used for
+the campaign in plain English - segment_opts array the segment used for the
+campaign - can be passed to campaigns/segment-test or campaigns/create -
+type_opts associative_array the type-specific options for the campaign - can be
+passed to campaigns/create - comments_total int total number of comments left on
+this campaign - comments_unread int total number of unread comments for this
+campaign based on the login the apikey belongs to - summary associative_array if
+available, the basic aggregate stats returned by reports/summary - errors array
+structs of any errors found while loading lists - usually just from providing
+invalid list ids - filter string the filter that caused the failure - value
+string the filter value that caused the failure - code int the error code -
+error int the error message<br />
 				</div>
 
 
@@ -642,7 +643,7 @@ that caused the failure - code int the error code - error int the error message<
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -671,7 +672,7 @@ that caused the failure - code int the error code - error int the error message<
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>with a single entry: - complete bool whether the call worked. reallistically
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
 this will always be true as errors will be thrown otherwise.<br />
 				</div>
 
@@ -685,7 +686,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -718,7 +719,7 @@ the app.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>the matching campaign's details - will return same data as single campaign from
+					<code>associative_array</code><br>the matching campaign's details - will return same data as single campaign from
 campaigns/list()<br />
 				</div>
 
@@ -732,7 +733,7 @@ campaigns/list()<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -761,7 +762,7 @@ campaigns/list()<br />
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>the matching campaign's details - will return same data as single campaign from
+					<code>associative_array</code><br>the matching campaign's details - will return same data as single campaign from
 campaigns/list()<br />
 				</div>
 
@@ -775,7 +776,7 @@ campaigns/list()<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -804,7 +805,7 @@ campaigns/list()<br />
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>with a single entry: - complete bool whether the call worked. reallistically
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
 this will always be true as errors will be thrown otherwise.<br />
 				</div>
 
@@ -818,7 +819,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -851,7 +852,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>with a single entry: - complete bool whether the call worked. reallistically
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
 this will always be true as errors will be thrown otherwise.<br />
 				</div>
 
@@ -865,7 +866,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -902,7 +903,7 @@ for "regular" campaigns</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>with a single entry: - complete bool whether the call worked. reallistically
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
 this will always be true as errors will be thrown otherwise.<br />
 				</div>
 
@@ -916,14 +917,14 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_segmentTest">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#280-292" title="Go to source code">segmentTest</a>( <span>string <var>$list_id</var></span>, <span>struct <var>$options</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#280-292" title="Go to source code">segmentTest</a>( <span>string <var>$list_id</var></span>, <span>associative_array <var>$options</var></span> )</code>
 
 		<div class="description short">
 			
@@ -944,7 +945,7 @@ them</p>
 					<dt><var>$list_id</var></dt>
 					<dd><code>string</code><br>$list_id</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>struct</code><br>$options - match string controls whether to use AND or OR when applying your
+					<dd><code>associative_array</code><br>$options - match string controls whether to use AND or OR when applying your
 options - expects "&lt;strong&gt;any&lt;/strong&gt;" (for OR) or
 "&lt;strong&gt;all&lt;/strong&gt;" (for AND) - conditions array of up to 5
 structs for different criteria to apply while segmenting. Each criteria row must
@@ -956,7 +957,7 @@ definitions:</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>with a single entry: - total int The total number of subscribers matching your
+					<code>associative_array</code><br>with a single entry: - total int The total number of subscribers matching your
 segmentation options<br />
 				</div>
 
@@ -970,7 +971,7 @@ segmentation options<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -1001,7 +1002,7 @@ them.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>with a single entry: - complete bool whether the call worked. reallistically
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
 this will always be true as errors will be thrown otherwise.<br />
 				</div>
 
@@ -1015,7 +1016,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -1048,7 +1049,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>with a single entry: - complete bool whether the call worked. reallistically
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
 this will always be true as errors will be thrown otherwise.<br />
 				</div>
 
@@ -1062,7 +1063,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -1097,7 +1098,7 @@ allow editing template sections in your application.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>content containing all content section for the campaign - section name are
+					<code>associative_array</code><br>content containing all content section for the campaign - section name are
 dependent upon the template used and thus can't be documented<br />
 				</div>
 
@@ -1111,7 +1112,7 @@ dependent upon the template used and thus can't be documented<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -1140,7 +1141,7 @@ dependent upon the template used and thus can't be documented<br />
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>with a single entry: - complete bool whether the call worked. reallistically
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
 this will always be true as errors will be thrown otherwise.<br />
 				</div>
 
@@ -1154,7 +1155,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -1217,11 +1218,11 @@ this will always be true as errors will be thrown otherwise.<br />
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>updated campaign details and any errors - data struct the update campaign
-details - will return same data as single campaign from campaigns/list() -
-errors array for "options" only - structs containing: - code int the error code
-- message string the full error message - name string the parameter name that
-failed<br />
+					<code>associative_array</code><br>updated campaign details and any errors - data associative_array the update
+campaign details - will return same data as single campaign from
+campaigns/list() - errors array for "options" only - structs containing: - code
+int the error code - message string the full error message - name string the
+parameter name that failed<br />
 				</div>
 
 

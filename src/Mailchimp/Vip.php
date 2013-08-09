@@ -20,7 +20,7 @@ class Mailchimp_Vip {
      *     - lname string IF a LNAME merge field exists on the list, that value for the member
      *     - member_rating int the rating of the subscriber. This will be 1 - 5 as described <a href="http://eepurl.com/f-2P" target="_blank">here</a>
      *     - member_since string the datetime the member was added and/or confirmed
-     *     - geo struct the geographic information if we have it. including:
+     *     - geo associative_array the geographic information if we have it. including:
      *         - latitude string the latitude
      *         - longitude string the longitude
      *         - gmtoff string GMT offset
@@ -38,21 +38,21 @@ class Mailchimp_Vip {
      * Add VIPs (previously called Golden Monkeys)
      * @param string $id
      * @param array $emails
-     *     - email string an email address
+     *     - email string an email address - for new subscribers obviously this should be used
      *     - euid string the unique id for an email address (not list related) - the email "id" returned from listMemberInfo, Webhooks, Campaigns, etc.
      *     - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
-     * @return struct of data and success/error counts
+     * @return associative_array of data and success/error counts
      *     - success_count int the number of successful adds
      *     - error_count int the number of unsuccessful adds
      *     - errors array array of error structs including:
-     *         - email struct whatever was passed in the email parameter
+     *         - email associative_array whatever was passed in the email parameter
      *             - email string the email address added
      *             - euid string the email unique id
      *             - leid string the list member's truly unique id
      *         - code string the error code
      *         - error string the error message
      *     - data array array of structs for each member added
-     *         - email struct whatever was passed in the email parameter
+     *         - email associative_array whatever was passed in the email parameter
      *             - email string the email address added
      *             - euid string the email unique id
      *             - leid string the list member's truly unique id
@@ -66,21 +66,21 @@ class Mailchimp_Vip {
      * Remove VIPs - this does not affect list membership
      * @param string $id
      * @param array $emails
-     *     - email string an email address
+     *     - email string an email address - for new subscribers obviously this should be used
      *     - euid string the unique id for an email address (not list related) - the email "id" returned from listMemberInfo, Webhooks, Campaigns, etc.
      *     - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
-     * @return struct of data and success/error counts
+     * @return associative_array of data and success/error counts
      *     - success_count int the number of successful deletions
      *     - error_count int the number of unsuccessful deletions
      *     - errors array array of error structs including:
-     *         - email struct whatever was passed in the email parameter
+     *         - email associative_array whatever was passed in the email parameter
      *             - email string the email address
      *             - euid string the email unique id
      *             - leid string the list member's truly unique id
      *         - code string the error code
      *         - msg string the error message
      *     - data array array of structs for each member deleted
-     *         - email struct whatever was passed in the email parameter
+     *         - email associative_array whatever was passed in the email parameter
      *             - email string the email address
      *             - euid string the email unique id
      *             - leid string the list member's truly unique id

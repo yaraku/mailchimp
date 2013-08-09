@@ -133,7 +133,7 @@ class Mailchimp {
 
 
         $this->ch = curl_init();
-        curl_setopt($this->ch, CURLOPT_USERAGENT, 'MailChimp-PHP/2.0.0');
+        curl_setopt($this->ch, CURLOPT_USERAGENT, 'MailChimp-PHP/2.0.1');
         curl_setopt($this->ch, CURLOPT_POST, true);
         curl_setopt($this->ch, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($this->ch, CURLOPT_HEADER, false);

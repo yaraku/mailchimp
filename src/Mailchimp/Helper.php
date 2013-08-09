@@ -9,7 +9,7 @@ class Mailchimp_Helper {
      * Retrieve lots of account information including payments made, plan info, some account stats, installed modules,
 contact info, and more. No private information like Credit Card numbers is available.
      * @param array $exclude
-     * @return struct containing the details for the account tied to this API Key
+     * @return associative_array containing the details for the account tied to this API Key
      *     - username string The Account username
      *     - user_id string The Account user unique id (for building some links)
      *     - is_trial bool Whether the Account is in Trial mode (can only send campaigns to less than 100 emails)
@@ -28,7 +28,7 @@ contact info, and more. No private information like Credit Card numbers is avail
      *     - last_login string date/time of last login via the web
      *     - affiliate_link string Monkey Rewards link for our Affiliate program
      *     - industry string the user's selected industry
-     *     - contact struct Contact details for the account
+     *     - contact associative_array Contact details for the account
      *         - fname string First Name
      *         - lname string Last Name
      *         - email string Email Address
@@ -46,22 +46,22 @@ contact info, and more. No private information like Credit Card numbers is avail
      *         - id string An internal module id
      *         - name string The module name
      *         - added string The date the module was added
-     *         - data struct Any extra data associated with this module as key=>value pairs
+     *         - data associative_array Any extra data associated with this module as key=>value pairs
      *     - orders array a struct for each order for the account
      *         - order_id int The order id
      *         - type string The order type - either "monthly" or "credits"
      *         - amount double The order amount
      *         - date string The order date
      *         - credits_used double The total credits used
-     *     - rewards struct Rewards details for the account including credits & inspections earned, number of referrals, referral details, and rewards used
+     *     - rewards associative_array Rewards details for the account including credits & inspections earned, number of referrals, referral details, and rewards used
      *         - referrals_this_month int the total number of referrals this month
      *         - notify_on string whether or not we notify the user when rewards are earned
      *         - notify_email string the email address address used for rewards notifications
-     *         - credits struct Email credits earned:
+     *         - credits associative_array Email credits earned:
      *             - this_month int credits earned this month
      *             - total_earned int credits earned all time
      *             - remaining int credits remaining
-     *         - inspections struct Inbox Inspections earned:
+     *         - inspections associative_array Inbox Inspections earned:
      *             - this_month int credits earned this month
      *             - total_earned int credits earned all time
      *             - remaining int credits remaining
@@ -93,11 +93,11 @@ contact info, and more. No private information like Credit Card numbers is avail
 
     /**
      * Retrieve minimal data for all Campaigns a member was sent
-     * @param struct $email
+     * @param associative_array $email
      *     - email string an email address
      *     - euid string the unique id for an email address (not list related) - the email "id" returned from listMemberInfo, Webhooks, Campaigns, etc.
      *     - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
-     * @param struct $options
+     * @param associative_array $options
      *     - list_id string optional A list_id to limit the campaigns to
      * @return array an array of structs containing campaign data for each matching campaign (ordered by send time ascending), including:
      *     - id string the campaign unique id
@@ -130,14 +130,14 @@ contact info, and more. No private information like Credit Card numbers is avail
      * Have HTML content auto-converted to a text-only format. You can send: plain HTML, an existing Campaign Id, or an existing Template Id. Note that this will <strong>not</strong> save anything to or update any of your lists, campaigns, or templates.
 It's also not just Lynx and is very fine tuned for our template layouts - your mileage may vary.
      * @param string $type
-     * @param struct $content
+     * @param associative_array $content
      *     - html string optional a single string value,
      *     - cid string a valid Campaign Id
      *     - user_template_id string the id of a user template
      *     - base_template_id string the id of a built in base/basic template
      *     - gallery_template_id string the id of a built in gallery template
      *     - url string a valid & public URL to pull html content from
-     * @return struct the content pass in converted to text.
+     * @return associative_array the content pass in converted to text.
      *     - text string the converted html
      */
     public function generateText($type, $content) {
@@ -149,7 +149,7 @@ It's also not just Lynx and is very fine tuned for our template layouts - your m
      * Send your HTML content to have the CSS inlined and optionally remove the original styles.
      * @param string $html
      * @param bool $strip_css
-     * @return struct with a "html" key
+     * @return associative_array with a "html" key
      *     - html string Your HTML content with all CSS inlined, just like if we sent it.
      */
     public function inlineCss($html, $strip_css=false) {
@@ -159,7 +159,7 @@ It's also not just Lynx and is very fine tuned for our template layouts - your m
 
     /**
      * Retrieve minimal List data for all lists a member is subscribed to.
-     * @param struct $email
+     * @param associative_array $email
      *     - email string an email address
      *     - euid string the unique id for an email address (not list related) - the email "id" returned from listMemberInfo, Webhooks, Campaigns, etc.
      *     - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
@@ -177,7 +177,7 @@ It's also not just Lynx and is very fine tuned for our template layouts - your m
      * "Ping" the MailChimp API - a simple method you can call that will return a constant value as long as everything is good. Note
 than unlike most all of our methods, we don't throw an Exception if we are having issues. You will simply receive a different
 string back that will explain our view on what is going on.
-     * @return struct a with a "msg" key
+     * @return associative_array a with a "msg" key
      *     - msg string containing "Everything's Chimpy!" if everything is chimpy, otherwise returns an error message
      */
     public function ping() {
@@ -191,12 +191,12 @@ string back that will explain our view on what is going on.
      * @param int $offset
      * @param string $snip_start
      * @param string $snip_end
-     * @return struct containing the total matches and current results
+     * @return associative_array containing the total matches and current results
      *     - total int total campaigns matching
      *     - results array matching campaigns and snippets
      *     - snippet string the matching snippet for the campaign
-     *     - campaign struct the matching campaign's details - will return same data as single campaign from campaigns()
-     *     - summary struct if available, the matching campaign's report/summary data, other wise empty
+     *     - campaign associative_array the matching campaign's details - will return same data as single campaign from campaigns()
+     *     - summary associative_array if available, the matching campaign's report/summary data, other wise empty
      */
     public function searchCampaigns($query, $offset=0, $snip_start=null, $snip_end=null) {
         $_params = array("query" => $query, "offset" => $offset, "snip_start" => $snip_start, "snip_end" => $snip_end);
@@ -208,11 +208,11 @@ string back that will explain our view on what is going on.
      * @param string $query
      * @param string $id
      * @param int $offset
-     * @return struct An array of both exact matches and partial matches over a full search
-     *     - exact_matches struct containing the total matches and current results
+     * @return associative_array An array of both exact matches and partial matches over a full search
+     *     - exact_matches associative_array containing the total matches and current results
      *     - total int total members matching
      *     - members array each entry will be struct matching the data format for a single member as returned by listMemberInfo()
-     *     - full_search struct containing the total matches and current results
+     *     - full_search associative_array containing the total matches and current results
      *     - total int total members matching
      *     - members array each entry will be struct matching  the data format for a single member as returned by listMemberInfo()
      */

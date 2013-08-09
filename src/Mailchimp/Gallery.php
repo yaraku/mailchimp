@@ -7,14 +7,14 @@ class Mailchimp_Gallery {
 
     /**
      * Return a section of the image gallery
-     * @param struct $opts
+     * @param associative_array $opts
      *     - type string optional the gallery type to return - images or files - default to images
      *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
      *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
      *     - sort_by string optional field to sort by - one of size, time, name - defaults to time
      *     - sort_dir string optional field to sort by - one of asc, desc - defaults to desc
      *     - search_term string optional a term to search for in names
-     * @return struct the matching gallery items
+     * @return associative_array the matching gallery items
      *     - total int the total matching items
      *     - data array structs for each item included in the set, including:
      *         - name string the file name

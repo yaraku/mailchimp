@@ -8,11 +8,11 @@ class Mailchimp_Reports {
     /**
      * Get all email addresses that complained about a given campaign
      * @param string $cid
-     * @param struct $opts
+     * @param associative_array $opts
      *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
      *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
      *     - since string optional pull only messages since this time - 24 hour format in <strong>GMT</strong>, eg "2013-12-30 20:30:00"
-     * @return struct abuse report data for this campaign
+     * @return associative_array abuse report data for this campaign
      *     - total int the total reports matched
      *     - data array a struct for the each report, including:
      *         - date string date/time the abuse report was received and processed
@@ -41,13 +41,13 @@ suited for display in customized reports pages. Note: some messages will contain
      * Retrieve the most recent full bounce message for a specific email address on the given campaign.
 Messages over 30 days old are subject to being removed
      * @param string $cid
-     * @param struct $email
+     * @param associative_array $email
      *     - email string an email address - this is recommended for this method
      *     - euid string the unique id for an email address (not list related) - the email "id" returned from listMemberInfo, Webhooks, Campaigns, etc.
      *     - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
-     * @return struct the full bounce message for this email+campaign along with some extra data.
+     * @return associative_array the full bounce message for this email+campaign along with some extra data.
      *     - date string date the bounce was received and processed
-     *     - member struct the member record as returned by lists/member-info
+     *     - member associative_array the member record as returned by lists/member-info
      *     - message string the entire bounce message received
      */
     public function bounceMessage($cid, $email) {
@@ -60,15 +60,15 @@ Messages over 30 days old are subject to being removed
 of data depending on how large the campaign was and how much cruft the bounce provider returned. Also,
 messages over 30 days old are subject to being removed
      * @param string $cid
-     * @param struct $opts
+     * @param associative_array $opts
      *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
      *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
      *     - since string optional pull only messages since this time - 24 hour format in <strong>GMT</strong>, eg "2013-12-30 20:30:00"
-     * @return struct data for the full bounce messages for this campaign
+     * @return associative_array data for the full bounce messages for this campaign
      *     - total int that total number of bounce messages for the campaign
      *     - data array structs containing the data for this page
      *         - date string date the bounce was received and processed
-     *         - member struct the member record as returned by lists/member-info
+     *         - member associative_array the member record as returned by lists/member-info
      *         - message string the entire bounce message received
      */
     public function bounceMessages($cid, $opts=array()) {
@@ -80,15 +80,15 @@ messages over 30 days old are subject to being removed
      * Return the list of email addresses that clicked on a given url, and how many times they clicked
      * @param string $cid
      * @param int $tid
-     * @param struct $opts
+     * @param associative_array $opts
      *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
      *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
      *     - sort_field string optional the data to sort by - "clicked" (order clicks occurred, default) or "clicks" (total number of opens). Invalid fields will fall back on the default.
      *     - sort_dir string optional the direct - ASC or DESC. defaults to ASC (case insensitive)
-     * @return struct containing the total records matched and the specific records for this page
+     * @return associative_array containing the total records matched and the specific records for this page
      *     - total int the total number of records matched
      *     - data array structs for each email addresses that click the requested url
-     *         - member struct the member record as returned by lists/member-info
+     *         - member associative_array the member record as returned by lists/member-info
      *         - clicks int Total number of times the URL was clicked by this email address
      */
     public function clickDetail($cid, $tid, $opts=array()) {
@@ -99,7 +99,7 @@ messages over 30 days old are subject to being removed
     /**
      * The urls tracked and their click counts for a given campaign.
      * @param string $cid
-     * @return struct including:
+     * @return associative_array including:
      *     - total array structs for each url tracked for the full campaign
      *         - url string the url being tracked - urls are tracked individually, so duplicates can exist with vastly different stats
      *         - clicks int Number of times the specific link was clicked
@@ -130,17 +130,17 @@ messages over 30 days old are subject to being removed
     /**
      * Retrieve the Ecommerce Orders tracked by campaignEcommOrderAdd()
      * @param string $cid
-     * @param struct $opts
+     * @param associative_array $opts
      *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
      *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
      *     - since string optional pull only messages since this time - 24 hour format in <strong>GMT</strong>, eg "2013-12-30 20:30:00"
-     * @return struct the total matching orders and the specific orders for the requested page
+     * @return associative_array the total matching orders and the specific orders for the requested page
      *     - total int the total matching orders
      *     - data array structs for the actual data for each order being returned
      *     - store_id string the store id generated by the plugin used to uniquely identify a store
      *     - store_name string the store name collected by the plugin - often the domain name
      *     - order_id string the internal order id the store tracked this order by
-     *     - member struct the member record as returned by lists/member-info that received this campaign and is associated with this order
+     *     - member associative_array the member record as returned by lists/member-info that received this campaign and is associated with this order
      *     - order_total double the order total
      *     - tax_total double the total tax for the order (if collected)
      *     - ship_total double the shipping total for the order (if collected)
@@ -163,8 +163,8 @@ messages over 30 days old are subject to being removed
     /**
      * Retrieve the eepurl stats from the web/Twitter mentions for this campaign
      * @param string $cid
-     * @return struct containing tweets, retweets, clicks, and referrer related to using the campaign's eepurl
-     *     - twitter struct various Twitter related stats
+     * @return associative_array containing tweets, retweets, clicks, and referrer related to using the campaign's eepurl
+     *     - twitter associative_array various Twitter related stats
      *         - tweets int Total number of tweets seen
      *         - first_tweet string date and time of the first tweet seen
      *         - last_tweet string date and time of the last tweet seen
@@ -177,7 +177,7 @@ messages over 30 days old are subject to being removed
      *             - status_id string the status id of the tweet (they are really unsigned 64 bit ints)
      *             - datetime string the date/time of the tweet
      *             - is_retweet bool whether or not this was a retweet
-     *     - clicks struct stats related to click-throughs on the eepurl
+     *     - clicks associative_array stats related to click-throughs on the eepurl
      *         - clicks int Total number of clicks seen
      *         - first_click string date and time of the first click seen
      *         - last_click string date and time of the first click seen
@@ -204,7 +204,7 @@ and/or get incremental results, you should use the <a href="http://apidocs.mailc
      *     - email string an email address
      *     - euid string the unique id for an email address (not list related) - the email "id" returned from listMemberInfo, Webhooks, Campaigns, etc.
      *     - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
-     * @return struct of data and success/error counts
+     * @return associative_array of data and success/error counts
      *     - success_count int the number of subscribers successfully found on the list
      *     - error_count int the number of subscribers who were not found on the list
      *     - errors array array of error structs including:
@@ -218,7 +218,7 @@ and/or get incremental results, you should use the <a href="http://apidocs.mailc
      *             - email string the email address added
      *             - euid string the email unique id
      *             - leid string the list member's truly unique id
-     *         - member struct the member record as returned by lists/member-info
+     *         - member associative_array the member record as returned by lists/member-info
      *         - activity array an array of structs containing the activity, including:
      *             - action string The action name - either open or click
      *             - timestamp string The date/time of the action (GMT)
@@ -233,10 +233,10 @@ and/or get incremental results, you should use the <a href="http://apidocs.mailc
     /**
      * Retrieve the list of email addresses that did not open a given campaign
      * @param string $cid
-     * @param struct $opts
+     * @param associative_array $opts
      *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
      *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
-     * @return struct a total of all matching emails and the specific emails for this page
+     * @return associative_array a total of all matching emails and the specific emails for this page
      *     - total int the total number of members who didn't open the campaign
      *     - data array structs for each campaign member matching as returned by lists/member-info
      */
@@ -248,7 +248,7 @@ and/or get incremental results, you should use the <a href="http://apidocs.mailc
     /**
      * Retrieve the list of email addresses that opened a given campaign with how many times they opened
      * @param string $cid
-     * @param struct $opts
+     * @param associative_array $opts
      *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
      *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
      *     - sort_field string optional the data to sort by - "opened" (order opens occurred, default) or "opens" (total number of opens). Invalid fields will fall back on the default.
@@ -256,7 +256,7 @@ and/or get incremental results, you should use the <a href="http://apidocs.mailc
      * @return array array containing the total records matched and the specific records for this page
      *     - total int the total number of records matched
      *     - data array structs for the actual opens data, including:
-     *         - member struct the member record as returned by lists/member-info
+     *         - member associative_array the member record as returned by lists/member-info
      *         - opens int Total number of times the campaign was opened by this email address
      */
     public function opened($cid, $opts=array()) {
@@ -331,14 +331,14 @@ or campaignEmailStatsAIMAll() and generate any additional stats they require.
     /**
      * Get email addresses the campaign was sent to
      * @param string $cid
-     * @param struct $opts
+     * @param associative_array $opts
      *     - status string optional the status to pull - one of 'sent', 'hard' (bounce), or 'soft' (bounce). By default, all records are returned
      *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
      *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
-     * @return struct a total of all matching emails and the specific emails for this page
+     * @return associative_array a total of all matching emails and the specific emails for this page
      *     - total int the total number of members for the campaign and status
      *     - data array structs for each campaign member matching
-     *         - member struct the member record as returned by lists/member-info
+     *         - member associative_array the member record as returned by lists/member-info
      *         - status string the status of the send - one of 'sent', 'hard', 'soft'
      *         - absplit_group string if this was an absplit campaign, one of 'a','b', or 'winner'
      *         - tz_group string if this was an timewarp campaign the timezone GMT offset the member was included in
@@ -355,7 +355,7 @@ or campaignEmailStatsAIMAll() and generate any additional stats they require.
      *     - to_email string optional - optional, comma delimited list of email addresses to share the report with - no value means an email will not be sent
      *     - theme_id int optional - either a global or a user-specific theme id. Currently this needs to be pulled out of either the Share Report or Cobranding web views by grabbing the "theme" attribute from the list presented.
      *     - css_url string optional - a link to an external CSS file to be included after our default CSS (http://vip-reports.net/css/vip.css) <strong>only if</strong> loaded via the "secure_url" - max 255 bytes
-     * @return struct details for the shared report, including:
+     * @return associative_array details for the shared report, including:
      *     - title string The Title of the Campaign being shared
      *     - url string The URL to the shared report
      *     - secure_url string The URL to the shared report, including the password (good for loading in an IFRAME). For non-secure reports, this will not be returned
@@ -369,7 +369,7 @@ or campaignEmailStatsAIMAll() and generate any additional stats they require.
     /**
      * Retrieve relevant aggregate campaign statistics (opens, bounces, clicks, etc.)
      * @param string $cid
-     * @return struct the statistics for this campaign
+     * @return associative_array the statistics for this campaign
      *     - syntax_errors int Number of email addresses in campaign that had syntactical errors.
      *     - hard_bounces int Number of email addresses in campaign that hard bounced.
      *     - soft_bounces int Number of email addresses in campaign that soft bounced.
@@ -388,7 +388,7 @@ or campaignEmailStatsAIMAll() and generate any additional stats they require.
      *     - unique_likes int total number of unique likes (Facebook)
      *     - recipient_likes int total number of recipients who liked (Facebook) the campaign
      *     - facebook_likes int total number of likes (Facebook) that came from Facebook
-     *     - absplit struct If this was an absplit campaign, stats for the A and B groups will be returned - otherwise this is empty
+     *     - absplit associative_array If this was an absplit campaign, stats for the A and B groups will be returned - otherwise this is empty
      *         - bounces_a int bounces for the A group
      *         - bounces_b int bounces for the B group
      *         - forwards_a int forwards for the A group
@@ -431,10 +431,10 @@ or campaignEmailStatsAIMAll() and generate any additional stats they require.
     /**
      * Get all unsubscribed email addresses for a given campaign
      * @param string $cid
-     * @param struct $opts
+     * @param associative_array $opts
      *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
      *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
-     * @return struct a total of all unsubscribed emails and the specific members for this page
+     * @return associative_array a total of all unsubscribed emails and the specific members for this page
      *     - total int the total number of unsubscribes for the campaign
      *     - data array structs for the email addresses that unsubscribed
      *         - member string the member that unsubscribed as returned by lists/member-info

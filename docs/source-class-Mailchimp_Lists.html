@@ -195,7 +195,7 @@
 </span></span><span id="11" class="l"><a class="l" href="#11"> 11: </a><span class="php-comment">     * @param int $start
 </span></span><span id="12" class="l"><a class="l" href="#12"> 12: </a><span class="php-comment">     * @param int $limit
 </span></span><span id="13" class="l"><a class="l" href="#13"> 13: </a><span class="php-comment">     * @param string $since
-</span></span><span id="14" class="l"><a class="l" href="#14"> 14: </a><span class="php-comment">     * @return struct the total of all reports and the specific reports reports this page
+</span></span><span id="14" class="l"><a class="l" href="#14"> 14: </a><span class="php-comment">     * @return associative_array the total of all reports and the specific reports reports this page
 </span></span><span id="15" class="l"><a class="l" href="#15"> 15: </a><span class="php-comment">     *     - total int the total number of matching abuse reports
 </span></span><span id="16" class="l"><a class="l" href="#16"> 16: </a><span class="php-comment">     *     - data array structs for the actual data for each reports, including:
 </span></span><span id="17" class="l"><a class="l" href="#17"> 17: </a><span class="php-comment">     *         - date string date/time the abuse report was received and processed
@@ -224,16 +224,16 @@
 </span></span><span id="40" class="l"><a class="l" href="#40"> 40: </a><span class="php-comment">though you should cap them at 5k - 10k records, depending on your experience. These calls are also long, so be sure you increase your timeout values.
 </span></span><span id="41" class="l"><a class="l" href="#41"> 41: </a><span class="php-comment">     * @param string $id
 </span></span><span id="42" class="l"><a class="l" href="#42"> 42: </a><span class="php-comment">     * @param array $batch
-</span></span><span id="43" class="l"><a class="l" href="#43"> 43: </a><span class="php-comment">     *     - email struct a struct with one of the following keys - failing to provide anything will produce an error relating to the email address. Provide multiples and we'll use the first we see in this same order.
+</span></span><span id="43" class="l"><a class="l" href="#43"> 43: </a><span class="php-comment">     *     - email associative_array a struct with one of the following keys - failing to provide anything will produce an error relating to the email address. Provide multiples and we'll use the first we see in this same order.
 </span></span><span id="44" class="l"><a class="l" href="#44"> 44: </a><span class="php-comment">     *         - email string an email address
 </span></span><span id="45" class="l"><a class="l" href="#45"> 45: </a><span class="php-comment">     *         - euid string the unique id for an email address (not list related) - the email &quot;id&quot; returned from listMemberInfo, Webhooks, Campaigns, etc.
 </span></span><span id="46" class="l"><a class="l" href="#46"> 46: </a><span class="php-comment">     *         - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
 </span></span><span id="47" class="l"><a class="l" href="#47"> 47: </a><span class="php-comment">     *     - email_type string for the email type option (html or text)
-</span></span><span id="48" class="l"><a class="l" href="#48"> 48: </a><span class="php-comment">     *     - merge_vars struct data for the various list specific and special merge vars documented in lists/subscribe
+</span></span><span id="48" class="l"><a class="l" href="#48"> 48: </a><span class="php-comment">     *     - merge_vars associative_array data for the various list specific and special merge vars documented in lists/subscribe
 </span></span><span id="49" class="l"><a class="l" href="#49"> 49: </a><span class="php-comment">     * @param boolean $double_optin
 </span></span><span id="50" class="l"><a class="l" href="#50"> 50: </a><span class="php-comment">     * @param boolean $update_existing
 </span></span><span id="51" class="l"><a class="l" href="#51"> 51: </a><span class="php-comment">     * @param boolean $replace_interests
-</span></span><span id="52" class="l"><a class="l" href="#52"> 52: </a><span class="php-comment">     * @return struct struct of result counts and associated data
+</span></span><span id="52" class="l"><a class="l" href="#52"> 52: </a><span class="php-comment">     * @return associative_array struct of result counts and associated data
 </span></span><span id="53" class="l"><a class="l" href="#53"> 53: </a><span class="php-comment">     *     - add_count int Number of email addresses that were successfully added
 </span></span><span id="54" class="l"><a class="l" href="#54"> 54: </a><span class="php-comment">     *     - adds array array of structs for each add
 </span></span><span id="55" class="l"><a class="l" href="#55"> 55: </a><span class="php-comment">     *         - email string the email address added
@@ -252,7 +252,7 @@
 </span></span><span id="68" class="l"><a class="l" href="#68"> 68: </a><span class="php-comment">     *             - leid string the list member's truly unique id
 </span></span><span id="69" class="l"><a class="l" href="#69"> 69: </a><span class="php-comment">     *         - code int the error code
 </span></span><span id="70" class="l"><a class="l" href="#70"> 70: </a><span class="php-comment">     *         - error string the full error message
-</span></span><span id="71" class="l"><a class="l" href="#71"> 71: </a><span class="php-comment">     *         - row struct the row from the batch that caused the error
+</span></span><span id="71" class="l"><a class="l" href="#71"> 71: </a><span class="php-comment">     *         - row associative_array the row from the batch that caused the error
 </span></span><span id="72" class="l"><a class="l" href="#72"> 72: </a><span class="php-comment">     */</span>
 </span><span id="73" class="l"><a class="l" href="#73"> 73: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_batchSubscribe" href="#_batchSubscribe">batchSubscribe</a>(<span class="php-var">$id</span>, <span class="php-var">$batch</span>, <span class="php-var">$double_optin</span>=<span class="php-keyword1">true</span>, <span class="php-var">$update_existing</span>=<span class="php-keyword1">false</span>, <span class="php-var">$replace_interests</span>=<span class="php-keyword1">true</span>) {
 </span><span id="74" class="l"><a class="l" href="#74"> 74: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;id&quot;</span> =&gt; <span class="php-var">$id</span>, <span class="php-quote">&quot;batch&quot;</span> =&gt; <span class="php-var">$batch</span>, <span class="php-quote">&quot;double_optin&quot;</span> =&gt; <span class="php-var">$double_optin</span>, <span class="php-quote">&quot;update_existing&quot;</span> =&gt; <span class="php-var">$update_existing</span>, <span class="php-quote">&quot;replace_interests&quot;</span> =&gt; <span class="php-var">$replace_interests</span>);
@@ -289,15 +289,15 @@
 </span><span id="105" class="l"><a class="l" href="#105">105: </a>    <span class="php-comment">/**
 </span></span><span id="106" class="l"><a class="l" href="#106">106: </a><span class="php-comment">     * Retrieve the clients that the list's subscribers have been tagged as being used based on user agents seen. Made possible by &lt;a href=&quot;http://user-agent-string.info&quot; target=&quot;_blank&quot;&gt;user-agent-string.info&lt;/a&gt;
 </span></span><span id="107" class="l"><a class="l" href="#107">107: </a><span class="php-comment">     * @param string $id
-</span></span><span id="108" class="l"><a class="l" href="#108">108: </a><span class="php-comment">     * @return struct the desktop and mobile user agents in use on the list
-</span></span><span id="109" class="l"><a class="l" href="#109">109: </a><span class="php-comment">     *     - desktop struct desktop user agents and percentages
+</span></span><span id="108" class="l"><a class="l" href="#108">108: </a><span class="php-comment">     * @return associative_array the desktop and mobile user agents in use on the list
+</span></span><span id="109" class="l"><a class="l" href="#109">109: </a><span class="php-comment">     *     - desktop associative_array desktop user agents and percentages
 </span></span><span id="110" class="l"><a class="l" href="#110">110: </a><span class="php-comment">     *         - penetration double the percent of desktop clients in use
 </span></span><span id="111" class="l"><a class="l" href="#111">111: </a><span class="php-comment">     *         - clients array array of structs for each client including:
 </span></span><span id="112" class="l"><a class="l" href="#112">112: </a><span class="php-comment">     *             - client string the common name for the client
 </span></span><span id="113" class="l"><a class="l" href="#113">113: </a><span class="php-comment">     *             - icon string a url to an image representing this client
 </span></span><span id="114" class="l"><a class="l" href="#114">114: </a><span class="php-comment">     *             - percent string percent of list using the client
 </span></span><span id="115" class="l"><a class="l" href="#115">115: </a><span class="php-comment">     *             - members string total members using the client
-</span></span><span id="116" class="l"><a class="l" href="#116">116: </a><span class="php-comment">     *     - mobile struct mobile user agents and percentages
+</span></span><span id="116" class="l"><a class="l" href="#116">116: </a><span class="php-comment">     *     - mobile associative_array mobile user agents and percentages
 </span></span><span id="117" class="l"><a class="l" href="#117">117: </a><span class="php-comment">     *         - penetration double the percent of mobile clients in use
 </span></span><span id="118" class="l"><a class="l" href="#118">118: </a><span class="php-comment">     *         - clients array array of structs for each client including:
 </span></span><span id="119" class="l"><a class="l" href="#119">119: </a><span class="php-comment">     *             - client string the common name for the client
@@ -349,7 +349,7 @@
 </span></span><span id="165" class="l"><a class="l" href="#165">165: </a><span class="php-comment">     * @param string $id
 </span></span><span id="166" class="l"><a class="l" href="#166">166: </a><span class="php-comment">     * @param string $group_name
 </span></span><span id="167" class="l"><a class="l" href="#167">167: </a><span class="php-comment">     * @param int $grouping_id
-</span></span><span id="168" class="l"><a class="l" href="#168">168: </a><span class="php-comment">     * @return struct with a single entry:
+</span></span><span id="168" class="l"><a class="l" href="#168">168: </a><span class="php-comment">     * @return associative_array with a single entry:
 </span></span><span id="169" class="l"><a class="l" href="#169">169: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
 </span></span><span id="170" class="l"><a class="l" href="#170">170: </a><span class="php-comment">     */</span>
 </span><span id="171" class="l"><a class="l" href="#171">171: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_interestGroupAdd" href="#_interestGroupAdd">interestGroupAdd</a>(<span class="php-var">$id</span>, <span class="php-var">$group_name</span>, <span class="php-var">$grouping_id</span>=<span class="php-keyword1">null</span>) {
@@ -362,7 +362,7 @@
 </span></span><span id="178" class="l"><a class="l" href="#178">178: </a><span class="php-comment">     * @param string $id
 </span></span><span id="179" class="l"><a class="l" href="#179">179: </a><span class="php-comment">     * @param string $group_name
 </span></span><span id="180" class="l"><a class="l" href="#180">180: </a><span class="php-comment">     * @param int $grouping_id
-</span></span><span id="181" class="l"><a class="l" href="#181">181: </a><span class="php-comment">     * @return struct with a single entry:
+</span></span><span id="181" class="l"><a class="l" href="#181">181: </a><span class="php-comment">     * @return associative_array with a single entry:
 </span></span><span id="182" class="l"><a class="l" href="#182">182: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
 </span></span><span id="183" class="l"><a class="l" href="#183">183: </a><span class="php-comment">     */</span>
 </span><span id="184" class="l"><a class="l" href="#184">184: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_interestGroupDel" href="#_interestGroupDel">interestGroupDel</a>(<span class="php-var">$id</span>, <span class="php-var">$group_name</span>, <span class="php-var">$grouping_id</span>=<span class="php-keyword1">null</span>) {
@@ -376,7 +376,7 @@
 </span></span><span id="192" class="l"><a class="l" href="#192">192: </a><span class="php-comment">     * @param string $old_name
 </span></span><span id="193" class="l"><a class="l" href="#193">193: </a><span class="php-comment">     * @param string $new_name
 </span></span><span id="194" class="l"><a class="l" href="#194">194: </a><span class="php-comment">     * @param int $grouping_id
-</span></span><span id="195" class="l"><a class="l" href="#195">195: </a><span class="php-comment">     * @return struct with a single entry:
+</span></span><span id="195" class="l"><a class="l" href="#195">195: </a><span class="php-comment">     * @return associative_array with a single entry:
 </span></span><span id="196" class="l"><a class="l" href="#196">196: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
 </span></span><span id="197" class="l"><a class="l" href="#197">197: </a><span class="php-comment">     */</span>
 </span><span id="198" class="l"><a class="l" href="#198">198: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_interestGroupUpdate" href="#_interestGroupUpdate">interestGroupUpdate</a>(<span class="php-var">$id</span>, <span class="php-var">$old_name</span>, <span class="php-var">$new_name</span>, <span class="php-var">$grouping_id</span>=<span class="php-keyword1">null</span>) {
@@ -391,7 +391,7 @@
 </span></span><span id="207" class="l"><a class="l" href="#207">207: </a><span class="php-comment">     * @param string $name
 </span></span><span id="208" class="l"><a class="l" href="#208">208: </a><span class="php-comment">     * @param string $type
 </span></span><span id="209" class="l"><a class="l" href="#209">209: </a><span class="php-comment">     * @param array $groups
-</span></span><span id="210" class="l"><a class="l" href="#210">210: </a><span class="php-comment">     * @return struct with a single entry:
+</span></span><span id="210" class="l"><a class="l" href="#210">210: </a><span class="php-comment">     * @return associative_array with a single entry:
 </span></span><span id="211" class="l"><a class="l" href="#211">211: </a><span class="php-comment">     *     - id int the new grouping id if the request succeeds, otherwise an error will be thrown
 </span></span><span id="212" class="l"><a class="l" href="#212">212: </a><span class="php-comment">     */</span>
 </span><span id="213" class="l"><a class="l" href="#213">213: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_interestGroupingAdd" href="#_interestGroupingAdd">interestGroupingAdd</a>(<span class="php-var">$id</span>, <span class="php-var">$name</span>, <span class="php-var">$type</span>, <span class="php-var">$groups</span>) {
@@ -402,7 +402,7 @@
 </span><span id="218" class="l"><a class="l" href="#218">218: </a>    <span class="php-comment">/**
 </span></span><span id="219" class="l"><a class="l" href="#219">219: </a><span class="php-comment">     * Delete an existing Interest Grouping - this will permanently delete all contained interest groups and will remove those selections from all list members
 </span></span><span id="220" class="l"><a class="l" href="#220">220: </a><span class="php-comment">     * @param int $grouping_id
-</span></span><span id="221" class="l"><a class="l" href="#221">221: </a><span class="php-comment">     * @return struct with a single entry:
+</span></span><span id="221" class="l"><a class="l" href="#221">221: </a><span class="php-comment">     * @return associative_array with a single entry:
 </span></span><span id="222" class="l"><a class="l" href="#222">222: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
 </span></span><span id="223" class="l"><a class="l" href="#223">223: </a><span class="php-comment">     */</span>
 </span><span id="224" class="l"><a class="l" href="#224">224: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_interestGroupingDel" href="#_interestGroupingDel">interestGroupingDel</a>(<span class="php-var">$grouping_id</span>) {
@@ -415,7 +415,7 @@
 </span></span><span id="231" class="l"><a class="l" href="#231">231: </a><span class="php-comment">     * @param int $grouping_id
 </span></span><span id="232" class="l"><a class="l" href="#232">232: </a><span class="php-comment">     * @param string $name
 </span></span><span id="233" class="l"><a class="l" href="#233">233: </a><span class="php-comment">     * @param string $value
-</span></span><span id="234" class="l"><a class="l" href="#234">234: </a><span class="php-comment">     * @return struct with a single entry:
+</span></span><span id="234" class="l"><a class="l" href="#234">234: </a><span class="php-comment">     * @return associative_array with a single entry:
 </span></span><span id="235" class="l"><a class="l" href="#235">235: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
 </span></span><span id="236" class="l"><a class="l" href="#236">236: </a><span class="php-comment">     */</span>
 </span><span id="237" class="l"><a class="l" href="#237">237: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_interestGroupingUpdate" href="#_interestGroupingUpdate">interestGroupingUpdate</a>(<span class="php-var">$grouping_id</span>, <span class="php-var">$name</span>, <span class="php-var">$value</span>) {
@@ -441,10 +441,10 @@
 </span></span><span id="257" class="l"><a class="l" href="#257">257: </a><span class="php-comment">     * Get the most recent 100 activities for particular list members (open, click, bounce, unsub, abuse, sent to, etc.)
 </span></span><span id="258" class="l"><a class="l" href="#258">258: </a><span class="php-comment">     * @param string $id
 </span></span><span id="259" class="l"><a class="l" href="#259">259: </a><span class="php-comment">     * @param array $emails
-</span></span><span id="260" class="l"><a class="l" href="#260">260: </a><span class="php-comment">     *     - email string an email address
+</span></span><span id="260" class="l"><a class="l" href="#260">260: </a><span class="php-comment">     *     - email string an email address - for new subscribers obviously this should be used
 </span></span><span id="261" class="l"><a class="l" href="#261">261: </a><span class="php-comment">     *     - euid string the unique id for an email address (not list related) - the email &quot;id&quot; returned from listMemberInfo, Webhooks, Campaigns, etc.
 </span></span><span id="262" class="l"><a class="l" href="#262">262: </a><span class="php-comment">     *     - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
-</span></span><span id="263" class="l"><a class="l" href="#263">263: </a><span class="php-comment">     * @return struct of data and success/error counts
+</span></span><span id="263" class="l"><a class="l" href="#263">263: </a><span class="php-comment">     * @return associative_array of data and success/error counts
 </span></span><span id="264" class="l"><a class="l" href="#264">264: </a><span class="php-comment">     *     - success_count int the number of subscribers successfully found on the list
 </span></span><span id="265" class="l"><a class="l" href="#265">265: </a><span class="php-comment">     *     - error_count int the number of subscribers who were not found on the list
 </span></span><span id="266" class="l"><a class="l" href="#266">266: </a><span class="php-comment">     *     - errors array array of error structs including:
@@ -465,7 +465,7 @@
 </span></span><span id="281" class="l"><a class="l" href="#281">281: </a><span class="php-comment">     *             - url string For click actions, the url clicked, otherwise this is empty
 </span></span><span id="282" class="l"><a class="l" href="#282">282: </a><span class="php-comment">     *             - type string If there's extra bounce, unsub, etc data it will show up here.
 </span></span><span id="283" class="l"><a class="l" href="#283">283: </a><span class="php-comment">     *             - campaign_id string The campaign id the action was related to, if it exists - otherwise empty (ie, direct unsub from list)
-</span></span><span id="284" class="l"><a class="l" href="#284">284: </a><span class="php-comment">     *             - campaign_data struct If not deleted, the campaigns/list data for the campaign
+</span></span><span id="284" class="l"><a class="l" href="#284">284: </a><span class="php-comment">     *             - campaign_data associative_array If not deleted, the campaigns/list data for the campaign
 </span></span><span id="285" class="l"><a class="l" href="#285">285: </a><span class="php-comment">     */</span>
 </span><span id="286" class="l"><a class="l" href="#286">286: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_memberActivity" href="#_memberActivity">memberActivity</a>(<span class="php-var">$id</span>, <span class="php-var">$emails</span>) {
 </span><span id="287" class="l"><a class="l" href="#287">287: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;id&quot;</span> =&gt; <span class="php-var">$id</span>, <span class="php-quote">&quot;emails&quot;</span> =&gt; <span class="php-var">$emails</span>);
@@ -476,14 +476,14 @@
 </span></span><span id="292" class="l"><a class="l" href="#292">292: </a><span class="php-comment">     * Get all the information for particular members of a list
 </span></span><span id="293" class="l"><a class="l" href="#293">293: </a><span class="php-comment">     * @param string $id
 </span></span><span id="294" class="l"><a class="l" href="#294">294: </a><span class="php-comment">     * @param array $emails
-</span></span><span id="295" class="l"><a class="l" href="#295">295: </a><span class="php-comment">     *     - email string an email address
+</span></span><span id="295" class="l"><a class="l" href="#295">295: </a><span class="php-comment">     *     - email string an email address - for new subscribers obviously this should be used
 </span></span><span id="296" class="l"><a class="l" href="#296">296: </a><span class="php-comment">     *     - euid string the unique id for an email address (not list related) - the email &quot;id&quot; returned from listMemberInfo, Webhooks, Campaigns, etc.
 </span></span><span id="297" class="l"><a class="l" href="#297">297: </a><span class="php-comment">     *     - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
-</span></span><span id="298" class="l"><a class="l" href="#298">298: </a><span class="php-comment">     * @return struct of data and success/error counts
+</span></span><span id="298" class="l"><a class="l" href="#298">298: </a><span class="php-comment">     * @return associative_array of data and success/error counts
 </span></span><span id="299" class="l"><a class="l" href="#299">299: </a><span class="php-comment">     *     - success_count int the number of subscribers successfully found on the list
 </span></span><span id="300" class="l"><a class="l" href="#300">300: </a><span class="php-comment">     *     - error_count int the number of subscribers who were not found on the list
 </span></span><span id="301" class="l"><a class="l" href="#301">301: </a><span class="php-comment">     *     - errors array array of error structs including:
-</span></span><span id="302" class="l"><a class="l" href="#302">302: </a><span class="php-comment">     *         - email struct whatever was passed in the email parameter
+</span></span><span id="302" class="l"><a class="l" href="#302">302: </a><span class="php-comment">     *         - email associative_array whatever was passed in the email parameter
 </span></span><span id="303" class="l"><a class="l" href="#303">303: </a><span class="php-comment">     *             - email string the email address added
 </span></span><span id="304" class="l"><a class="l" href="#304">304: </a><span class="php-comment">     *             - euid string the email unique id
 </span></span><span id="305" class="l"><a class="l" href="#305">305: </a><span class="php-comment">     *             - leid string the list member's truly unique id
@@ -492,7 +492,7 @@
 </span></span><span id="308" class="l"><a class="l" href="#308">308: </a><span class="php-comment">     *         - id string The unique id (euid) for this email address on an account
 </span></span><span id="309" class="l"><a class="l" href="#309">309: </a><span class="php-comment">     *         - email string The email address associated with this record
 </span></span><span id="310" class="l"><a class="l" href="#310">310: </a><span class="php-comment">     *         - email_type string The type of emails this customer asked to get: html or text
-</span></span><span id="311" class="l"><a class="l" href="#311">311: </a><span class="php-comment">     *         - merges struct a struct containing a key for each merge tags and the data for those tags for this email address, plus:
+</span></span><span id="311" class="l"><a class="l" href="#311">311: </a><span class="php-comment">     *         - merges associative_array a struct containing a key for each merge tags and the data for those tags for this email address, plus:
 </span></span><span id="312" class="l"><a class="l" href="#312">312: </a><span class="php-comment">     *             - GROUPINGS array if Interest groupings are enabled, this will exist with structs for each grouping:
 </span></span><span id="313" class="l"><a class="l" href="#313">313: </a><span class="php-comment">     *                 - id int the grouping id
 </span></span><span id="314" class="l"><a class="l" href="#314">314: </a><span class="php-comment">     *                 - name string the interest group name
@@ -517,7 +517,7 @@
 </span></span><span id="333" class="l"><a class="l" href="#333">333: </a><span class="php-comment">     *         - list_name string The list name the for the member record being returned
 </span></span><span id="334" class="l"><a class="l" href="#334">334: </a><span class="php-comment">     *         - language string if set/detected, a language code from &lt;a href=&quot;http://kb.mailchimp.com/article/can-i-see-what-languages-my-subscribers-use#code&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;
 </span></span><span id="335" class="l"><a class="l" href="#335">335: </a><span class="php-comment">     *         - is_gmonkey bool Whether the member is a &lt;a href=&quot;http://mailchimp.com/features/golden-monkeys/&quot; target=&quot;_blank&quot;&gt;Golden Monkey&lt;/a&gt; or not.
-</span></span><span id="336" class="l"><a class="l" href="#336">336: </a><span class="php-comment">     *         - geo struct the geographic information if we have it. including:
+</span></span><span id="336" class="l"><a class="l" href="#336">336: </a><span class="php-comment">     *         - geo associative_array the geographic information if we have it. including:
 </span></span><span id="337" class="l"><a class="l" href="#337">337: </a><span class="php-comment">     *             - latitude string the latitude
 </span></span><span id="338" class="l"><a class="l" href="#338">338: </a><span class="php-comment">     *             - longitude string the longitude
 </span></span><span id="339" class="l"><a class="l" href="#339">339: </a><span class="php-comment">     *             - gmtoff string GMT offset
@@ -525,7 +525,7 @@
 </span></span><span id="341" class="l"><a class="l" href="#341">341: </a><span class="php-comment">     *             - timezone string the timezone we've place them in
 </span></span><span id="342" class="l"><a class="l" href="#342">342: </a><span class="php-comment">     *             - cc string 2 digit ISO-3166 country code
 </span></span><span id="343" class="l"><a class="l" href="#343">343: </a><span class="php-comment">     *             - region string generally state, province, or similar
-</span></span><span id="344" class="l"><a class="l" href="#344">344: </a><span class="php-comment">     *         - clients struct the client we've tracked the address as using with two keys:
+</span></span><span id="344" class="l"><a class="l" href="#344">344: </a><span class="php-comment">     *         - clients associative_array the client we've tracked the address as using with two keys:
 </span></span><span id="345" class="l"><a class="l" href="#345">345: </a><span class="php-comment">     *             - name string the common name of the client
 </span></span><span id="346" class="l"><a class="l" href="#346">346: </a><span class="php-comment">     *             - icon_url string a url representing a path to an icon representing this client
 </span></span><span id="347" class="l"><a class="l" href="#347">347: </a><span class="php-comment">     *         - static_segments array structs for each static segments the member is a part of including:
@@ -549,13 +549,13 @@
 </span></span><span id="365" class="l"><a class="l" href="#365">365: </a><span class="php-comment">data or specific members of a list? If so, checkout the &lt;a href=&quot;export/1.0/list.func.php&quot;&gt;List Export API&lt;/a&gt;
 </span></span><span id="366" class="l"><a class="l" href="#366">366: </a><span class="php-comment">     * @param string $id
 </span></span><span id="367" class="l"><a class="l" href="#367">367: </a><span class="php-comment">     * @param string $status
-</span></span><span id="368" class="l"><a class="l" href="#368">368: </a><span class="php-comment">     * @param struct $opts
+</span></span><span id="368" class="l"><a class="l" href="#368">368: </a><span class="php-comment">     * @param associative_array $opts
 </span></span><span id="369" class="l"><a class="l" href="#369">369: </a><span class="php-comment">     *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
 </span></span><span id="370" class="l"><a class="l" href="#370">370: </a><span class="php-comment">     *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
 </span></span><span id="371" class="l"><a class="l" href="#371">371: </a><span class="php-comment">     *     - sort_field string optional the data field to sort by - mergeX (1-30), your custom merge tags, &quot;email&quot;, &quot;rating&quot;,&quot;last_update_time&quot;, or &quot;optin_time&quot; - invalid fields will be ignored
 </span></span><span id="372" class="l"><a class="l" href="#372">372: </a><span class="php-comment">     *     - sort_dir string optional the direct - ASC or DESC. defaults to ASC (case insensitive)
-</span></span><span id="373" class="l"><a class="l" href="#373">373: </a><span class="php-comment">     *     - segment struct a properly formatted segment that works with campaigns/segment-test
-</span></span><span id="374" class="l"><a class="l" href="#374">374: </a><span class="php-comment">     * @return struct of the total records matched and limited list member data for this page
+</span></span><span id="373" class="l"><a class="l" href="#373">373: </a><span class="php-comment">     *     - segment associative_array a properly formatted segment that works with campaigns/segment-test
+</span></span><span id="374" class="l"><a class="l" href="#374">374: </a><span class="php-comment">     * @return associative_array of the total records matched and limited list member data for this page
 </span></span><span id="375" class="l"><a class="l" href="#375">375: </a><span class="php-comment">     *     - total int the total matching records
 </span></span><span id="376" class="l"><a class="l" href="#376">376: </a><span class="php-comment">     *     - data array structs for each member as returned by member-info
 </span></span><span id="377" class="l"><a class="l" href="#377">377: </a><span class="php-comment">     */</span>
@@ -581,7 +581,7 @@
 </span></span><span id="397" class="l"><a class="l" href="#397">397: </a><span class="php-comment">     *     - dateformat string optional only valid for birthday and date fields. For birthday type, must be &quot;MM/DD&quot; (default) or &quot;DD/MM&quot;. For date type, must be &quot;MM/DD/YYYY&quot; (default) or &quot;DD/MM/YYYY&quot;. Any other values will be converted to the default.
 </span></span><span id="398" class="l"><a class="l" href="#398">398: </a><span class="php-comment">     *     - phoneformat string optional &quot;US&quot; is the default - any other value will cause them to be unformatted (international)
 </span></span><span id="399" class="l"><a class="l" href="#399">399: </a><span class="php-comment">     *     - defaultcountry string optional the &lt;a href=&quot;http://www.iso.org/iso/english_country_names_and_code_elements&quot; target=&quot;_blank&quot;&gt;ISO 3166 2 digit character code&lt;/a&gt; for the default country. Defaults to &quot;US&quot;. Anything unrecognized will be converted to the default.
-</span></span><span id="400" class="l"><a class="l" href="#400">400: </a><span class="php-comment">     * @return struct the full data for the new merge var, just like merge-vars returns
+</span></span><span id="400" class="l"><a class="l" href="#400">400: </a><span class="php-comment">     * @return associative_array the full data for the new merge var, just like merge-vars returns
 </span></span><span id="401" class="l"><a class="l" href="#401">401: </a><span class="php-comment">     *     - name string Name/description of the merge field
 </span></span><span id="402" class="l"><a class="l" href="#402">402: </a><span class="php-comment">     *     - req bool Denotes whether the field is required (true) or not (false)
 </span></span><span id="403" class="l"><a class="l" href="#403">403: </a><span class="php-comment">     *     - field_type string The &quot;data type&quot; of this merge var. One of: email, text, number, radio, dropdown, date, address, phone, url, imageurl
@@ -605,7 +605,7 @@
 </span></span><span id="421" class="l"><a class="l" href="#421">421: </a><span class="php-comment">Note that on large lists this method may seem a bit slower than calls you typically make.
 </span></span><span id="422" class="l"><a class="l" href="#422">422: </a><span class="php-comment">     * @param string $id
 </span></span><span id="423" class="l"><a class="l" href="#423">423: </a><span class="php-comment">     * @param string $tag
-</span></span><span id="424" class="l"><a class="l" href="#424">424: </a><span class="php-comment">     * @return struct with a single entry:
+</span></span><span id="424" class="l"><a class="l" href="#424">424: </a><span class="php-comment">     * @return associative_array with a single entry:
 </span></span><span id="425" class="l"><a class="l" href="#425">425: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
 </span></span><span id="426" class="l"><a class="l" href="#426">426: </a><span class="php-comment">     */</span>
 </span><span id="427" class="l"><a class="l" href="#427">427: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_mergeVarDel" href="#_mergeVarDel">mergeVarDel</a>(<span class="php-var">$id</span>, <span class="php-var">$tag</span>) {
@@ -617,7 +617,7 @@
 </span></span><span id="433" class="l"><a class="l" href="#433">433: </a><span class="php-comment">     * Completely resets all data stored in a merge var on a list. All data is removed and this action can not be undone.
 </span></span><span id="434" class="l"><a class="l" href="#434">434: </a><span class="php-comment">     * @param string $id
 </span></span><span id="435" class="l"><a class="l" href="#435">435: </a><span class="php-comment">     * @param string $tag
-</span></span><span id="436" class="l"><a class="l" href="#436">436: </a><span class="php-comment">     * @return struct with a single entry:
+</span></span><span id="436" class="l"><a class="l" href="#436">436: </a><span class="php-comment">     * @return associative_array with a single entry:
 </span></span><span id="437" class="l"><a class="l" href="#437">437: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
 </span></span><span id="438" class="l"><a class="l" href="#438">438: </a><span class="php-comment">     */</span>
 </span><span id="439" class="l"><a class="l" href="#439">439: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_mergeVarReset" href="#_mergeVarReset">mergeVarReset</a>(<span class="php-var">$id</span>, <span class="php-var">$tag</span>) {
@@ -631,7 +631,7 @@
 </span></span><span id="447" class="l"><a class="l" href="#447">447: </a><span class="php-comment">     * @param string $id
 </span></span><span id="448" class="l"><a class="l" href="#448">448: </a><span class="php-comment">     * @param string $tag
 </span></span><span id="449" class="l"><a class="l" href="#449">449: </a><span class="php-comment">     * @param string $value
-</span></span><span id="450" class="l"><a class="l" href="#450">450: </a><span class="php-comment">     * @return struct with a single entry:
+</span></span><span id="450" class="l"><a class="l" href="#450">450: </a><span class="php-comment">     * @return associative_array with a single entry:
 </span></span><span id="451" class="l"><a class="l" href="#451">451: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
 </span></span><span id="452" class="l"><a class="l" href="#452">452: </a><span class="php-comment">     */</span>
 </span><span id="453" class="l"><a class="l" href="#453">453: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_mergeVarSet" href="#_mergeVarSet">mergeVarSet</a>(<span class="php-var">$id</span>, <span class="php-var">$tag</span>, <span class="php-var">$value</span>) {
@@ -643,8 +643,8 @@
 </span></span><span id="459" class="l"><a class="l" href="#459">459: </a><span class="php-comment">     * Update most parameters for a merge tag on a given list. You cannot currently change the merge type
 </span></span><span id="460" class="l"><a class="l" href="#460">460: </a><span class="php-comment">     * @param string $id
 </span></span><span id="461" class="l"><a class="l" href="#461">461: </a><span class="php-comment">     * @param string $tag
-</span></span><span id="462" class="l"><a class="l" href="#462">462: </a><span class="php-comment">     * @param struct $options
-</span></span><span id="463" class="l"><a class="l" href="#463">463: </a><span class="php-comment">     * @return struct the full data for the new merge var, just like merge-vars returns
+</span></span><span id="462" class="l"><a class="l" href="#462">462: </a><span class="php-comment">     * @param associative_array $options
+</span></span><span id="463" class="l"><a class="l" href="#463">463: </a><span class="php-comment">     * @return associative_array the full data for the new merge var, just like merge-vars returns
 </span></span><span id="464" class="l"><a class="l" href="#464">464: </a><span class="php-comment">     *     - name string Name/description of the merge field
 </span></span><span id="465" class="l"><a class="l" href="#465">465: </a><span class="php-comment">     *     - req bool Denotes whether the field is required (true) or not (false)
 </span></span><span id="466" class="l"><a class="l" href="#466">466: </a><span class="php-comment">     *     - field_type string The &quot;data type&quot; of this merge var. One of: email, text, number, radio, dropdown, date, address, phone, url, imageurl
@@ -666,7 +666,7 @@
 </span><span id="482" class="l"><a class="l" href="#482">482: </a>    <span class="php-comment">/**
 </span></span><span id="483" class="l"><a class="l" href="#483">483: </a><span class="php-comment">     * Get the list of merge tags for a given list, including their name, tag, and required setting
 </span></span><span id="484" class="l"><a class="l" href="#484">484: </a><span class="php-comment">     * @param array $id
-</span></span><span id="485" class="l"><a class="l" href="#485">485: </a><span class="php-comment">     * @return struct of data and success/error counts
+</span></span><span id="485" class="l"><a class="l" href="#485">485: </a><span class="php-comment">     * @return associative_array of data and success/error counts
 </span></span><span id="486" class="l"><a class="l" href="#486">486: </a><span class="php-comment">     *     - success_count int the number of subscribers successfully found on the list
 </span></span><span id="487" class="l"><a class="l" href="#487">487: </a><span class="php-comment">     *     - error_count int the number of subscribers who were not found on the list
 </span></span><span id="488" class="l"><a class="l" href="#488">488: </a><span class="php-comment">     *     - data array of structs for the merge tags on each list
@@ -702,7 +702,7 @@
 </span></span><span id="518" class="l"><a class="l" href="#518">518: </a><span class="php-comment">options), though performance may degrade at that point.
 </span></span><span id="519" class="l"><a class="l" href="#519">519: </a><span class="php-comment">     * @param string $id
 </span></span><span id="520" class="l"><a class="l" href="#520">520: </a><span class="php-comment">     * @param string $name
-</span></span><span id="521" class="l"><a class="l" href="#521">521: </a><span class="php-comment">     * @return struct with a single entry:
+</span></span><span id="521" class="l"><a class="l" href="#521">521: </a><span class="php-comment">     * @return associative_array with a single entry:
 </span></span><span id="522" class="l"><a class="l" href="#522">522: </a><span class="php-comment">     *     - id int the id of the new segment, otherwise an error will be thrown.
 </span></span><span id="523" class="l"><a class="l" href="#523">523: </a><span class="php-comment">     */</span>
 </span><span id="524" class="l"><a class="l" href="#524">524: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_staticSegmentAdd" href="#_staticSegmentAdd">staticSegmentAdd</a>(<span class="php-var">$id</span>, <span class="php-var">$name</span>) {
@@ -714,7 +714,7 @@
 </span></span><span id="530" class="l"><a class="l" href="#530">530: </a><span class="php-comment">     * Delete a static segment. Note that this will, of course, remove any member affiliations with the segment
 </span></span><span id="531" class="l"><a class="l" href="#531">531: </a><span class="php-comment">     * @param string $id
 </span></span><span id="532" class="l"><a class="l" href="#532">532: </a><span class="php-comment">     * @param int $seg_id
-</span></span><span id="533" class="l"><a class="l" href="#533">533: </a><span class="php-comment">     * @return struct with a single entry:
+</span></span><span id="533" class="l"><a class="l" href="#533">533: </a><span class="php-comment">     * @return associative_array with a single entry:
 </span></span><span id="534" class="l"><a class="l" href="#534">534: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
 </span></span><span id="535" class="l"><a class="l" href="#535">535: </a><span class="php-comment">     */</span>
 </span><span id="536" class="l"><a class="l" href="#536">536: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_staticSegmentDel" href="#_staticSegmentDel">staticSegmentDel</a>(<span class="php-var">$id</span>, <span class="php-var">$seg_id</span>) {
@@ -728,11 +728,11 @@
 </span></span><span id="544" class="l"><a class="l" href="#544">544: </a><span class="php-comment">     * @param string $id
 </span></span><span id="545" class="l"><a class="l" href="#545">545: </a><span class="php-comment">     * @param int $seg_id
 </span></span><span id="546" class="l"><a class="l" href="#546">546: </a><span class="php-comment">     * @param array $batch
-</span></span><span id="547" class="l"><a class="l" href="#547">547: </a><span class="php-comment">     *     - email struct a struct with one of the following keys - failing to provide anything will produce an error relating to the email address. Provide multiples and we'll use the first we see in this same order.
+</span></span><span id="547" class="l"><a class="l" href="#547">547: </a><span class="php-comment">     *     - email associative_array a struct with one of the following keys - failing to provide anything will produce an error relating to the email address. Provide multiples and we'll use the first we see in this same order.
 </span></span><span id="548" class="l"><a class="l" href="#548">548: </a><span class="php-comment">     *         - email string an email address
 </span></span><span id="549" class="l"><a class="l" href="#549">549: </a><span class="php-comment">     *         - euid string the unique id for an email address (not list related) - the email &quot;id&quot; returned from listMemberInfo, Webhooks, Campaigns, etc.
 </span></span><span id="550" class="l"><a class="l" href="#550">550: </a><span class="php-comment">     *         - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
-</span></span><span id="551" class="l"><a class="l" href="#551">551: </a><span class="php-comment">     * @return struct an array with the results of the operation
+</span></span><span id="551" class="l"><a class="l" href="#551">551: </a><span class="php-comment">     * @return associative_array an array with the results of the operation
 </span></span><span id="552" class="l"><a class="l" href="#552">552: </a><span class="php-comment">     *     - success_count int the total number of successful updates (will include members already in the segment)
 </span></span><span id="553" class="l"><a class="l" href="#553">553: </a><span class="php-comment">     *     - errors array structs for each error including:
 </span></span><span id="554" class="l"><a class="l" href="#554">554: </a><span class="php-comment">     *         - email string whatever was passed in the email parameter
@@ -753,11 +753,11 @@
 </span></span><span id="569" class="l"><a class="l" href="#569">569: </a><span class="php-comment">     * @param string $id
 </span></span><span id="570" class="l"><a class="l" href="#570">570: </a><span class="php-comment">     * @param int $seg_id
 </span></span><span id="571" class="l"><a class="l" href="#571">571: </a><span class="php-comment">     * @param array $batch
-</span></span><span id="572" class="l"><a class="l" href="#572">572: </a><span class="php-comment">     *     - email struct a struct with one of the following keys - failing to provide anything will produce an error relating to the email address. Provide multiples and we'll use the first we see in this same order.
+</span></span><span id="572" class="l"><a class="l" href="#572">572: </a><span class="php-comment">     *     - email associative_array a struct with one of the following keys - failing to provide anything will produce an error relating to the email address. Provide multiples and we'll use the first we see in this same order.
 </span></span><span id="573" class="l"><a class="l" href="#573">573: </a><span class="php-comment">     *         - email string an email address
 </span></span><span id="574" class="l"><a class="l" href="#574">574: </a><span class="php-comment">     *         - euid string the unique id for an email address (not list related) - the email &quot;id&quot; returned from listMemberInfo, Webhooks, Campaigns, etc.
 </span></span><span id="575" class="l"><a class="l" href="#575">575: </a><span class="php-comment">     *         - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
-</span></span><span id="576" class="l"><a class="l" href="#576">576: </a><span class="php-comment">     * @return struct an array with the results of the operation
+</span></span><span id="576" class="l"><a class="l" href="#576">576: </a><span class="php-comment">     * @return associative_array an array with the results of the operation
 </span></span><span id="577" class="l"><a class="l" href="#577">577: </a><span class="php-comment">     *     - success_count int the total number of successful removals
 </span></span><span id="578" class="l"><a class="l" href="#578">578: </a><span class="php-comment">     *     - error_count int the total number of unsuccessful removals
 </span></span><span id="579" class="l"><a class="l" href="#579">579: </a><span class="php-comment">     *     - errors array structs for each error including:
@@ -777,7 +777,7 @@
 </span></span><span id="593" class="l"><a class="l" href="#593">593: </a><span class="php-comment">     * Resets a static segment - removes &lt;strong&gt;all&lt;/strong&gt; members from the static segment. Note: does not actually affect list member data
 </span></span><span id="594" class="l"><a class="l" href="#594">594: </a><span class="php-comment">     * @param string $id
 </span></span><span id="595" class="l"><a class="l" href="#595">595: </a><span class="php-comment">     * @param int $seg_id
-</span></span><span id="596" class="l"><a class="l" href="#596">596: </a><span class="php-comment">     * @return struct with a single entry:
+</span></span><span id="596" class="l"><a class="l" href="#596">596: </a><span class="php-comment">     * @return associative_array with a single entry:
 </span></span><span id="597" class="l"><a class="l" href="#597">597: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
 </span></span><span id="598" class="l"><a class="l" href="#598">598: </a><span class="php-comment">     */</span>
 </span><span id="599" class="l"><a class="l" href="#599">599: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_staticSegmentReset" href="#_staticSegmentReset">staticSegmentReset</a>(<span class="php-var">$id</span>, <span class="php-var">$seg_id</span>) {
@@ -804,11 +804,11 @@
 </span><span id="620" class="l"><a class="l" href="#620">620: </a>    <span class="php-comment">/**
 </span></span><span id="621" class="l"><a class="l" href="#621">621: </a><span class="php-comment">     * Subscribe the provided email to a list. By default this sends a confirmation email - you will not see new members until the link contained in it is clicked!
 </span></span><span id="622" class="l"><a class="l" href="#622">622: </a><span class="php-comment">     * @param string $id
-</span></span><span id="623" class="l"><a class="l" href="#623">623: </a><span class="php-comment">     * @param struct $email
+</span></span><span id="623" class="l"><a class="l" href="#623">623: </a><span class="php-comment">     * @param associative_array $email
 </span></span><span id="624" class="l"><a class="l" href="#624">624: </a><span class="php-comment">     *     - email string an email address - for new subscribers obviously this should be used
 </span></span><span id="625" class="l"><a class="l" href="#625">625: </a><span class="php-comment">     *     - euid string the unique id for an email address (not list related) - the email &quot;id&quot; returned from listMemberInfo, Webhooks, Campaigns, etc.
 </span></span><span id="626" class="l"><a class="l" href="#626">626: </a><span class="php-comment">     *     - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
-</span></span><span id="627" class="l"><a class="l" href="#627">627: </a><span class="php-comment">     * @param struct $merge_vars
+</span></span><span id="627" class="l"><a class="l" href="#627">627: </a><span class="php-comment">     * @param associative_array $merge_vars
 </span></span><span id="628" class="l"><a class="l" href="#628">628: </a><span class="php-comment">     *     - new-email string set this to change the email address. This is only respected on calls using update_existing or when passed to listUpdateMember().
 </span></span><span id="629" class="l"><a class="l" href="#629">629: </a><span class="php-comment">     *     - groupings array of Interest Grouping structs. Each should contain:
 </span></span><span id="630" class="l"><a class="l" href="#630">630: </a><span class="php-comment">     *         - id int Grouping &quot;id&quot; from lists/interest-groupings (either this or name must be present) - this id takes precedence and can't change (unlike the name)
@@ -816,7 +816,7 @@
 </span></span><span id="632" class="l"><a class="l" href="#632">632: </a><span class="php-comment">     *         - groups array an array of valid group names for this grouping.
 </span></span><span id="633" class="l"><a class="l" href="#633">633: </a><span class="php-comment">     *     - optin_ip string Set the Opt-in IP field. &lt;em&gt;Abusing this may cause your account to be suspended.&lt;/em&gt; We do validate this and it must not be a private IP address.
 </span></span><span id="634" class="l"><a class="l" href="#634">634: </a><span class="php-comment">     *     - optin_time string Set the Opt-in Time field. &lt;em&gt;Abusing this may cause your account to be suspended.&lt;/em&gt; We do validate this and it must be a valid date. Use  - 24 hour format in &lt;strong&gt;GMT&lt;/strong&gt;, eg &quot;2013-12-30 20:30:00&quot; to be safe. Generally, though, anything strtotime() understands we'll understand - &lt;a href=&quot;http://us2.php.net/strtotime&quot; target=&quot;_blank&quot;&gt;http://us2.php.net/strtotime&lt;/a&gt;
-</span></span><span id="635" class="l"><a class="l" href="#635">635: </a><span class="php-comment">     *     - mc_location struct Set the member's geographic location either by optin_ip or geo data.
+</span></span><span id="635" class="l"><a class="l" href="#635">635: </a><span class="php-comment">     *     - mc_location associative_array Set the member's geographic location either by optin_ip or geo data.
 </span></span><span id="636" class="l"><a class="l" href="#636">636: </a><span class="php-comment">     *         - latitude string use the specified latitude (longitude must exist for this to work)
 </span></span><span id="637" class="l"><a class="l" href="#637">637: </a><span class="php-comment">     *         - longitude string use the specified longitude (latitude must exist for this to work)
 </span></span><span id="638" class="l"><a class="l" href="#638">638: </a><span class="php-comment">     *         - anything string if this (or any other key exists here) we'll try to use the optin ip. NOTE - this will slow down each subscribe call a bit, especially for lat/lng pairs in sparsely populated areas. Currently our automated background processes can and will overwrite this based on opens and clicks.
@@ -830,7 +830,7 @@
 </span></span><span id="646" class="l"><a class="l" href="#646">646: </a><span class="php-comment">     * @param bool $update_existing
 </span></span><span id="647" class="l"><a class="l" href="#647">647: </a><span class="php-comment">     * @param bool $replace_interests
 </span></span><span id="648" class="l"><a class="l" href="#648">648: </a><span class="php-comment">     * @param bool $send_welcome
-</span></span><span id="649" class="l"><a class="l" href="#649">649: </a><span class="php-comment">     * @return struct the ids for this subscriber
+</span></span><span id="649" class="l"><a class="l" href="#649">649: </a><span class="php-comment">     * @return associative_array the ids for this subscriber
 </span></span><span id="650" class="l"><a class="l" href="#650">650: </a><span class="php-comment">     *     - email string the email address added
 </span></span><span id="651" class="l"><a class="l" href="#651">651: </a><span class="php-comment">     *     - euid string the email unique id
 </span></span><span id="652" class="l"><a class="l" href="#652">652: </a><span class="php-comment">     *     - leid string the list member's truly unique id
@@ -843,14 +843,14 @@
 </span><span id="659" class="l"><a class="l" href="#659">659: </a>    <span class="php-comment">/**
 </span></span><span id="660" class="l"><a class="l" href="#660">660: </a><span class="php-comment">     * Unsubscribe the given email address from the list
 </span></span><span id="661" class="l"><a class="l" href="#661">661: </a><span class="php-comment">     * @param string $id
-</span></span><span id="662" class="l"><a class="l" href="#662">662: </a><span class="php-comment">     * @param struct $email
+</span></span><span id="662" class="l"><a class="l" href="#662">662: </a><span class="php-comment">     * @param associative_array $email
 </span></span><span id="663" class="l"><a class="l" href="#663">663: </a><span class="php-comment">     *     - email string an email address
 </span></span><span id="664" class="l"><a class="l" href="#664">664: </a><span class="php-comment">     *     - euid string the unique id for an email address (not list related) - the email &quot;id&quot; returned from listMemberInfo, Webhooks, Campaigns, etc.
 </span></span><span id="665" class="l"><a class="l" href="#665">665: </a><span class="php-comment">     *     - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
 </span></span><span id="666" class="l"><a class="l" href="#666">666: </a><span class="php-comment">     * @param boolean $delete_member
 </span></span><span id="667" class="l"><a class="l" href="#667">667: </a><span class="php-comment">     * @param boolean $send_goodbye
 </span></span><span id="668" class="l"><a class="l" href="#668">668: </a><span class="php-comment">     * @param boolean $send_notify
-</span></span><span id="669" class="l"><a class="l" href="#669">669: </a><span class="php-comment">     * @return struct with a single entry:
+</span></span><span id="669" class="l"><a class="l" href="#669">669: </a><span class="php-comment">     * @return associative_array with a single entry:
 </span></span><span id="670" class="l"><a class="l" href="#670">670: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
 </span></span><span id="671" class="l"><a class="l" href="#671">671: </a><span class="php-comment">     */</span>
 </span><span id="672" class="l"><a class="l" href="#672">672: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_unsubscribe" href="#_unsubscribe">unsubscribe</a>(<span class="php-var">$id</span>, <span class="php-var">$email</span>, <span class="php-var">$delete_member</span>=<span class="php-keyword1">false</span>, <span class="php-var">$send_goodbye</span>=<span class="php-keyword1">true</span>, <span class="php-var">$send_notify</span>=<span class="php-keyword1">true</span>) {
@@ -862,14 +862,14 @@
 </span></span><span id="678" class="l"><a class="l" href="#678">678: </a><span class="php-comment">     * Edit the email address, merge fields, and interest groups for a list member. If you are doing a batch update on lots of users,
 </span></span><span id="679" class="l"><a class="l" href="#679">679: </a><span class="php-comment">consider using listBatchSubscribe() with the update_existing and possible replace_interests parameter.
 </span></span><span id="680" class="l"><a class="l" href="#680">680: </a><span class="php-comment">     * @param string $id
-</span></span><span id="681" class="l"><a class="l" href="#681">681: </a><span class="php-comment">     * @param struct $email
+</span></span><span id="681" class="l"><a class="l" href="#681">681: </a><span class="php-comment">     * @param associative_array $email
 </span></span><span id="682" class="l"><a class="l" href="#682">682: </a><span class="php-comment">     *     - email string an email address
 </span></span><span id="683" class="l"><a class="l" href="#683">683: </a><span class="php-comment">     *     - euid string the unique id for an email address (not list related) - the email &quot;id&quot; returned from listMemberInfo, Webhooks, Campaigns, etc.
 </span></span><span id="684" class="l"><a class="l" href="#684">684: </a><span class="php-comment">     *     - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
 </span></span><span id="685" class="l"><a class="l" href="#685">685: </a><span class="php-comment">     * @param array $merge_vars
 </span></span><span id="686" class="l"><a class="l" href="#686">686: </a><span class="php-comment">     * @param string $email_type
 </span></span><span id="687" class="l"><a class="l" href="#687">687: </a><span class="php-comment">     * @param boolean $replace_interests
-</span></span><span id="688" class="l"><a class="l" href="#688">688: </a><span class="php-comment">     * @return struct the ids for this subscriber
+</span></span><span id="688" class="l"><a class="l" href="#688">688: </a><span class="php-comment">     * @return associative_array the ids for this subscriber
 </span></span><span id="689" class="l"><a class="l" href="#689">689: </a><span class="php-comment">     *     - email string the email address added
 </span></span><span id="690" class="l"><a class="l" href="#690">690: </a><span class="php-comment">     *     - euid string the email unique id
 </span></span><span id="691" class="l"><a class="l" href="#691">691: </a><span class="php-comment">     *     - leid string the list member's truly unique id
@@ -883,18 +883,18 @@
 </span></span><span id="699" class="l"><a class="l" href="#699">699: </a><span class="php-comment">     * Add a new Webhook URL for the given list
 </span></span><span id="700" class="l"><a class="l" href="#700">700: </a><span class="php-comment">     * @param string $id
 </span></span><span id="701" class="l"><a class="l" href="#701">701: </a><span class="php-comment">     * @param string $url
-</span></span><span id="702" class="l"><a class="l" href="#702">702: </a><span class="php-comment">     * @param struct $actions
+</span></span><span id="702" class="l"><a class="l" href="#702">702: </a><span class="php-comment">     * @param associative_array $actions
 </span></span><span id="703" class="l"><a class="l" href="#703">703: </a><span class="php-comment">     *     - subscribe bool optional as subscribes occur, defaults to true
 </span></span><span id="704" class="l"><a class="l" href="#704">704: </a><span class="php-comment">     *     - unsubscribe bool optional as subscribes occur, defaults to true
 </span></span><span id="705" class="l"><a class="l" href="#705">705: </a><span class="php-comment">     *     - profile bool optional as profile updates occur, defaults to true
 </span></span><span id="706" class="l"><a class="l" href="#706">706: </a><span class="php-comment">     *     - cleaned bool optional as emails are cleaned from the list, defaults to true
 </span></span><span id="707" class="l"><a class="l" href="#707">707: </a><span class="php-comment">     *     - upemail bool optional when  subscribers change their email address, defaults to true
 </span></span><span id="708" class="l"><a class="l" href="#708">708: </a><span class="php-comment">     *     - campaign bool option when a campaign is sent or canceled, defaults to true
-</span></span><span id="709" class="l"><a class="l" href="#709">709: </a><span class="php-comment">     * @param struct $sources
+</span></span><span id="709" class="l"><a class="l" href="#709">709: </a><span class="php-comment">     * @param associative_array $sources
 </span></span><span id="710" class="l"><a class="l" href="#710">710: </a><span class="php-comment">     *     - user bool optional user/subscriber initiated actions, defaults to true
 </span></span><span id="711" class="l"><a class="l" href="#711">711: </a><span class="php-comment">     *     - admin bool optional admin actions in our web app, defaults to true
 </span></span><span id="712" class="l"><a class="l" href="#712">712: </a><span class="php-comment">     *     - api bool optional actions that happen via API calls, defaults to false
-</span></span><span id="713" class="l"><a class="l" href="#713">713: </a><span class="php-comment">     * @return struct with a single entry:
+</span></span><span id="713" class="l"><a class="l" href="#713">713: </a><span class="php-comment">     * @return associative_array with a single entry:
 </span></span><span id="714" class="l"><a class="l" href="#714">714: </a><span class="php-comment">     *     - id int the id of the new webhook, otherwise an error will be thrown.
 </span></span><span id="715" class="l"><a class="l" href="#715">715: </a><span class="php-comment">     */</span>
 </span><span id="716" class="l"><a class="l" href="#716">716: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_webhookAdd" href="#_webhookAdd">webhookAdd</a>(<span class="php-var">$id</span>, <span class="php-var">$url</span>, <span class="php-var">$actions</span>=<span class="php-keyword1">array</span>(), <span class="php-var">$sources</span>=<span class="php-keyword1">array</span>()) {
@@ -906,7 +906,7 @@
 </span></span><span id="722" class="l"><a class="l" href="#722">722: </a><span class="php-comment">     * Delete an existing Webhook URL from a given list
 </span></span><span id="723" class="l"><a class="l" href="#723">723: </a><span class="php-comment">     * @param string $id
 </span></span><span id="724" class="l"><a class="l" href="#724">724: </a><span class="php-comment">     * @param string $url
-</span></span><span id="725" class="l"><a class="l" href="#725">725: </a><span class="php-comment">     * @return struct with a single entry:
+</span></span><span id="725" class="l"><a class="l" href="#725">725: </a><span class="php-comment">     * @return associative_array with a single entry:
 </span></span><span id="726" class="l"><a class="l" href="#726">726: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
 </span></span><span id="727" class="l"><a class="l" href="#727">727: </a><span class="php-comment">     */</span>
 </span><span id="728" class="l"><a class="l" href="#728">728: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_webhookDel" href="#_webhookDel">webhookDel</a>(<span class="php-var">$id</span>, <span class="php-var">$url</span>) {
@@ -919,14 +919,14 @@
 </span></span><span id="735" class="l"><a class="l" href="#735">735: </a><span class="php-comment">     * @param string $id
 </span></span><span id="736" class="l"><a class="l" href="#736">736: </a><span class="php-comment">     * @return array of structs for each webhook
 </span></span><span id="737" class="l"><a class="l" href="#737">737: </a><span class="php-comment">     *     - url string the URL for this Webhook
-</span></span><span id="738" class="l"><a class="l" href="#738">738: </a><span class="php-comment">     *     - actions struct the possible actions and whether they are enabled
+</span></span><span id="738" class="l"><a class="l" href="#738">738: </a><span class="php-comment">     *     - actions associative_array the possible actions and whether they are enabled
 </span></span><span id="739" class="l"><a class="l" href="#739">739: </a><span class="php-comment">     *         - subscribe bool triggered when subscribes happen
 </span></span><span id="740" class="l"><a class="l" href="#740">740: </a><span class="php-comment">     *         - unsubscribe bool triggered when unsubscribes happen
 </span></span><span id="741" class="l"><a class="l" href="#741">741: </a><span class="php-comment">     *         - profile bool triggered when profile updates happen
 </span></span><span id="742" class="l"><a class="l" href="#742">742: </a><span class="php-comment">     *         - cleaned bool triggered when a subscriber is cleaned (bounced) from a list
 </span></span><span id="743" class="l"><a class="l" href="#743">743: </a><span class="php-comment">     *         - upemail bool triggered when a subscriber's email address is changed
 </span></span><span id="744" class="l"><a class="l" href="#744">744: </a><span class="php-comment">     *         - campaign bool triggered when a campaign is sent or canceled
-</span></span><span id="745" class="l"><a class="l" href="#745">745: </a><span class="php-comment">     *     - sources struct the possible sources and whether they are enabled
+</span></span><span id="745" class="l"><a class="l" href="#745">745: </a><span class="php-comment">     *     - sources associative_array the possible sources and whether they are enabled
 </span></span><span id="746" class="l"><a class="l" href="#746">746: </a><span class="php-comment">     *         - user bool whether user/subscriber triggered actions are returned
 </span></span><span id="747" class="l"><a class="l" href="#747">747: </a><span class="php-comment">     *         - admin bool whether admin (manual, in-app) triggered actions are returned
 </span></span><span id="748" class="l"><a class="l" href="#748">748: </a><span class="php-comment">     *         - api bool whether api triggered actions are returned
@@ -938,7 +938,7 @@
 </span><span id="754" class="l"><a class="l" href="#754">754: </a>
 </span><span id="755" class="l"><a class="l" href="#755">755: </a>    <span class="php-comment">/**
 </span></span><span id="756" class="l"><a class="l" href="#756">756: </a><span class="php-comment">     * Retrieve all of the lists defined for your user account
-</span></span><span id="757" class="l"><a class="l" href="#757">757: </a><span class="php-comment">     * @param struct $filters
+</span></span><span id="757" class="l"><a class="l" href="#757">757: </a><span class="php-comment">     * @param associative_array $filters
 </span></span><span id="758" class="l"><a class="l" href="#758">758: </a><span class="php-comment">     *     - list_id string optional - return a single list using a known list_id. Accepts multiples separated by commas when not using exact matching
 </span></span><span id="759" class="l"><a class="l" href="#759">759: </a><span class="php-comment">     *     - list_name string optional - only lists that match this name
 </span></span><span id="760" class="l"><a class="l" href="#760">760: </a><span class="php-comment">     *     - from_name string optional - only lists that have a default from name matching this
@@ -951,7 +951,7 @@
 </span></span><span id="767" class="l"><a class="l" href="#767">767: </a><span class="php-comment">     * @param int $limit
 </span></span><span id="768" class="l"><a class="l" href="#768">768: </a><span class="php-comment">     * @param string $sort_field
 </span></span><span id="769" class="l"><a class="l" href="#769">769: </a><span class="php-comment">     * @param string $sort_dir
-</span></span><span id="770" class="l"><a class="l" href="#770">770: </a><span class="php-comment">     * @return struct result of the operation including valid data and any errors
+</span></span><span id="770" class="l"><a class="l" href="#770">770: </a><span class="php-comment">     * @return associative_array result of the operation including valid data and any errors
 </span></span><span id="771" class="l"><a class="l" href="#771">771: </a><span class="php-comment">     *     - total int the total number of lists which matched the provided filters
 </span></span><span id="772" class="l"><a class="l" href="#772">772: </a><span class="php-comment">     *     - data array structs for the lists which matched the provided filters, including the following
 </span></span><span id="773" class="l"><a class="l" href="#773">773: </a><span class="php-comment">     *         - id string The list id for this list. This will be used for all other list management functions.
@@ -969,7 +969,7 @@
 </span></span><span id="785" class="l"><a class="l" href="#785">785: </a><span class="php-comment">     *         - subscribe_url_long string The full version of this list's subscribe form (host will vary)
 </span></span><span id="786" class="l"><a class="l" href="#786">786: </a><span class="php-comment">     *         - beamer_address string The email address to use for this list's &lt;a href=&quot;http://kb.mailchimp.com/article/how-do-i-import-a-campaign-via-email-email-beamer/&quot;&gt;Email Beamer&lt;/a&gt;
 </span></span><span id="787" class="l"><a class="l" href="#787">787: </a><span class="php-comment">     *         - visibility string Whether this list is Public (pub) or Private (prv). Used internally for projects like &lt;a href=&quot;http://blog.mailchimp.com/introducing-wavelength/&quot; target=&quot;_blank&quot;&gt;Wavelength&lt;/a&gt;
-</span></span><span id="788" class="l"><a class="l" href="#788">788: </a><span class="php-comment">     *         - stats struct various stats and counts for the list - many of these are cached for at least 5 minutes
+</span></span><span id="788" class="l"><a class="l" href="#788">788: </a><span class="php-comment">     *         - stats associative_array various stats and counts for the list - many of these are cached for at least 5 minutes
 </span></span><span id="789" class="l"><a class="l" href="#789">789: </a><span class="php-comment">     *             - member_count double The number of active members in the given list.
 </span></span><span id="790" class="l"><a class="l" href="#790">790: </a><span class="php-comment">     *             - unsubscribe_count double The number of members who have unsubscribed from the given list.
 </span></span><span id="791" class="l"><a class="l" href="#791">791: </a><span class="php-comment">     *             - cleaned_count double The number of members cleaned from the given list.

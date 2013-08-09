@@ -239,7 +239,7 @@
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -274,7 +274,7 @@ content. These templates can then be applied while creating campaigns.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>with a single element: - template_id int the new template id, otherwise an error
+					<code>associative_array</code><br>with a single element: - template_id int the new template id, otherwise an error
 is thrown.<br />
 				</div>
 
@@ -288,7 +288,7 @@ is thrown.<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -317,7 +317,7 @@ is thrown.<br />
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>with a single entry: - complete bool whether the call worked. reallistically
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
 this will always be true as errors will be thrown otherwise.<br />
 				</div>
 
@@ -331,7 +331,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -362,13 +362,13 @@ this will always be true as errors will be thrown otherwise.<br />
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>info to be used when editing - default_content struct the default content broken
-down into the named editable sections for the template - dependant upon
-template, so not documented - sections struct the valid editable section names -
-dependant upon template, so not documented - source string the full source of
-the template as if you exported it via our template editor - preview string
-similar to the source, but the rendered version of the source from our popup
-preview<br />
+					<code>associative_array</code><br>info to be used when editing - default_content associative_array the default
+content broken down into the named editable sections for the template -
+dependant upon template, so not documented - sections associative_array the
+valid editable section names - dependant upon template, so not documented -
+source string the full source of the template as if you exported it via our
+template editor - preview string similar to the source, but the rendered version
+of the source from our popup preview<br />
 				</div>
 
 
@@ -381,14 +381,14 @@ preview<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getList">#</a>
-		<code><a href="source-class-Mailchimp_Templates.html#47-91" title="Go to source code">getList</a>( <span>struct <var>$types</var> = <span class="php-keyword1">array</span>()</span>, <span>struct <var>$filters</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-Mailchimp_Templates.html#47-91" title="Go to source code">getList</a>( <span>associative_array <var>$types</var> = <span class="php-keyword1">array</span>()</span>, <span>associative_array <var>$filters</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -407,13 +407,13 @@ similar to our template gallery to be created.</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$types</var></dt>
-					<dd><code>struct</code><br>$types - user boolean Custom templates for this user account. Defaults to true.
+					<dd><code>associative_array</code><br>$types - user boolean Custom templates for this user account. Defaults to true.
 - gallery boolean Templates from our Gallery. Note that some templates that
 require extra configuration are withheld. (eg, the Etsy template). Defaults to
 false. - base boolean Our "start from scratch" extremely basic templates.
 Defaults to false.</dd>
 					<dt><var>$filters</var></dt>
-					<dd><code>struct</code><br>$filters - category string optional for Gallery templates only, limit to a
+					<dd><code>associative_array</code><br>$filters - category string optional for Gallery templates only, limit to a
 specific template category - folder_id string user templates, limit to this
 folder_id - include_inactive boolean user templates are not deleted, only set
 inactive. defaults to false. - inactive_only boolean only include inactive user
@@ -422,7 +422,7 @@ templates. defaults to false.</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>for each type - user array matching user templates, if requested. - id int Id of
+					<code>associative_array</code><br>for each type - user array matching user templates, if requested. - id int Id of
 the template - name string Name of the template - layout string General
 description of the layout of the template - category string The category for the
 template, if there is one. - preview_image string If we've generated it, the url
@@ -461,7 +461,7 @@ of a template.<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -490,7 +490,7 @@ of a template.<br />
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>with a single entry: - complete bool whether the call worked. reallistically
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
 this will always be true as errors will be thrown otherwise.<br />
 				</div>
 
@@ -504,14 +504,14 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_update">#</a>
-		<code><a href="source-class-Mailchimp_Templates.html#104-117" title="Go to source code">update</a>( <span>integer <var>$template_id</var></span>, <span>struct <var>$values</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Templates.html#104-117" title="Go to source code">update</a>( <span>integer <var>$template_id</var></span>, <span>associative_array <var>$values</var></span> )</code>
 
 		<div class="description short">
 			
@@ -532,7 +532,7 @@ campaign content.</p>
 					<dt><var>$template_id</var></dt>
 					<dd><code>integer</code><br>$template_id</dd>
 					<dt><var>$values</var></dt>
-					<dd><code>struct</code><br>$values - name string the name for the template - names must be unique and a max
+					<dd><code>associative_array</code><br>$values - name string the name for the template - names must be unique and a max
 of 50 bytes - html string a string specifying the entire template to be created.
 This is &lt;strong&gt;NOT&lt;/strong&gt; campaign content. They are intended to
 utilize our <a
@@ -543,7 +543,7 @@ template in - 0 or a blank values will remove it from a folder.</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>with a single entry: - complete bool whether the call worked. reallistically
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
 this will always be true as errors will be thrown otherwise.<br />
 				</div>
 

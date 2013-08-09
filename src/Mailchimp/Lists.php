@@ -11,7 +11,7 @@ class Mailchimp_Lists {
      * @param int $start
      * @param int $limit
      * @param string $since
-     * @return struct the total of all reports and the specific reports reports this page
+     * @return associative_array the total of all reports and the specific reports reports this page
      *     - total int the total number of matching abuse reports
      *     - data array structs for the actual data for each reports, including:
      *         - date string date/time the abuse report was received and processed
@@ -40,16 +40,16 @@ only run this method as a POST request, and <em>not</em> a GET request. Maximum 
 though you should cap them at 5k - 10k records, depending on your experience. These calls are also long, so be sure you increase your timeout values.
      * @param string $id
      * @param array $batch
-     *     - email struct a struct with one of the following keys - failing to provide anything will produce an error relating to the email address. Provide multiples and we'll use the first we see in this same order.
+     *     - email associative_array a struct with one of the following keys - failing to provide anything will produce an error relating to the email address. Provide multiples and we'll use the first we see in this same order.
      *         - email string an email address
      *         - euid string the unique id for an email address (not list related) - the email "id" returned from listMemberInfo, Webhooks, Campaigns, etc.
      *         - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
      *     - email_type string for the email type option (html or text)
-     *     - merge_vars struct data for the various list specific and special merge vars documented in lists/subscribe
+     *     - merge_vars associative_array data for the various list specific and special merge vars documented in lists/subscribe
      * @param boolean $double_optin
      * @param boolean $update_existing
      * @param boolean $replace_interests
-     * @return struct struct of result counts and associated data
+     * @return associative_array struct of result counts and associated data
      *     - add_count int Number of email addresses that were successfully added
      *     - adds array array of structs for each add
      *         - email string the email address added
@@ -68,7 +68,7 @@ though you should cap them at 5k - 10k records, depending on your experience. Th
      *             - leid string the list member's truly unique id
      *         - code int the error code
      *         - error string the full error message
-     *         - row struct the row from the batch that caused the error
+     *         - row associative_array the row from the batch that caused the error
      */
     public function batchSubscribe($id, $batch, $double_optin=true, $update_existing=false, $replace_interests=true) {
         $_params = array("id" => $id, "batch" => $batch, "double_optin" => $double_optin, "update_existing" => $update_existing, "replace_interests" => $replace_interests);
@@ -105,15 +105,15 @@ though you should cap them at 5k - 10k records, depending on your experience. Th
     /**
      * Retrieve the clients that the list's subscribers have been tagged as being used based on user agents seen. Made possible by <a href="http://user-agent-string.info" target="_blank">user-agent-string.info</a>
      * @param string $id
-     * @return struct the desktop and mobile user agents in use on the list
-     *     - desktop struct desktop user agents and percentages
+     * @return associative_array the desktop and mobile user agents in use on the list
+     *     - desktop associative_array desktop user agents and percentages
      *         - penetration double the percent of desktop clients in use
      *         - clients array array of structs for each client including:
      *             - client string the common name for the client
      *             - icon string a url to an image representing this client
      *             - percent string percent of list using the client
      *             - members string total members using the client
-     *     - mobile struct mobile user agents and percentages
+     *     - mobile associative_array mobile user agents and percentages
      *         - penetration double the percent of mobile clients in use
      *         - clients array array of structs for each client including:
      *             - client string the common name for the client
@@ -165,7 +165,7 @@ group will automatically turn them on.
      * @param string $id
      * @param string $group_name
      * @param int $grouping_id
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
      */
     public function interestGroupAdd($id, $group_name, $grouping_id=null) {
@@ -178,7 +178,7 @@ group will automatically turn them on.
      * @param string $id
      * @param string $group_name
      * @param int $grouping_id
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
      */
     public function interestGroupDel($id, $group_name, $grouping_id=null) {
@@ -192,7 +192,7 @@ group will automatically turn them on.
      * @param string $old_name
      * @param string $new_name
      * @param int $grouping_id
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
      */
     public function interestGroupUpdate($id, $old_name, $new_name, $grouping_id=null) {
@@ -207,7 +207,7 @@ grouping will automatically turn them on.
      * @param string $name
      * @param string $type
      * @param array $groups
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - id int the new grouping id if the request succeeds, otherwise an error will be thrown
      */
     public function interestGroupingAdd($id, $name, $type, $groups) {
@@ -218,7 +218,7 @@ grouping will automatically turn them on.
     /**
      * Delete an existing Interest Grouping - this will permanently delete all contained interest groups and will remove those selections from all list members
      * @param int $grouping_id
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
      */
     public function interestGroupingDel($grouping_id) {
@@ -231,7 +231,7 @@ grouping will automatically turn them on.
      * @param int $grouping_id
      * @param string $name
      * @param string $value
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
      */
     public function interestGroupingUpdate($grouping_id, $name, $value) {
@@ -257,10 +257,10 @@ grouping will automatically turn them on.
      * Get the most recent 100 activities for particular list members (open, click, bounce, unsub, abuse, sent to, etc.)
      * @param string $id
      * @param array $emails
-     *     - email string an email address
+     *     - email string an email address - for new subscribers obviously this should be used
      *     - euid string the unique id for an email address (not list related) - the email "id" returned from listMemberInfo, Webhooks, Campaigns, etc.
      *     - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
-     * @return struct of data and success/error counts
+     * @return associative_array of data and success/error counts
      *     - success_count int the number of subscribers successfully found on the list
      *     - error_count int the number of subscribers who were not found on the list
      *     - errors array array of error structs including:
@@ -281,7 +281,7 @@ grouping will automatically turn them on.
      *             - url string For click actions, the url clicked, otherwise this is empty
      *             - type string If there's extra bounce, unsub, etc data it will show up here.
      *             - campaign_id string The campaign id the action was related to, if it exists - otherwise empty (ie, direct unsub from list)
-     *             - campaign_data struct If not deleted, the campaigns/list data for the campaign
+     *             - campaign_data associative_array If not deleted, the campaigns/list data for the campaign
      */
     public function memberActivity($id, $emails) {
         $_params = array("id" => $id, "emails" => $emails);
@@ -292,14 +292,14 @@ grouping will automatically turn them on.
      * Get all the information for particular members of a list
      * @param string $id
      * @param array $emails
-     *     - email string an email address
+     *     - email string an email address - for new subscribers obviously this should be used
      *     - euid string the unique id for an email address (not list related) - the email "id" returned from listMemberInfo, Webhooks, Campaigns, etc.
      *     - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
-     * @return struct of data and success/error counts
+     * @return associative_array of data and success/error counts
      *     - success_count int the number of subscribers successfully found on the list
      *     - error_count int the number of subscribers who were not found on the list
      *     - errors array array of error structs including:
-     *         - email struct whatever was passed in the email parameter
+     *         - email associative_array whatever was passed in the email parameter
      *             - email string the email address added
      *             - euid string the email unique id
      *             - leid string the list member's truly unique id
@@ -308,7 +308,7 @@ grouping will automatically turn them on.
      *         - id string The unique id (euid) for this email address on an account
      *         - email string The email address associated with this record
      *         - email_type string The type of emails this customer asked to get: html or text
-     *         - merges struct a struct containing a key for each merge tags and the data for those tags for this email address, plus:
+     *         - merges associative_array a struct containing a key for each merge tags and the data for those tags for this email address, plus:
      *             - GROUPINGS array if Interest groupings are enabled, this will exist with structs for each grouping:
      *                 - id int the grouping id
      *                 - name string the interest group name
@@ -333,7 +333,7 @@ grouping will automatically turn them on.
      *         - list_name string The list name the for the member record being returned
      *         - language string if set/detected, a language code from <a href="http://kb.mailchimp.com/article/can-i-see-what-languages-my-subscribers-use#code" target="_blank">here</a>
      *         - is_gmonkey bool Whether the member is a <a href="http://mailchimp.com/features/golden-monkeys/" target="_blank">Golden Monkey</a> or not.
-     *         - geo struct the geographic information if we have it. including:
+     *         - geo associative_array the geographic information if we have it. including:
      *             - latitude string the latitude
      *             - longitude string the longitude
      *             - gmtoff string GMT offset
@@ -341,7 +341,7 @@ grouping will automatically turn them on.
      *             - timezone string the timezone we've place them in
      *             - cc string 2 digit ISO-3166 country code
      *             - region string generally state, province, or similar
-     *         - clients struct the client we've tracked the address as using with two keys:
+     *         - clients associative_array the client we've tracked the address as using with two keys:
      *             - name string the common name of the client
      *             - icon_url string a url representing a path to an icon representing this client
      *         - static_segments array structs for each static segments the member is a part of including:
@@ -365,13 +365,13 @@ grouping will automatically turn them on.
 data or specific members of a list? If so, checkout the <a href="export/1.0/list.func.php">List Export API</a>
      * @param string $id
      * @param string $status
-     * @param struct $opts
+     * @param associative_array $opts
      *     - start int optional for large data sets, the page number to start at - defaults to 1st page of data  (page 0)
      *     - limit int optional for large data sets, the number of results to return - defaults to 25, upper limit set at 100
      *     - sort_field string optional the data field to sort by - mergeX (1-30), your custom merge tags, "email", "rating","last_update_time", or "optin_time" - invalid fields will be ignored
      *     - sort_dir string optional the direct - ASC or DESC. defaults to ASC (case insensitive)
-     *     - segment struct a properly formatted segment that works with campaigns/segment-test
-     * @return struct of the total records matched and limited list member data for this page
+     *     - segment associative_array a properly formatted segment that works with campaigns/segment-test
+     * @return associative_array of the total records matched and limited list member data for this page
      *     - total int the total matching records
      *     - data array structs for each member as returned by member-info
      */
@@ -397,7 +397,7 @@ data or specific members of a list? If so, checkout the <a href="export/1.0/list
      *     - dateformat string optional only valid for birthday and date fields. For birthday type, must be "MM/DD" (default) or "DD/MM". For date type, must be "MM/DD/YYYY" (default) or "DD/MM/YYYY". Any other values will be converted to the default.
      *     - phoneformat string optional "US" is the default - any other value will cause them to be unformatted (international)
      *     - defaultcountry string optional the <a href="http://www.iso.org/iso/english_country_names_and_code_elements" target="_blank">ISO 3166 2 digit character code</a> for the default country. Defaults to "US". Anything unrecognized will be converted to the default.
-     * @return struct the full data for the new merge var, just like merge-vars returns
+     * @return associative_array the full data for the new merge var, just like merge-vars returns
      *     - name string Name/description of the merge field
      *     - req bool Denotes whether the field is required (true) or not (false)
      *     - field_type string The "data type" of this merge var. One of: email, text, number, radio, dropdown, date, address, phone, url, imageurl
@@ -421,7 +421,7 @@ data or specific members of a list? If so, checkout the <a href="export/1.0/list
 Note that on large lists this method may seem a bit slower than calls you typically make.
      * @param string $id
      * @param string $tag
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
      */
     public function mergeVarDel($id, $tag) {
@@ -433,7 +433,7 @@ Note that on large lists this method may seem a bit slower than calls you typica
      * Completely resets all data stored in a merge var on a list. All data is removed and this action can not be undone.
      * @param string $id
      * @param string $tag
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
      */
     public function mergeVarReset($id, $tag) {
@@ -447,7 +447,7 @@ unless you're fixing data since you should probably be using default_values and/
      * @param string $id
      * @param string $tag
      * @param string $value
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
      */
     public function mergeVarSet($id, $tag, $value) {
@@ -459,8 +459,8 @@ unless you're fixing data since you should probably be using default_values and/
      * Update most parameters for a merge tag on a given list. You cannot currently change the merge type
      * @param string $id
      * @param string $tag
-     * @param struct $options
-     * @return struct the full data for the new merge var, just like merge-vars returns
+     * @param associative_array $options
+     * @return associative_array the full data for the new merge var, just like merge-vars returns
      *     - name string Name/description of the merge field
      *     - req bool Denotes whether the field is required (true) or not (false)
      *     - field_type string The "data type" of this merge var. One of: email, text, number, radio, dropdown, date, address, phone, url, imageurl
@@ -482,7 +482,7 @@ unless you're fixing data since you should probably be using default_values and/
     /**
      * Get the list of merge tags for a given list, including their name, tag, and required setting
      * @param array $id
-     * @return struct of data and success/error counts
+     * @return associative_array of data and success/error counts
      *     - success_count int the number of subscribers successfully found on the list
      *     - error_count int the number of subscribers who were not found on the list
      *     - data array of structs for the merge tags on each list
@@ -518,7 +518,7 @@ When using proper segments, Static Segments are one of the available options for
 options), though performance may degrade at that point.
      * @param string $id
      * @param string $name
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - id int the id of the new segment, otherwise an error will be thrown.
      */
     public function staticSegmentAdd($id, $name) {
@@ -530,7 +530,7 @@ options), though performance may degrade at that point.
      * Delete a static segment. Note that this will, of course, remove any member affiliations with the segment
      * @param string $id
      * @param int $seg_id
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
      */
     public function staticSegmentDel($id, $seg_id) {
@@ -544,11 +544,11 @@ in order to be included - this <strong>will not</strong> subscribe them to the l
      * @param string $id
      * @param int $seg_id
      * @param array $batch
-     *     - email struct a struct with one of the following keys - failing to provide anything will produce an error relating to the email address. Provide multiples and we'll use the first we see in this same order.
+     *     - email associative_array a struct with one of the following keys - failing to provide anything will produce an error relating to the email address. Provide multiples and we'll use the first we see in this same order.
      *         - email string an email address
      *         - euid string the unique id for an email address (not list related) - the email "id" returned from listMemberInfo, Webhooks, Campaigns, etc.
      *         - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
-     * @return struct an array with the results of the operation
+     * @return associative_array an array with the results of the operation
      *     - success_count int the total number of successful updates (will include members already in the segment)
      *     - errors array structs for each error including:
      *         - email string whatever was passed in the email parameter
@@ -569,11 +569,11 @@ in order to be removed - this <strong>will not</strong> unsubscribe them from th
      * @param string $id
      * @param int $seg_id
      * @param array $batch
-     *     - email struct a struct with one of the following keys - failing to provide anything will produce an error relating to the email address. Provide multiples and we'll use the first we see in this same order.
+     *     - email associative_array a struct with one of the following keys - failing to provide anything will produce an error relating to the email address. Provide multiples and we'll use the first we see in this same order.
      *         - email string an email address
      *         - euid string the unique id for an email address (not list related) - the email "id" returned from listMemberInfo, Webhooks, Campaigns, etc.
      *         - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
-     * @return struct an array with the results of the operation
+     * @return associative_array an array with the results of the operation
      *     - success_count int the total number of successful removals
      *     - error_count int the total number of unsuccessful removals
      *     - errors array structs for each error including:
@@ -593,7 +593,7 @@ in order to be removed - this <strong>will not</strong> unsubscribe them from th
      * Resets a static segment - removes <strong>all</strong> members from the static segment. Note: does not actually affect list member data
      * @param string $id
      * @param int $seg_id
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
      */
     public function staticSegmentReset($id, $seg_id) {
@@ -620,11 +620,11 @@ in order to be removed - this <strong>will not</strong> unsubscribe them from th
     /**
      * Subscribe the provided email to a list. By default this sends a confirmation email - you will not see new members until the link contained in it is clicked!
      * @param string $id
-     * @param struct $email
+     * @param associative_array $email
      *     - email string an email address - for new subscribers obviously this should be used
      *     - euid string the unique id for an email address (not list related) - the email "id" returned from listMemberInfo, Webhooks, Campaigns, etc.
      *     - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
-     * @param struct $merge_vars
+     * @param associative_array $merge_vars
      *     - new-email string set this to change the email address. This is only respected on calls using update_existing or when passed to listUpdateMember().
      *     - groupings array of Interest Grouping structs. Each should contain:
      *         - id int Grouping "id" from lists/interest-groupings (either this or name must be present) - this id takes precedence and can't change (unlike the name)
@@ -632,7 +632,7 @@ in order to be removed - this <strong>will not</strong> unsubscribe them from th
      *         - groups array an array of valid group names for this grouping.
      *     - optin_ip string Set the Opt-in IP field. <em>Abusing this may cause your account to be suspended.</em> We do validate this and it must not be a private IP address.
      *     - optin_time string Set the Opt-in Time field. <em>Abusing this may cause your account to be suspended.</em> We do validate this and it must be a valid date. Use  - 24 hour format in <strong>GMT</strong>, eg "2013-12-30 20:30:00" to be safe. Generally, though, anything strtotime() understands we'll understand - <a href="http://us2.php.net/strtotime" target="_blank">http://us2.php.net/strtotime</a>
-     *     - mc_location struct Set the member's geographic location either by optin_ip or geo data.
+     *     - mc_location associative_array Set the member's geographic location either by optin_ip or geo data.
      *         - latitude string use the specified latitude (longitude must exist for this to work)
      *         - longitude string use the specified longitude (latitude must exist for this to work)
      *         - anything string if this (or any other key exists here) we'll try to use the optin ip. NOTE - this will slow down each subscribe call a bit, especially for lat/lng pairs in sparsely populated areas. Currently our automated background processes can and will overwrite this based on opens and clicks.
@@ -646,7 +646,7 @@ in order to be removed - this <strong>will not</strong> unsubscribe them from th
      * @param bool $update_existing
      * @param bool $replace_interests
      * @param bool $send_welcome
-     * @return struct the ids for this subscriber
+     * @return associative_array the ids for this subscriber
      *     - email string the email address added
      *     - euid string the email unique id
      *     - leid string the list member's truly unique id
@@ -659,14 +659,14 @@ in order to be removed - this <strong>will not</strong> unsubscribe them from th
     /**
      * Unsubscribe the given email address from the list
      * @param string $id
-     * @param struct $email
+     * @param associative_array $email
      *     - email string an email address
      *     - euid string the unique id for an email address (not list related) - the email "id" returned from listMemberInfo, Webhooks, Campaigns, etc.
      *     - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
      * @param boolean $delete_member
      * @param boolean $send_goodbye
      * @param boolean $send_notify
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
      */
     public function unsubscribe($id, $email, $delete_member=false, $send_goodbye=true, $send_notify=true) {
@@ -678,14 +678,14 @@ in order to be removed - this <strong>will not</strong> unsubscribe them from th
      * Edit the email address, merge fields, and interest groups for a list member. If you are doing a batch update on lots of users,
 consider using listBatchSubscribe() with the update_existing and possible replace_interests parameter.
      * @param string $id
-     * @param struct $email
+     * @param associative_array $email
      *     - email string an email address
      *     - euid string the unique id for an email address (not list related) - the email "id" returned from listMemberInfo, Webhooks, Campaigns, etc.
      *     - leid string the list email id (previously called web_id) for a list-member-info type call. this doesn't change when the email address changes
      * @param array $merge_vars
      * @param string $email_type
      * @param boolean $replace_interests
-     * @return struct the ids for this subscriber
+     * @return associative_array the ids for this subscriber
      *     - email string the email address added
      *     - euid string the email unique id
      *     - leid string the list member's truly unique id
@@ -699,18 +699,18 @@ consider using listBatchSubscribe() with the update_existing and possible replac
      * Add a new Webhook URL for the given list
      * @param string $id
      * @param string $url
-     * @param struct $actions
+     * @param associative_array $actions
      *     - subscribe bool optional as subscribes occur, defaults to true
      *     - unsubscribe bool optional as subscribes occur, defaults to true
      *     - profile bool optional as profile updates occur, defaults to true
      *     - cleaned bool optional as emails are cleaned from the list, defaults to true
      *     - upemail bool optional when  subscribers change their email address, defaults to true
      *     - campaign bool option when a campaign is sent or canceled, defaults to true
-     * @param struct $sources
+     * @param associative_array $sources
      *     - user bool optional user/subscriber initiated actions, defaults to true
      *     - admin bool optional admin actions in our web app, defaults to true
      *     - api bool optional actions that happen via API calls, defaults to false
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - id int the id of the new webhook, otherwise an error will be thrown.
      */
     public function webhookAdd($id, $url, $actions=array(), $sources=array()) {
@@ -722,7 +722,7 @@ consider using listBatchSubscribe() with the update_existing and possible replac
      * Delete an existing Webhook URL from a given list
      * @param string $id
      * @param string $url
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
      */
     public function webhookDel($id, $url) {
@@ -735,14 +735,14 @@ consider using listBatchSubscribe() with the update_existing and possible replac
      * @param string $id
      * @return array of structs for each webhook
      *     - url string the URL for this Webhook
-     *     - actions struct the possible actions and whether they are enabled
+     *     - actions associative_array the possible actions and whether they are enabled
      *         - subscribe bool triggered when subscribes happen
      *         - unsubscribe bool triggered when unsubscribes happen
      *         - profile bool triggered when profile updates happen
      *         - cleaned bool triggered when a subscriber is cleaned (bounced) from a list
      *         - upemail bool triggered when a subscriber's email address is changed
      *         - campaign bool triggered when a campaign is sent or canceled
-     *     - sources struct the possible sources and whether they are enabled
+     *     - sources associative_array the possible sources and whether they are enabled
      *         - user bool whether user/subscriber triggered actions are returned
      *         - admin bool whether admin (manual, in-app) triggered actions are returned
      *         - api bool whether api triggered actions are returned
@@ -754,7 +754,7 @@ consider using listBatchSubscribe() with the update_existing and possible replac
 
     /**
      * Retrieve all of the lists defined for your user account
-     * @param struct $filters
+     * @param associative_array $filters
      *     - list_id string optional - return a single list using a known list_id. Accepts multiples separated by commas when not using exact matching
      *     - list_name string optional - only lists that match this name
      *     - from_name string optional - only lists that have a default from name matching this
@@ -767,7 +767,7 @@ consider using listBatchSubscribe() with the update_existing and possible replac
      * @param int $limit
      * @param string $sort_field
      * @param string $sort_dir
-     * @return struct result of the operation including valid data and any errors
+     * @return associative_array result of the operation including valid data and any errors
      *     - total int the total number of lists which matched the provided filters
      *     - data array structs for the lists which matched the provided filters, including the following
      *         - id string The list id for this list. This will be used for all other list management functions.
@@ -785,7 +785,7 @@ consider using listBatchSubscribe() with the update_existing and possible replac
      *         - subscribe_url_long string The full version of this list's subscribe form (host will vary)
      *         - beamer_address string The email address to use for this list's <a href="http://kb.mailchimp.com/article/how-do-i-import-a-campaign-via-email-email-beamer/">Email Beamer</a>
      *         - visibility string Whether this list is Public (pub) or Private (prv). Used internally for projects like <a href="http://blog.mailchimp.com/introducing-wavelength/" target="_blank">Wavelength</a>
-     *         - stats struct various stats and counts for the list - many of these are cached for at least 5 minutes
+     *         - stats associative_array various stats and counts for the list - many of these are cached for at least 5 minutes
      *             - member_count double The number of active members in the given list.
      *             - unsubscribe_count double The number of members who have unsubscribed from the given list.
      *             - cleaned_count double The number of members cleaned from the given list.

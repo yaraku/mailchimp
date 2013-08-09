@@ -239,14 +239,14 @@
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_abuse">#</a>
-		<code><a href="source-class-Mailchimp_Reports.html#8-25" title="Go to source code">abuse</a>( <span>string <var>$cid</var></span>, <span>struct <var>$opts</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-Mailchimp_Reports.html#8-25" title="Go to source code">abuse</a>( <span>string <var>$cid</var></span>, <span>associative_array <var>$opts</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -265,7 +265,7 @@
 					<dt><var>$cid</var></dt>
 					<dd><code>string</code><br>$cid</dd>
 					<dt><var>$opts</var></dt>
-					<dd><code>struct</code><br>$opts - start int optional for large data sets, the page number to start at -
+					<dd><code>associative_array</code><br>$opts - start int optional for large data sets, the page number to start at -
 defaults to 1st page of data (page 0) - limit int optional for large data sets,
 the number of results to return - defaults to 25, upper limit set at 100 - since
 string optional pull only messages since this time - 24 hour format in
@@ -274,7 +274,7 @@ string optional pull only messages since this time - 24 hour format in
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>abuse report data for this campaign - total int the total reports matched - data
+					<code>associative_array</code><br>abuse report data for this campaign - total int the total reports matched - data
 array a struct for the each report, including: - date string date/time the abuse
 report was received and processed - member string the email address that
 reported abuse - will only contain email if the list or member has been removed
@@ -340,14 +340,14 @@ negative, positive, or neutral<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_bounceMessage">#</a>
-		<code><a href="source-class-Mailchimp_Reports.html#40-56" title="Go to source code">bounceMessage</a>( <span>string <var>$cid</var></span>, <span>struct <var>$email</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Reports.html#40-56" title="Go to source code">bounceMessage</a>( <span>string <var>$cid</var></span>, <span>associative_array <var>$email</var></span> )</code>
 
 		<div class="description short">
 			
@@ -368,7 +368,7 @@ the given campaign. Messages over 30 days old are subject to being removed</p>
 					<dt><var>$cid</var></dt>
 					<dd><code>string</code><br>$cid</dd>
 					<dt><var>$email</var></dt>
-					<dd><code>struct</code><br>$email - email string an email address - this is recommended for this method -
+					<dd><code>associative_array</code><br>$email - email string an email address - this is recommended for this method -
 euid string the unique id for an email address (not list related) - the email
 "id" returned from listMemberInfo, Webhooks, Campaigns, etc. - leid string the
 list email id (previously called web_id) for a list-member-info type call. this
@@ -377,10 +377,10 @@ doesn't change when the email address changes</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>the full bounce message for this email+campaign along with some extra data. -
-date string date the bounce was received and processed - member struct the
-member record as returned by lists/member-info - message string the entire
-bounce message received<br />
+					<code>associative_array</code><br>the full bounce message for this email+campaign along with some extra data. -
+date string date the bounce was received and processed - member
+associative_array the member record as returned by lists/member-info - message
+string the entire bounce message received<br />
 				</div>
 
 
@@ -393,14 +393,14 @@ bounce message received<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_bounceMessages">#</a>
-		<code><a href="source-class-Mailchimp_Reports.html#58-77" title="Go to source code">bounceMessages</a>( <span>string <var>$cid</var></span>, <span>struct <var>$opts</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-Mailchimp_Reports.html#58-77" title="Go to source code">bounceMessages</a>( <span>string <var>$cid</var></span>, <span>associative_array <var>$opts</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -425,7 +425,7 @@ subject to being removed</p>
 					<dt><var>$cid</var></dt>
 					<dd><code>string</code><br>$cid</dd>
 					<dt><var>$opts</var></dt>
-					<dd><code>struct</code><br>$opts - start int optional for large data sets, the page number to start at -
+					<dd><code>associative_array</code><br>$opts - start int optional for large data sets, the page number to start at -
 defaults to 1st page of data (page 0) - limit int optional for large data sets,
 the number of results to return - defaults to 25, upper limit set at 100 - since
 string optional pull only messages since this time - 24 hour format in
@@ -434,11 +434,11 @@ string optional pull only messages since this time - 24 hour format in
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>data for the full bounce messages for this campaign - total int that total
+					<code>associative_array</code><br>data for the full bounce messages for this campaign - total int that total
 number of bounce messages for the campaign - data array structs containing the
 data for this page - date string date the bounce was received and processed -
-member struct the member record as returned by lists/member-info - message
-string the entire bounce message received<br />
+member associative_array the member record as returned by lists/member-info -
+message string the entire bounce message received<br />
 				</div>
 
 
@@ -451,14 +451,14 @@ string the entire bounce message received<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_clickDetail">#</a>
-		<code><a href="source-class-Mailchimp_Reports.html#79-97" title="Go to source code">clickDetail</a>( <span>string <var>$cid</var></span>, <span>integer <var>$tid</var></span>, <span>struct <var>$opts</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-Mailchimp_Reports.html#79-97" title="Go to source code">clickDetail</a>( <span>string <var>$cid</var></span>, <span>integer <var>$tid</var></span>, <span>associative_array <var>$opts</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -481,7 +481,7 @@ times they clicked</p>
 					<dt><var>$tid</var></dt>
 					<dd><code>integer</code><br>$tid</dd>
 					<dt><var>$opts</var></dt>
-					<dd><code>struct</code><br>$opts - start int optional for large data sets, the page number to start at -
+					<dd><code>associative_array</code><br>$opts - start int optional for large data sets, the page number to start at -
 defaults to 1st page of data (page 0) - limit int optional for large data sets,
 the number of results to return - defaults to 25, upper limit set at 100 -
 sort_field string optional the data to sort by - "clicked" (order clicks
@@ -492,11 +492,11 @@ defaults to ASC (case insensitive)</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>containing the total records matched and the specific records for this page -
+					<code>associative_array</code><br>containing the total records matched and the specific records for this page -
 total int the total number of records matched - data array structs for each
-email addresses that click the requested url - member struct the member record
-as returned by lists/member-info - clicks int Total number of times the URL was
-clicked by this email address<br />
+email addresses that click the requested url - member associative_array the
+member record as returned by lists/member-info - clicks int Total number of
+times the URL was clicked by this email address<br />
 				</div>
 
 
@@ -509,7 +509,7 @@ clicked by this email address<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -538,7 +538,7 @@ clicked by this email address<br />
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>including: - total array structs for each url tracked for the full campaign -
+					<code>associative_array</code><br>including: - total array structs for each url tracked for the full campaign -
 url string the url being tracked - urls are tracked individually, so duplicates
 can exist with vastly different stats - clicks int Number of times the specific
 link was clicked - clicks_percent double the percentage of total clicks "clicks"
@@ -577,14 +577,14 @@ appeared in the campaign to recreate our heat map.<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_ecommOrders">#</a>
-		<code><a href="source-class-Mailchimp_Reports.html#130-161" title="Go to source code">ecommOrders</a>( <span>string <var>$cid</var></span>, <span>struct <var>$opts</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-Mailchimp_Reports.html#130-161" title="Go to source code">ecommOrders</a>( <span>string <var>$cid</var></span>, <span>associative_array <var>$opts</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -603,7 +603,7 @@ appeared in the campaign to recreate our heat map.<br />
 					<dt><var>$cid</var></dt>
 					<dd><code>string</code><br>$cid</dd>
 					<dt><var>$opts</var></dt>
-					<dd><code>struct</code><br>$opts - start int optional for large data sets, the page number to start at -
+					<dd><code>associative_array</code><br>$opts - start int optional for large data sets, the page number to start at -
 defaults to 1st page of data (page 0) - limit int optional for large data sets,
 the number of results to return - defaults to 25, upper limit set at 100 - since
 string optional pull only messages since this time - 24 hour format in
@@ -612,17 +612,17 @@ string optional pull only messages since this time - 24 hour format in
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>the total matching orders and the specific orders for the requested page - total
+					<code>associative_array</code><br>the total matching orders and the specific orders for the requested page - total
 int the total matching orders - data array structs for the actual data for each
 order being returned - store_id string the store id generated by the plugin used
 to uniquely identify a store - store_name string the store name collected by the
 plugin - often the domain name - order_id string the internal order id the store
-tracked this order by - member struct the member record as returned by
-lists/member-info that received this campaign and is associated with this order
-- order_total double the order total - tax_total double the total tax for the
-order (if collected) - ship_total double the shipping total for the order (if
-collected) - order_date string the date the order was tracked - from the store
-if possible, otherwise the GMT time we received it - lines array structs
+tracked this order by - member associative_array the member record as returned
+by lists/member-info that received this campaign and is associated with this
+order - order_total double the order total - tax_total double the total tax for
+the order (if collected) - ship_total double the shipping total for the order
+(if collected) - order_date string the date the order was tracked - from the
+store if possible, otherwise the GMT time we received it - lines array structs
 containing details of the order: - line_num int the line number assigned to this
 line - product_id int the product id assigned to this item - product_name string
 the product name - product_sku string the sku for the product -
@@ -642,7 +642,7 @@ not the extended cost of the line) - defaults to 0<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -671,27 +671,27 @@ not the extended cost of the line) - defaults to 0<br />
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>containing tweets, retweets, clicks, and referrer related to using the
-campaign's eepurl - twitter struct various Twitter related stats - tweets int
-Total number of tweets seen - first_tweet string date and time of the first
-tweet seen - last_tweet string date and time of the last tweet seen - retweets
-int Total number of retweets seen - first_retweet string date and time of the
-first retweet seen - last_retweet string date and time of the last retweet seen
-- statuses array an structs for statuses recorded including: - status string the
-text of the tweet/update - screen_name string the screen name as recorded when
-first seen - status_id string the status id of the tweet (they are really
-unsigned 64 bit ints) - datetime string the date/time of the tweet - is_retweet
-bool whether or not this was a retweet - clicks struct stats related to
-click-throughs on the eepurl - clicks int Total number of clicks seen -
-first_click string date and time of the first click seen - last_click string
-date and time of the first click seen - locations array structs for geographic
-locations including: - country string the country name the click was tracked to
-- region string the region in the country the click was tracked to (if
-available) - referrers array structs for referrers, including - referrer string
-the referrer, truncated to 100 bytes - clicks int Total number of clicks seen
-from this referrer - first_click string date and time of the first click seen
-from this referrer - last_click string date and time of the first click seen
-from this referrer<br />
+					<code>associative_array</code><br>containing tweets, retweets, clicks, and referrer related to using the
+campaign's eepurl - twitter associative_array various Twitter related stats -
+tweets int Total number of tweets seen - first_tweet string date and time of the
+first tweet seen - last_tweet string date and time of the last tweet seen -
+retweets int Total number of retweets seen - first_retweet string date and time
+of the first retweet seen - last_retweet string date and time of the last
+retweet seen - statuses array an structs for statuses recorded including: -
+status string the text of the tweet/update - screen_name string the screen name
+as recorded when first seen - status_id string the status id of the tweet (they
+are really unsigned 64 bit ints) - datetime string the date/time of the tweet -
+is_retweet bool whether or not this was a retweet - clicks associative_array
+stats related to click-throughs on the eepurl - clicks int Total number of
+clicks seen - first_click string date and time of the first click seen -
+last_click string date and time of the first click seen - locations array
+structs for geographic locations including: - country string the country name
+the click was tracked to - region string the region in the country the click was
+tracked to (if available) - referrers array structs for referrers, including -
+referrer string the referrer, truncated to 100 bytes - clicks int Total number
+of clicks seen from this referrer - first_click string date and time of the
+first click seen from this referrer - last_click string date and time of the
+first click seen from this referrer<br />
 				</div>
 
 
@@ -704,7 +704,7 @@ from this referrer<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -749,7 +749,7 @@ address changes</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>of data and success/error counts - success_count int the number of subscribers
+					<code>associative_array</code><br>of data and success/error counts - success_count int the number of subscribers
 successfully found on the list - error_count int the number of subscribers who
 were not found on the list - errors array array of error structs including: -
 email string whatever was passed in the email parameter - email string the email
@@ -757,12 +757,12 @@ address added - euid string the email unique id - leid string the list member's
 truly unique id - msg string the error message - data array an array of structs
 where each activity record has: - email string whatever was passed in the email
 parameter - email string the email address added - euid string the email unique
-id - leid string the list member's truly unique id - member struct the member
-record as returned by lists/member-info - activity array an array of structs
-containing the activity, including: - action string The action name - either
-open or click - timestamp string The date/time of the action (GMT) - url string
-For click actions, the url clicked, otherwise this is empty - ip string The IP
-address the activity came from<br />
+id - leid string the list member's truly unique id - member associative_array
+the member record as returned by lists/member-info - activity array an array of
+structs containing the activity, including: - action string The action name -
+either open or click - timestamp string The date/time of the action (GMT) - url
+string For click actions, the url clicked, otherwise this is empty - ip string
+The IP address the activity came from<br />
 				</div>
 
 
@@ -775,14 +775,14 @@ address the activity came from<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_notOpened">#</a>
-		<code><a href="source-class-Mailchimp_Reports.html#233-246" title="Go to source code">notOpened</a>( <span>string <var>$cid</var></span>, <span>struct <var>$opts</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-Mailchimp_Reports.html#233-246" title="Go to source code">notOpened</a>( <span>string <var>$cid</var></span>, <span>associative_array <var>$opts</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -801,14 +801,14 @@ address the activity came from<br />
 					<dt><var>$cid</var></dt>
 					<dd><code>string</code><br>$cid</dd>
 					<dt><var>$opts</var></dt>
-					<dd><code>struct</code><br>$opts - start int optional for large data sets, the page number to start at -
+					<dd><code>associative_array</code><br>$opts - start int optional for large data sets, the page number to start at -
 defaults to 1st page of data (page 0) - limit int optional for large data sets,
 the number of results to return - defaults to 25, upper limit set at 100</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>a total of all matching emails and the specific emails for this page - total int
+					<code>associative_array</code><br>a total of all matching emails and the specific emails for this page - total int
 the total number of members who didn't open the campaign - data array structs
 for each campaign member matching as returned by lists/member-info<br />
 				</div>
@@ -830,7 +830,7 @@ for each campaign member matching as returned by lists/member-info<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_opened">#</a>
-		<code><a href="source-class-Mailchimp_Reports.html#248-265" title="Go to source code">opened</a>( <span>string <var>$cid</var></span>, <span>struct <var>$opts</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-Mailchimp_Reports.html#248-265" title="Go to source code">opened</a>( <span>string <var>$cid</var></span>, <span>associative_array <var>$opts</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -851,7 +851,7 @@ many times they opened</p>
 					<dt><var>$cid</var></dt>
 					<dd><code>string</code><br>$cid</dd>
 					<dt><var>$opts</var></dt>
-					<dd><code>struct</code><br>$opts - start int optional for large data sets, the page number to start at -
+					<dd><code>associative_array</code><br>$opts - start int optional for large data sets, the page number to start at -
 defaults to 1st page of data (page 0) - limit int optional for large data sets,
 the number of results to return - defaults to 25, upper limit set at 100 -
 sort_field string optional the data to sort by - "opened" (order opens occurred,
@@ -864,9 +864,9 @@ ASC (case insensitive)</dd>
 				<div class="list">
 					<code>array</code><br>array containing the total records matched and the specific records for this
 page - total int the total number of records matched - data array structs for
-the actual opens data, including: - member struct the member record as returned
-by lists/member-info - opens int Total number of times the campaign was opened
-by this email address<br />
+the actual opens data, including: - member associative_array the member record
+as returned by lists/member-info - opens int Total number of times the campaign
+was opened by this email address<br />
 				</div>
 
 
@@ -1038,14 +1038,14 @@ name of the goal - conversions int the number of conversions for the goal<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sentTo">#</a>
-		<code><a href="source-class-Mailchimp_Reports.html#331-349" title="Go to source code">sentTo</a>( <span>string <var>$cid</var></span>, <span>struct <var>$opts</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-Mailchimp_Reports.html#331-349" title="Go to source code">sentTo</a>( <span>string <var>$cid</var></span>, <span>associative_array <var>$opts</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1064,7 +1064,7 @@ name of the goal - conversions int the number of conversions for the goal<br />
 					<dt><var>$cid</var></dt>
 					<dd><code>string</code><br>$cid</dd>
 					<dt><var>$opts</var></dt>
-					<dd><code>struct</code><br>$opts - status string optional the status to pull - one of 'sent', 'hard'
+					<dd><code>associative_array</code><br>$opts - status string optional the status to pull - one of 'sent', 'hard'
 (bounce), or 'soft' (bounce). By default, all records are returned - start int
 optional for large data sets, the page number to start at - defaults to 1st page
 of data (page 0) - limit int optional for large data sets, the number of results
@@ -1073,13 +1073,13 @@ to return - defaults to 25, upper limit set at 100</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>a total of all matching emails and the specific emails for this page - total int
+					<code>associative_array</code><br>a total of all matching emails and the specific emails for this page - total int
 the total number of members for the campaign and status - data array structs for
-each campaign member matching - member struct the member record as returned by
-lists/member-info - status string the status of the send - one of 'sent',
-'hard', 'soft' - absplit_group string if this was an absplit campaign, one of
-'a','b', or 'winner' - tz_group string if this was an timewarp campaign the
-timezone GMT offset the member was included in<br />
+each campaign member matching - member associative_array the member record as
+returned by lists/member-info - status string the status of the send - one of
+'sent', 'hard', 'soft' - absplit_group string if this was an absplit campaign,
+one of 'a','b', or 'winner' - tz_group string if this was an timewarp campaign
+the timezone GMT offset the member was included in<br />
 				</div>
 
 
@@ -1092,7 +1092,7 @@ timezone GMT offset the member was included in<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -1137,7 +1137,7 @@ href="http://vip-reports.net/css/vip.css">http://vip-reports.net/css/vip.css</a>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>details for the shared report, including: - title string The Title of the
+					<code>associative_array</code><br>details for the shared report, including: - title string The Title of the
 Campaign being shared - url string The URL to the shared report - secure_url
 string The URL to the shared report, including the password (good for loading in
 an IFRAME). For non-secure reports, this will not be returned - password string
@@ -1155,7 +1155,7 @@ returned<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
@@ -1186,7 +1186,7 @@ etc.)</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>the statistics for this campaign - syntax_errors int Number of email addresses
+					<code>associative_array</code><br>the statistics for this campaign - syntax_errors int Number of email addresses
 in campaign that had syntactical errors. - hard_bounces int Number of email
 addresses in campaign that hard bounced. - soft_bounces int Number of email
 addresses in campaign that soft bounced. - unsubscribes int Number of email
@@ -1203,32 +1203,32 @@ recipients who clicked on a link in the campaign. - emails_sent int Number of
 email addresses campaign was sent to. - unique_likes int total number of unique
 likes (Facebook) - recipient_likes int total number of recipients who liked
 (Facebook) the campaign - facebook_likes int total number of likes (Facebook)
-that came from Facebook - absplit struct If this was an absplit campaign, stats
-for the A and B groups will be returned - otherwise this is empty - bounces_a
-int bounces for the A group - bounces_b int bounces for the B group - forwards_a
-int forwards for the A group - forwards_b int forwards for the B group -
-abuse_reports_a int abuse reports for the A group - abuse_reports_b int abuse
-reports for the B group - unsubs_a int unsubs for the A group - unsubs_b int
-unsubs for the B group - recipients_click_a int clicks for the A group -
-recipients_click_b int clicks for the B group - forwards_opens_a int opened
-forwards for the A group - forwards_opens_b int opened forwards for the B group
-- opens_a int total opens for the A group - opens_b int total opens for the B
-group - last_open_a string date/time of last open for the A group - last_open_b
-string date/time of last open for the BG group - unique_opens_a int unique opens
-for the A group - unique_opens_b int unique opens for the B group - timewarp
-array If this campaign was a Timewarp campaign, an array of structs from each
-timezone stats exist for. Each will contain: - opens int opens for this timezone
-- last_open string the date/time of the last open for this timezone -
-unique_opens int the unique opens for this timezone - clicks int the total
-clicks for this timezone - last_click string the date/time of the last click for
-this timezone - unique_opens int the unique clicks for this timezone - bounces
-int the total bounces for this timezone - total int the total number of members
-sent to in this timezone - sent int the total number of members delivered to in
-this timezone - timeseries array structs for the first 24 hours of the campaign,
-per-hour stats: - timestamp string The timestemp in Y-m-d H:00:00 format -
-emails_sent int the total emails sent during the hour - unique_opens int unique
-opens seen during the hour - recipients_click int unique clicks seen during the
-hour<br />
+that came from Facebook - absplit associative_array If this was an absplit
+campaign, stats for the A and B groups will be returned - otherwise this is
+empty - bounces_a int bounces for the A group - bounces_b int bounces for the B
+group - forwards_a int forwards for the A group - forwards_b int forwards for
+the B group - abuse_reports_a int abuse reports for the A group -
+abuse_reports_b int abuse reports for the B group - unsubs_a int unsubs for the
+A group - unsubs_b int unsubs for the B group - recipients_click_a int clicks
+for the A group - recipients_click_b int clicks for the B group -
+forwards_opens_a int opened forwards for the A group - forwards_opens_b int
+opened forwards for the B group - opens_a int total opens for the A group -
+opens_b int total opens for the B group - last_open_a string date/time of last
+open for the A group - last_open_b string date/time of last open for the BG
+group - unique_opens_a int unique opens for the A group - unique_opens_b int
+unique opens for the B group - timewarp array If this campaign was a Timewarp
+campaign, an array of structs from each timezone stats exist for. Each will
+contain: - opens int opens for this timezone - last_open string the date/time of
+the last open for this timezone - unique_opens int the unique opens for this
+timezone - clicks int the total clicks for this timezone - last_click string the
+date/time of the last click for this timezone - unique_opens int the unique
+clicks for this timezone - bounces int the total bounces for this timezone -
+total int the total number of members sent to in this timezone - sent int the
+total number of members delivered to in this timezone - timeseries array structs
+for the first 24 hours of the campaign, per-hour stats: - timestamp string The
+timestemp in Y-m-d H:00:00 format - emails_sent int the total emails sent during
+the hour - unique_opens int unique opens seen during the hour - recipients_click
+int unique clicks seen during the hour<br />
 				</div>
 
 
@@ -1241,14 +1241,14 @@ hour<br />
 
 		<td class="attributes"><code>
 			 public 
-			struct
+			associative_array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_unsubscribes">#</a>
-		<code><a href="source-class-Mailchimp_Reports.html#431-447" title="Go to source code">unsubscribes</a>( <span>string <var>$cid</var></span>, <span>struct <var>$opts</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-Mailchimp_Reports.html#431-447" title="Go to source code">unsubscribes</a>( <span>string <var>$cid</var></span>, <span>associative_array <var>$opts</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1267,14 +1267,14 @@ hour<br />
 					<dt><var>$cid</var></dt>
 					<dd><code>string</code><br>$cid</dd>
 					<dt><var>$opts</var></dt>
-					<dd><code>struct</code><br>$opts - start int optional for large data sets, the page number to start at -
+					<dd><code>associative_array</code><br>$opts - start int optional for large data sets, the page number to start at -
 defaults to 1st page of data (page 0) - limit int optional for large data sets,
 the number of results to return - defaults to 25, upper limit set at 100</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>struct</code><br>a total of all unsubscribed emails and the specific members for this page -
+					<code>associative_array</code><br>a total of all unsubscribed emails and the specific members for this page -
 total int the total number of unsubscribes for the campaign - data array structs
 for the email addresses that unsubscribed - member string the member that
 unsubscribed as returned by lists/member-info - reason string the reason

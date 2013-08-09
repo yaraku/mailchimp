@@ -10,7 +10,7 @@ class Mailchimp_Users {
      * @param string $email
      * @param string $role
      * @param string $msg
-     * @return struct the method completion status
+     * @return associative_array the method completion status
      *     - status string The status (success) of the call if it completed. Otherwise an error is thrown.
      */
     public function invite($email, $role='viewer', $msg='') {
@@ -21,7 +21,7 @@ class Mailchimp_Users {
     /**
      * Resend an invite a user to your account. Note, if the same address has been invited multiple times, this will simpy re-send the most recent invite
      * @param string $email
-     * @return struct the method completion status
+     * @return associative_array the method completion status
      *     - status string The status (success) of the call if it completed. Otherwise an error is thrown.
      */
     public function inviteResend($email) {
@@ -32,7 +32,7 @@ class Mailchimp_Users {
     /**
      * Revoke an invitation sent to a user to your account. Note, if the same address has been invited multiple times, this will simpy revoke the most recent invite
      * @param string $email
-     * @return struct the method completion status
+     * @return associative_array the method completion status
      *     - status string The status (success) of the call if it completed. Otherwise an error is thrown.
      */
     public function inviteRevoke($email) {
@@ -57,7 +57,7 @@ class Mailchimp_Users {
     /**
      * Revoke access for a specified login
      * @param string $username
-     * @return struct the method completion status
+     * @return associative_array the method completion status
      *     - status string The status (success) of the call if it completed. Otherwise an error is thrown.
      */
     public function loginRevoke($username) {
@@ -73,6 +73,7 @@ class Mailchimp_Users {
      *     - name string a display name for the account - empty first/last names will return the username
      *     - email string the email tied to the account used for passwords resets and the ilk
      *     - role string the role assigned to the account
+     *     - avatar string if available, the url for the login's avatar
      */
     public function logins() {
         $_params = array();

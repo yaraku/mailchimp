@@ -9,7 +9,7 @@ class Mailchimp_Folders {
      * Add a new folder to file campaigns, autoresponders, or templates in
      * @param string $name
      * @param string $type
-     * @return struct with a single value:
+     * @return associative_array with a single value:
      *     - folder_id int the folder_id of the newly created folder.
      */
     public function add($name, $type) {
@@ -21,7 +21,7 @@ class Mailchimp_Folders {
      * Delete a campaign, autoresponder, or template folder. Note that this will simply make whatever was in the folder appear unfiled, no other data is removed
      * @param int $fid
      * @param string $type
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
      */
     public function del($fid, $type) {
@@ -49,7 +49,7 @@ class Mailchimp_Folders {
      * @param int $fid
      * @param string $name
      * @param string $type
-     * @return struct with a single entry:
+     * @return associative_array with a single entry:
      *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
      */
     public function update($fid, $name, $type) {

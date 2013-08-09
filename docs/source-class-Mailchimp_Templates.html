@@ -194,7 +194,7 @@
 </span></span><span id="10" class="l"><a class="l" href="#10"> 10: </a><span class="php-comment">     * @param string $name
 </span></span><span id="11" class="l"><a class="l" href="#11"> 11: </a><span class="php-comment">     * @param string $html
 </span></span><span id="12" class="l"><a class="l" href="#12"> 12: </a><span class="php-comment">     * @param int $folder_id
-</span></span><span id="13" class="l"><a class="l" href="#13"> 13: </a><span class="php-comment">     * @return struct with a single element:
+</span></span><span id="13" class="l"><a class="l" href="#13"> 13: </a><span class="php-comment">     * @return associative_array with a single element:
 </span></span><span id="14" class="l"><a class="l" href="#14"> 14: </a><span class="php-comment">     *     - template_id int the new template id, otherwise an error is thrown.
 </span></span><span id="15" class="l"><a class="l" href="#15"> 15: </a><span class="php-comment">     */</span>
 </span><span id="16" class="l"><a class="l" href="#16"> 16: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_add" href="#_add">add</a>(<span class="php-var">$name</span>, <span class="php-var">$html</span>, <span class="php-var">$folder_id</span>=<span class="php-keyword1">null</span>) {
@@ -205,7 +205,7 @@
 </span><span id="21" class="l"><a class="l" href="#21"> 21: </a>    <span class="php-comment">/**
 </span></span><span id="22" class="l"><a class="l" href="#22"> 22: </a><span class="php-comment">     * Delete (deactivate) a user template
 </span></span><span id="23" class="l"><a class="l" href="#23"> 23: </a><span class="php-comment">     * @param int $template_id
-</span></span><span id="24" class="l"><a class="l" href="#24"> 24: </a><span class="php-comment">     * @return struct with a single entry:
+</span></span><span id="24" class="l"><a class="l" href="#24"> 24: </a><span class="php-comment">     * @return associative_array with a single entry:
 </span></span><span id="25" class="l"><a class="l" href="#25"> 25: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
 </span></span><span id="26" class="l"><a class="l" href="#26"> 26: </a><span class="php-comment">     */</span>
 </span><span id="27" class="l"><a class="l" href="#27"> 27: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_del" href="#_del">del</a>(<span class="php-var">$template_id</span>) {
@@ -217,9 +217,9 @@
 </span></span><span id="33" class="l"><a class="l" href="#33"> 33: </a><span class="php-comment">     * Pull details for a specific template to help support editing
 </span></span><span id="34" class="l"><a class="l" href="#34"> 34: </a><span class="php-comment">     * @param int $template_id
 </span></span><span id="35" class="l"><a class="l" href="#35"> 35: </a><span class="php-comment">     * @param string $type
-</span></span><span id="36" class="l"><a class="l" href="#36"> 36: </a><span class="php-comment">     * @return struct info to be used when editing
-</span></span><span id="37" class="l"><a class="l" href="#37"> 37: </a><span class="php-comment">     *     - default_content struct the default content broken down into the named editable sections for the template - dependant upon template, so not documented
-</span></span><span id="38" class="l"><a class="l" href="#38"> 38: </a><span class="php-comment">     *     - sections struct the valid editable section names - dependant upon template, so not documented
+</span></span><span id="36" class="l"><a class="l" href="#36"> 36: </a><span class="php-comment">     * @return associative_array info to be used when editing
+</span></span><span id="37" class="l"><a class="l" href="#37"> 37: </a><span class="php-comment">     *     - default_content associative_array the default content broken down into the named editable sections for the template - dependant upon template, so not documented
+</span></span><span id="38" class="l"><a class="l" href="#38"> 38: </a><span class="php-comment">     *     - sections associative_array the valid editable section names - dependant upon template, so not documented
 </span></span><span id="39" class="l"><a class="l" href="#39"> 39: </a><span class="php-comment">     *     - source string the full source of the template as if you exported it via our template editor
 </span></span><span id="40" class="l"><a class="l" href="#40"> 40: </a><span class="php-comment">     *     - preview string similar to the source, but the rendered version of the source from our popup preview
 </span></span><span id="41" class="l"><a class="l" href="#41"> 41: </a><span class="php-comment">     */</span>
@@ -230,16 +230,16 @@
 </span><span id="46" class="l"><a class="l" href="#46"> 46: </a>
 </span><span id="47" class="l"><a class="l" href="#47"> 47: </a>    <span class="php-comment">/**
 </span></span><span id="48" class="l"><a class="l" href="#48"> 48: </a><span class="php-comment">     * Retrieve various templates available in the system, allowing some thing similar to our template gallery to be created.
-</span></span><span id="49" class="l"><a class="l" href="#49"> 49: </a><span class="php-comment">     * @param struct $types
+</span></span><span id="49" class="l"><a class="l" href="#49"> 49: </a><span class="php-comment">     * @param associative_array $types
 </span></span><span id="50" class="l"><a class="l" href="#50"> 50: </a><span class="php-comment">     *     - user boolean Custom templates for this user account. Defaults to true.
 </span></span><span id="51" class="l"><a class="l" href="#51"> 51: </a><span class="php-comment">     *     - gallery boolean Templates from our Gallery. Note that some templates that require extra configuration are withheld. (eg, the Etsy template). Defaults to false.
 </span></span><span id="52" class="l"><a class="l" href="#52"> 52: </a><span class="php-comment">     *     - base boolean Our &quot;start from scratch&quot; extremely basic templates. Defaults to false.
-</span></span><span id="53" class="l"><a class="l" href="#53"> 53: </a><span class="php-comment">     * @param struct $filters
+</span></span><span id="53" class="l"><a class="l" href="#53"> 53: </a><span class="php-comment">     * @param associative_array $filters
 </span></span><span id="54" class="l"><a class="l" href="#54"> 54: </a><span class="php-comment">     *     - category string optional for Gallery templates only, limit to a specific template category
 </span></span><span id="55" class="l"><a class="l" href="#55"> 55: </a><span class="php-comment">     *     - folder_id string user templates, limit to this folder_id
 </span></span><span id="56" class="l"><a class="l" href="#56"> 56: </a><span class="php-comment">     *     - include_inactive boolean user templates are not deleted, only set inactive. defaults to false.
 </span></span><span id="57" class="l"><a class="l" href="#57"> 57: </a><span class="php-comment">     *     - inactive_only boolean only include inactive user templates. defaults to false.
-</span></span><span id="58" class="l"><a class="l" href="#58"> 58: </a><span class="php-comment">     * @return struct for each type
+</span></span><span id="58" class="l"><a class="l" href="#58"> 58: </a><span class="php-comment">     * @return associative_array for each type
 </span></span><span id="59" class="l"><a class="l" href="#59"> 59: </a><span class="php-comment">     *     - user array matching user templates, if requested.
 </span></span><span id="60" class="l"><a class="l" href="#60"> 60: </a><span class="php-comment">     *         - id int Id of the template
 </span></span><span id="61" class="l"><a class="l" href="#61"> 61: </a><span class="php-comment">     *         - name string Name of the template
@@ -277,7 +277,7 @@
 </span><span id="93" class="l"><a class="l" href="#93"> 93: </a>    <span class="php-comment">/**
 </span></span><span id="94" class="l"><a class="l" href="#94"> 94: </a><span class="php-comment">     * Undelete (reactivate) a user template
 </span></span><span id="95" class="l"><a class="l" href="#95"> 95: </a><span class="php-comment">     * @param int $template_id
-</span></span><span id="96" class="l"><a class="l" href="#96"> 96: </a><span class="php-comment">     * @return struct with a single entry:
+</span></span><span id="96" class="l"><a class="l" href="#96"> 96: </a><span class="php-comment">     * @return associative_array with a single entry:
 </span></span><span id="97" class="l"><a class="l" href="#97"> 97: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
 </span></span><span id="98" class="l"><a class="l" href="#98"> 98: </a><span class="php-comment">     */</span>
 </span><span id="99" class="l"><a class="l" href="#99"> 99: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_undel" href="#_undel">undel</a>(<span class="php-var">$template_id</span>) {
@@ -288,11 +288,11 @@
 </span><span id="104" class="l"><a class="l" href="#104">104: </a>    <span class="php-comment">/**
 </span></span><span id="105" class="l"><a class="l" href="#105">105: </a><span class="php-comment">     * Replace the content of a user template, &lt;strong&gt;NOT&lt;/strong&gt; campaign content.
 </span></span><span id="106" class="l"><a class="l" href="#106">106: </a><span class="php-comment">     * @param int $template_id
-</span></span><span id="107" class="l"><a class="l" href="#107">107: </a><span class="php-comment">     * @param struct $values
+</span></span><span id="107" class="l"><a class="l" href="#107">107: </a><span class="php-comment">     * @param associative_array $values
 </span></span><span id="108" class="l"><a class="l" href="#108">108: </a><span class="php-comment">     *     - name string the name for the template - names must be unique and a max of 50 bytes
 </span></span><span id="109" class="l"><a class="l" href="#109">109: </a><span class="php-comment">     *     - html string a string specifying the entire template to be created. This is &lt;strong&gt;NOT&lt;/strong&gt; campaign content. They are intended to utilize our &lt;a href=&quot;http://www.mailchimp.com/resources/email-template-language/&quot; target=&quot;_blank&quot;&gt;template language&lt;/a&gt;.
 </span></span><span id="110" class="l"><a class="l" href="#110">110: </a><span class="php-comment">     *     - folder_id int the folder to put this template in - 0 or a blank values will remove it from a folder.
-</span></span><span id="111" class="l"><a class="l" href="#111">111: </a><span class="php-comment">     * @return struct with a single entry:
+</span></span><span id="111" class="l"><a class="l" href="#111">111: </a><span class="php-comment">     * @return associative_array with a single entry:
 </span></span><span id="112" class="l"><a class="l" href="#112">112: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
 </span></span><span id="113" class="l"><a class="l" href="#113">113: </a><span class="php-comment">     */</span>
 </span><span id="114" class="l"><a class="l" href="#114">114: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_update" href="#_update">update</a>(<span class="php-var">$template_id</span>, <span class="php-var">$values</span>) {
