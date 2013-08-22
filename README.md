@@ -4,10 +4,7 @@ A PHP 5.2+ API client for [v2 of the MailChimp API](http://apidocs.mailchimp.com
 
 
 ###Usage
-This can be installed via [Composer](http://getcomposer.org/) and our [packagist package](https://packagist.org/packages/mailchimp/mailchimp) using:
-```
-$ gem install mailchimp-api
-```
+This can be installed via [Composer](http://getcomposer.org/) and our [packagist package](https://packagist.org/packages/mailchimp/mailchimp).
 
 ---
 
