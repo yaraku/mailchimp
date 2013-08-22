@@ -222,7 +222,12 @@ class Mailchimp_Campaigns {
     /**
      * Returns information on whether a campaign is ready to send and possible issues we may have detected with it - very similar to the confirmation step in the app.
      * @param string $cid
-     * @return associative_array the matching campaign's details - will return same data as single campaign from campaigns/list()
+     * @return associative_array containing:
+     *     - is_ready bool whether or not you're going to be able to send this campaign
+     *     - items array an array of structs explaining basically what the app's confirmation step would
+     *         - type string the item type - generally success, warning, or error
+     *         - heading string the item's heading in the app
+     *         - details string the item's details from the app, sans any html tags/links
      */
     public function ready($cid) {
         $_params = array("cid" => $cid);

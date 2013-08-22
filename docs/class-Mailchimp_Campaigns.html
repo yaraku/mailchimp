@@ -199,7 +199,7 @@
 		
 		
 
-		<b>Located at</b> <a href="source-class-Mailchimp_Campaigns.html#3-363" title="Go to source code">Mailchimp/Campaigns.php</a><br />
+		<b>Located at</b> <a href="source-class-Mailchimp_Campaigns.html#3-368" title="Go to source code">Mailchimp/Campaigns.php</a><br />
 	</div>
 
 
@@ -693,7 +693,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_ready">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#222-230" title="Go to source code">ready</a>( <span>string <var>$cid</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#222-235" title="Go to source code">ready</a>( <span>string <var>$cid</var></span> )</code>
 
 		<div class="description short">
 			
@@ -719,8 +719,11 @@ the app.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>associative_array</code><br>the matching campaign's details - will return same data as single campaign from
-campaigns/list()<br />
+					<code>associative_array</code><br>containing: - is_ready bool whether or not you're going to be able to send this
+campaign - items array an array of structs explaining basically what the app's
+confirmation step would - type string the item type - generally success,
+warning, or error - heading string the item's heading in the app - details
+string the item's details from the app, sans any html tags/links<br />
 				</div>
 
 
@@ -740,7 +743,7 @@ campaigns/list()<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_replicate">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#232-240" title="Go to source code">replicate</a>( <span>string <var>$cid</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#237-245" title="Go to source code">replicate</a>( <span>string <var>$cid</var></span> )</code>
 
 		<div class="description short">
 			
@@ -783,7 +786,7 @@ campaigns/list()<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_resume">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#242-251" title="Go to source code">resume</a>( <span>string <var>$cid</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#247-256" title="Go to source code">resume</a>( <span>string <var>$cid</var></span> )</code>
 
 		<div class="description short">
 			
@@ -826,7 +829,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_schedule">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#253-264" title="Go to source code">schedule</a>( <span>string <var>$cid</var></span>, <span>string <var>$schedule_time</var></span>, <span>string <var>$schedule_time_b</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#258-269" title="Go to source code">schedule</a>( <span>string <var>$cid</var></span>, <span>string <var>$schedule_time</var></span>, <span>string <var>$schedule_time_b</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -873,7 +876,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_scheduleBatch">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#266-278" title="Go to source code">scheduleBatch</a>( <span>string <var>$cid</var></span>, <span>string <var>$schedule_time</var></span>, <span>integer <var>$num_batches</var> = <span class="php-num">2</span></span>, <span>integer <var>$stagger_mins</var> = <span class="php-num">5</span></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#271-283" title="Go to source code">scheduleBatch</a>( <span>string <var>$cid</var></span>, <span>string <var>$schedule_time</var></span>, <span>integer <var>$num_batches</var> = <span class="php-num">2</span></span>, <span>integer <var>$stagger_mins</var> = <span class="php-num">5</span></span> )</code>
 
 		<div class="description short">
 			
@@ -924,7 +927,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_segmentTest">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#280-292" title="Go to source code">segmentTest</a>( <span>string <var>$list_id</var></span>, <span>associative_array <var>$options</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#285-297" title="Go to source code">segmentTest</a>( <span>string <var>$list_id</var></span>, <span>associative_array <var>$options</var></span> )</code>
 
 		<div class="description short">
 			
@@ -978,7 +981,7 @@ segmentation options<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_send">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#294-303" title="Go to source code">send</a>( <span>string <var>$cid</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#299-308" title="Go to source code">send</a>( <span>string <var>$cid</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1023,7 +1026,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sendTest">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#305-316" title="Go to source code">sendTest</a>( <span>string <var>$cid</var></span>, <span>array <var>$test_emails</var> = <span class="php-keyword1">array</span>()</span>, <span>string <var>$send_type</var> = <span class="php-quote">'html'</span></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#310-321" title="Go to source code">sendTest</a>( <span>string <var>$cid</var></span>, <span>array <var>$test_emails</var> = <span class="php-keyword1">array</span>()</span>, <span>string <var>$send_type</var> = <span class="php-quote">'html'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1070,7 +1073,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_templateContent">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#318-327" title="Go to source code">templateContent</a>( <span>string <var>$cid</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#323-332" title="Go to source code">templateContent</a>( <span>string <var>$cid</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1119,7 +1122,7 @@ dependent upon the template used and thus can't be documented<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_unschedule">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#329-338" title="Go to source code">unschedule</a>( <span>string <var>$cid</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#334-343" title="Go to source code">unschedule</a>( <span>string <var>$cid</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1162,7 +1165,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_update">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#340-361" title="Go to source code">update</a>( <span>string <var>$cid</var></span>, <span>string <var>$name</var></span>, <span>array <var>$value</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#345-366" title="Go to source code">update</a>( <span>string <var>$cid</var></span>, <span>string <var>$name</var></span>, <span>array <var>$value</var></span> )</code>
 
 		<div class="description short">
 			Update just about any setting besides type for a campaign that has

@@ -491,7 +491,7 @@ unless you're fixing data since you should probably be using default_values and/
      *         - merge_vars array of structs for each merge var
      *             - name string Name of the merge field
      *             - req bool Denotes whether the field is required (true) or not (false)
-     *             - field_type string The "data type" of this merge var. One of: email, text, number, radio, dropdown, date, address, phone, url, imageurl
+     *             - field_type string The "data type" of this merge var. One of the options accepted by field_type in lists/merge-var-add
      *             - public bool Whether or not this field is visible to list subscribers
      *             - show bool Whether the list owner has this field displayed on their list dashboard
      *             - order string The order the list owner has set this field to display in

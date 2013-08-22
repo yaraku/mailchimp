@@ -1528,18 +1528,18 @@ were not found on the list - data array of structs for the merge tags on each
 list - id string the list id - name string the list name - merge_vars array of
 structs for each merge var - name string Name of the merge field - req bool
 Denotes whether the field is required (true) or not (false) - field_type string
-The "data type" of this merge var. One of: email, text, number, radio, dropdown,
-date, address, phone, url, imageurl - public bool Whether or not this field is
-visible to list subscribers - show bool Whether the list owner has this field
-displayed on their list dashboard - order string The order the list owner has
-set this field to display in - default string The default value the list owner
-has set for this field - helptext string The helptext for this field - size
-string The width of the field to be used - tag string The merge tag that's used
-for forms and listSubscribe() and listUpdateMember() - choices array For radio
-and dropdown field types, an array of the options available - id int an
-unchanging id for the merge var - errors array of error structs - id string the
-passed list id that failed - code int the resulting error code - msg string the
-resulting error message<br />
+The "data type" of this merge var. One of the options accepted by field_type in
+lists/merge-var-add - public bool Whether or not this field is visible to list
+subscribers - show bool Whether the list owner has this field displayed on their
+list dashboard - order string The order the list owner has set this field to
+display in - default string The default value the list owner has set for this
+field - helptext string The helptext for this field - size string The width of
+the field to be used - tag string The merge tag that's used for forms and
+listSubscribe() and listUpdateMember() - choices array For radio and dropdown
+field types, an array of the options available - id int an unchanging id for the
+merge var - errors array of error structs - id string the passed list id that
+failed - code int the resulting error code - msg string the resulting error
+message<br />
 				</div>
 
 
