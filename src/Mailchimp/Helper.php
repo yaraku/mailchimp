@@ -195,7 +195,7 @@ string back that will explain our view on what is going on.
      *     - total int total campaigns matching
      *     - results array matching campaigns and snippets
      *     - snippet string the matching snippet for the campaign
-     *     - campaign associative_array the matching campaign's details - will return same data as single campaign from campaigns()
+     *     - campaign associative_array the matching campaign's details - will return same data as single campaign from campaigns/list()
      *     - summary associative_array if available, the matching campaign's report/summary data, other wise empty
      */
     public function searchCampaigns($query, $offset=0, $snip_start=null, $snip_end=null) {
@@ -211,10 +211,10 @@ string back that will explain our view on what is going on.
      * @return associative_array An array of both exact matches and partial matches over a full search
      *     - exact_matches associative_array containing the total matches and current results
      *     - total int total members matching
-     *     - members array each entry will be struct matching the data format for a single member as returned by listMemberInfo()
+     *     - members array each entry will be struct matching the data format for a single member as returned by lists/member-info()
      *     - full_search associative_array containing the total matches and current results
      *     - total int total members matching
-     *     - members array each entry will be struct matching  the data format for a single member as returned by listMemberInfo()
+     *     - members array each entry will be struct matching  the data format for a single member as returned by lists/member-info()
      */
     public function searchMembers($query, $id=null, $offset=0) {
         $_params = array("query" => $query, "id" => $id, "offset" => $offset);

@@ -15,10 +15,119 @@ require_once 'Mailchimp/Gallery.php';
 require_once 'Mailchimp/Exceptions.php';
 
 class Mailchimp {
-    
+
+    /**
+     * Placeholder attribute for Mailchimp_Folders class
+     *
+     * @var Mailchimp_Folders
+     * @access public
+     */
+    var $folders;
+    /**
+     * Placeholder attribute for Mailchimp_Templates class
+     *
+     * @var Mailchimp_Templates
+     * @access public
+     */
+    var $templates;
+    /**
+     * Placeholder attribute for Mailchimp_Users class
+     *
+     * @var Mailchimp_Users
+     * @access public
+     */
+    var $users;
+    /**
+     * Placeholder attribute for Mailchimp_Helper class
+     *
+     * @var Mailchimp_Helper
+     * @access public
+     */
+    var $helper;
+    /**
+     * Placeholder attribute for Mailchimp_Mobile class
+     *
+     * @var Mailchimp_Mobile
+     * @access public
+     */
+    var $mobile;
+    /**
+     * Placeholder attribute for Mailchimp_Ecomm class
+     *
+     * @var Mailchimp_Ecomm
+     * @access public
+     */
+    var $ecomm;
+    /**
+     * Placeholder attribute for Mailchimp_Neapolitan class
+     *
+     * @var Mailchimp_Neapolitan
+     * @access public
+     */
+    var $neapolitan;
+    /**
+     * Placeholder attribute for Mailchimp_Lists class
+     *
+     * @var Mailchimp_Lists
+     * @access public
+     */
+    var $lists;
+    /**
+     * Placeholder attribute for Mailchimp_Campaigns class
+     *
+     * @var Mailchimp_Campaigns
+     * @access public
+     */
+    var $campaigns;
+    /**
+     * Placeholder attribute for Mailchimp_Vip class
+     *
+     * @var Mailchimp_Vip
+     * @access public
+     */
+    var $vip;
+    /**
+     * Placeholder attribute for Mailchimp_Reports class
+     *
+     * @var Mailchimp_Reports
+     * @access public
+     */
+    var $reports;
+    /**
+     * Placeholder attribute for Mailchimp_Gallery class
+     *
+     * @var Mailchimp_Gallery
+     * @access public
+     */
+    var $gallery;
+
+    /**
+     * CURLOPT_SSL_VERIFYPEER setting
+     * @var  bool
+     */
+    public $ssl_verifypeer = true;
+    /**
+     * CURLOPT_SSL_VERIFYHOST setting
+     * @var  bool
+     */
+    public $ssl_verifyhost = 2;
+    /**
+     * CURLOPT_CAINFO
+     * @var  string
+     */
+    public $ssl_cainfo = null;
+
+    /**
+     * the api key in use
+     * @var  string
+     */
     public $apikey;
     public $ch;
     public $root = 'https://api.mailchimp.com/2.0';
+    /**
+     * whether debug mode is enabled
+     * @var  bool
+     */
     public $debug = false;
 
     public static $error_map = array(
@@ -130,10 +239,19 @@ class Mailchimp {
         if (isset($opts['debug'])){
             $this->debug = true;
         }
+        if (isset($opts['ssl_verifypeer'])){
+            $this->ssl_verifypeer = $opts['ssl_verifypeer'];
+        }
+        if (isset($opts['ssl_verifyhost'])){
+            $this->ssl_verifyhost = $opts['ssl_verifyhost'];
+        }
+        if (isset($opts['ssl_cainfo'])){
+            $this->ssl_cainfo = $opts['ssl_cainfo'];
+        }
 
 
         $this->ch = curl_init();
-        curl_setopt($this->ch, CURLOPT_USERAGENT, 'MailChimp-PHP/2.0.3');
+        curl_setopt($this->ch, CURLOPT_USERAGENT, 'MailChimp-PHP/2.0.4');
         curl_setopt($this->ch, CURLOPT_POST, true);
         curl_setopt($this->ch, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($this->ch, CURLOPT_HEADER, false);
@@ -169,6 +287,10 @@ class Mailchimp {
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
         curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
         curl_setopt($ch, CURLOPT_VERBOSE, $this->debug);
+        // SSL Options
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $this->ssl_verifypeer);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, $this->ssl_verifyhost);
+        if ($this->ssl_cainfo) curl_setopt($ch, CURLOPT_CAINFO, $this->ssl_cainfo);
 
         $start = microtime(true);
         $this->log('Call to ' . $this->root . $url . '.json: ' . $params);

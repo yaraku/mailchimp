@@ -211,7 +211,7 @@
 </span></span><span id="27" class="l"><a class="l" href="#27"> 27: </a><span class="php-comment">     * Create a new draft campaign to send. You &lt;strong&gt;can not&lt;/strong&gt; have more than 32,000 campaigns in your account.
 </span></span><span id="28" class="l"><a class="l" href="#28"> 28: </a><span class="php-comment">     * @param string $type
 </span></span><span id="29" class="l"><a class="l" href="#29"> 29: </a><span class="php-comment">     * @param associative_array $options
-</span></span><span id="30" class="l"><a class="l" href="#30"> 30: </a><span class="php-comment">     *     - list_id string the list to send this campaign to- get lists using lists()
+</span></span><span id="30" class="l"><a class="l" href="#30"> 30: </a><span class="php-comment">     *     - list_id string the list to send this campaign to- get lists using lists/list()
 </span></span><span id="31" class="l"><a class="l" href="#31"> 31: </a><span class="php-comment">     *     - subject string the subject line for your campaign message
 </span></span><span id="32" class="l"><a class="l" href="#32"> 32: </a><span class="php-comment">     *     - from_email string the From: email address for your campaign message
 </span></span><span id="33" class="l"><a class="l" href="#33"> 33: </a><span class="php-comment">     *     - from_name string the From: name for your campaign message (not an email address)
@@ -219,7 +219,7 @@
 </span></span><span id="35" class="l"><a class="l" href="#35"> 35: </a><span class="php-comment">     *     - template_id int optional - use this user-created template to generate the HTML content of the campaign (takes precendence over other template options)
 </span></span><span id="36" class="l"><a class="l" href="#36"> 36: </a><span class="php-comment">     *     - gallery_template_id int optional - use a template from the public gallery to generate the HTML content of the campaign (takes precendence over base template options)
 </span></span><span id="37" class="l"><a class="l" href="#37"> 37: </a><span class="php-comment">     *     - base_template_id int optional - use this a base/start-from-scratch template to generate the HTML content of the campaign
-</span></span><span id="38" class="l"><a class="l" href="#38"> 38: </a><span class="php-comment">     *     - folder_id int optional - automatically file the new campaign in the folder_id passed. Get using folders() - note that Campaigns and Autoresponders have separate folder setupsn
+</span></span><span id="38" class="l"><a class="l" href="#38"> 38: </a><span class="php-comment">     *     - folder_id int optional - automatically file the new campaign in the folder_id passed. Get using folders/list() - note that Campaigns and Autoresponders have separate folder setups
 </span></span><span id="39" class="l"><a class="l" href="#39"> 39: </a><span class="php-comment">     *     - tracking associative_array optional - set which recipient actions will be tracked. Click tracking can not be disabled for Free accounts.
 </span></span><span id="40" class="l"><a class="l" href="#40"> 40: </a><span class="php-comment">     *         - opens bool whether to track opens, defaults to true
 </span></span><span id="41" class="l"><a class="l" href="#41"> 41: </a><span class="php-comment">     *         - html_clicks bool whether to track clicks in HTML content, defaults to true
@@ -271,7 +271,7 @@
 </span></span><span id="87" class="l"><a class="l" href="#87"> 87: </a><span class="php-comment">     *             - 6 bool optional Saturday, defaults to true
 </span></span><span id="88" class="l"><a class="l" href="#88"> 88: </a><span class="php-comment">     *             - 7 bool optional Sunday, defaults to true
 </span></span><span id="89" class="l"><a class="l" href="#89"> 89: </a><span class="php-comment">     *     - absplit associative_array For A/B Split campaigns, this struct should contain:
-</span></span><span id="90" class="l"><a class="l" href="#90"> 90: </a><span class="php-comment">     *         - split_test string The values to segment based on. Currently, one of: &quot;subject&quot;, &quot;from_name&quot;, &quot;schedule&quot;. NOTE, for &quot;schedule&quot;, you will need to call campaignSchedule() separately!
+</span></span><span id="90" class="l"><a class="l" href="#90"> 90: </a><span class="php-comment">     *         - split_test string The values to segment based on. Currently, one of: &quot;subject&quot;, &quot;from_name&quot;, &quot;schedule&quot;. NOTE, for &quot;schedule&quot;, you will need to call campaigns/schedule() separately!
 </span></span><span id="91" class="l"><a class="l" href="#91"> 91: </a><span class="php-comment">     *         - pick_winner string How the winner will be picked, one of: &quot;opens&quot; (by the open_rate), &quot;clicks&quot; (by the click rate), &quot;manual&quot; (you pick manually)
 </span></span><span id="92" class="l"><a class="l" href="#92"> 92: </a><span class="php-comment">     *         - wait_units int optional the default time unit to wait before auto-selecting a winner - use &quot;3600&quot; for hours, &quot;86400&quot; for days. Defaults to 86400.
 </span></span><span id="93" class="l"><a class="l" href="#93"> 93: </a><span class="php-comment">     *         - wait_time int optional the number of units to wait before auto-selecting a winner - defaults to 1, so if not set, a winner will be selected after 1 Day.
@@ -323,9 +323,9 @@
 </span></span><span id="139" class="l"><a class="l" href="#139">139: </a><span class="php-comment">     * @param associative_array $filters
 </span></span><span id="140" class="l"><a class="l" href="#140">140: </a><span class="php-comment">     *     - campaign_id string optional - return the campaign using a know campaign_id.  Accepts multiples separated by commas when not using exact matching.
 </span></span><span id="141" class="l"><a class="l" href="#141">141: </a><span class="php-comment">     *     - parent_id string optional - return the child campaigns using a known parent campaign_id.  Accepts multiples separated by commas when not using exact matching.
-</span></span><span id="142" class="l"><a class="l" href="#142">142: </a><span class="php-comment">     *     - list_id string optional - the list to send this campaign to - get lists using lists(). Accepts multiples separated by commas when not using exact matching.
-</span></span><span id="143" class="l"><a class="l" href="#143">143: </a><span class="php-comment">     *     - folder_id int optional - only show campaigns from this folder id - get folders using campaignFolders(). Accepts multiples separated by commas when not using exact matching.
-</span></span><span id="144" class="l"><a class="l" href="#144">144: </a><span class="php-comment">     *     - template_id int optional - only show campaigns using this template id - get templates using templates(). Accepts multiples separated by commas when not using exact matching.
+</span></span><span id="142" class="l"><a class="l" href="#142">142: </a><span class="php-comment">     *     - list_id string optional - the list to send this campaign to - get lists using lists/list(). Accepts multiples separated by commas when not using exact matching.
+</span></span><span id="143" class="l"><a class="l" href="#143">143: </a><span class="php-comment">     *     - folder_id int optional - only show campaigns from this folder id - get folders using folders/list(). Accepts multiples separated by commas when not using exact matching.
+</span></span><span id="144" class="l"><a class="l" href="#144">144: </a><span class="php-comment">     *     - template_id int optional - only show campaigns using this template id - get templates using templates/list(). Accepts multiples separated by commas when not using exact matching.
 </span></span><span id="145" class="l"><a class="l" href="#145">145: </a><span class="php-comment">     *     - status string optional - return campaigns of a specific status - one of &quot;sent&quot;, &quot;save&quot;, &quot;paused&quot;, &quot;schedule&quot;, &quot;sending&quot;. Accepts multiples separated by commas when not using exact matching.
 </span></span><span id="146" class="l"><a class="l" href="#146">146: </a><span class="php-comment">     *     - type string optional - return campaigns of a specific type - one of &quot;regular&quot;, &quot;plaintext&quot;, &quot;absplit&quot;, &quot;rss&quot;, &quot;auto&quot;. Accepts multiples separated by commas when not using exact matching.
 </span></span><span id="147" class="l"><a class="l" href="#147">147: </a><span class="php-comment">     *     - from_name string optional - only show campaigns that have this &quot;From Name&quot;
@@ -371,188 +371,195 @@
 </span></span><span id="187" class="l"><a class="l" href="#187">187: </a><span class="php-comment">     *         - timewarp boolean Whether or not the campaign used Timewarp
 </span></span><span id="188" class="l"><a class="l" href="#188">188: </a><span class="php-comment">     *         - timewarp_schedule string The time, in GMT, that the Timewarp campaign is being sent. For A/B Split campaigns, this is blank and is instead in their schedule_a and schedule_b in the type_opts array
 </span></span><span id="189" class="l"><a class="l" href="#189">189: </a><span class="php-comment">     *         - parent_id string the unique id of the parent campaign (currently only valid for rss children)
-</span></span><span id="190" class="l"><a class="l" href="#190">190: </a><span class="php-comment">     *         - tracking associative_array the various tracking options used
-</span></span><span id="191" class="l"><a class="l" href="#191">191: </a><span class="php-comment">     *             - html_clicks boolean whether or not tracking for html clicks was enabled.
-</span></span><span id="192" class="l"><a class="l" href="#192">192: </a><span class="php-comment">     *             - text_clicks boolean whether or not tracking for text clicks was enabled.
-</span></span><span id="193" class="l"><a class="l" href="#193">193: </a><span class="php-comment">     *             - opens boolean whether or not opens tracking was enabled.
-</span></span><span id="194" class="l"><a class="l" href="#194">194: </a><span class="php-comment">     *         - segment_text string a string marked-up with HTML explaining the segment used for the campaign in plain English
-</span></span><span id="195" class="l"><a class="l" href="#195">195: </a><span class="php-comment">     *         - segment_opts array the segment used for the campaign - can be passed to campaigns/segment-test or campaigns/create
-</span></span><span id="196" class="l"><a class="l" href="#196">196: </a><span class="php-comment">     *         - type_opts associative_array the type-specific options for the campaign - can be passed to campaigns/create
-</span></span><span id="197" class="l"><a class="l" href="#197">197: </a><span class="php-comment">     *         - comments_total int total number of comments left on this campaign
-</span></span><span id="198" class="l"><a class="l" href="#198">198: </a><span class="php-comment">     *         - comments_unread int total number of unread comments for this campaign based on the login the apikey belongs to
-</span></span><span id="199" class="l"><a class="l" href="#199">199: </a><span class="php-comment">     *         - summary associative_array if available, the basic aggregate stats returned by reports/summary
-</span></span><span id="200" class="l"><a class="l" href="#200">200: </a><span class="php-comment">     *     - errors array structs of any errors found while loading lists - usually just from providing invalid list ids
-</span></span><span id="201" class="l"><a class="l" href="#201">201: </a><span class="php-comment">     *         - filter string the filter that caused the failure
-</span></span><span id="202" class="l"><a class="l" href="#202">202: </a><span class="php-comment">     *         - value string the filter value that caused the failure
-</span></span><span id="203" class="l"><a class="l" href="#203">203: </a><span class="php-comment">     *         - code int the error code
-</span></span><span id="204" class="l"><a class="l" href="#204">204: </a><span class="php-comment">     *         - error int the error message
-</span></span><span id="205" class="l"><a class="l" href="#205">205: </a><span class="php-comment">     */</span>
-</span><span id="206" class="l"><a class="l" href="#206">206: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getList" href="#_getList">getList</a>(<span class="php-var">$filters</span>=<span class="php-keyword1">array</span>(), <span class="php-var">$start</span>=<span class="php-num">0</span>, <span class="php-var">$limit</span>=<span class="php-num">25</span>, <span class="php-var">$sort_field</span>=<span class="php-quote">'create_time'</span>, <span class="php-var">$sort_dir</span>=<span class="php-quote">'DESC'</span>) {
-</span><span id="207" class="l"><a class="l" href="#207">207: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;filters&quot;</span> =&gt; <span class="php-var">$filters</span>, <span class="php-quote">&quot;start&quot;</span> =&gt; <span class="php-var">$start</span>, <span class="php-quote">&quot;limit&quot;</span> =&gt; <span class="php-var">$limit</span>, <span class="php-quote">&quot;sort_field&quot;</span> =&gt; <span class="php-var">$sort_field</span>, <span class="php-quote">&quot;sort_dir&quot;</span> =&gt; <span class="php-var">$sort_dir</span>);
-</span><span id="208" class="l"><a class="l" href="#208">208: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/list'</span>, <span class="php-var">$_params</span>);
-</span><span id="209" class="l"><a class="l" href="#209">209: </a>    }
-</span><span id="210" class="l"><a class="l" href="#210">210: </a>
-</span><span id="211" class="l"><a class="l" href="#211">211: </a>    <span class="php-comment">/**
-</span></span><span id="212" class="l"><a class="l" href="#212">212: </a><span class="php-comment">     * Pause an AutoResponder or RSS campaign from sending
-</span></span><span id="213" class="l"><a class="l" href="#213">213: </a><span class="php-comment">     * @param string $cid
-</span></span><span id="214" class="l"><a class="l" href="#214">214: </a><span class="php-comment">     * @return associative_array with a single entry:
-</span></span><span id="215" class="l"><a class="l" href="#215">215: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
-</span></span><span id="216" class="l"><a class="l" href="#216">216: </a><span class="php-comment">     */</span>
-</span><span id="217" class="l"><a class="l" href="#217">217: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_pause" href="#_pause">pause</a>(<span class="php-var">$cid</span>) {
-</span><span id="218" class="l"><a class="l" href="#218">218: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>);
-</span><span id="219" class="l"><a class="l" href="#219">219: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/pause'</span>, <span class="php-var">$_params</span>);
-</span><span id="220" class="l"><a class="l" href="#220">220: </a>    }
-</span><span id="221" class="l"><a class="l" href="#221">221: </a>
-</span><span id="222" class="l"><a class="l" href="#222">222: </a>    <span class="php-comment">/**
-</span></span><span id="223" class="l"><a class="l" href="#223">223: </a><span class="php-comment">     * Returns information on whether a campaign is ready to send and possible issues we may have detected with it - very similar to the confirmation step in the app.
-</span></span><span id="224" class="l"><a class="l" href="#224">224: </a><span class="php-comment">     * @param string $cid
-</span></span><span id="225" class="l"><a class="l" href="#225">225: </a><span class="php-comment">     * @return associative_array containing:
-</span></span><span id="226" class="l"><a class="l" href="#226">226: </a><span class="php-comment">     *     - is_ready bool whether or not you're going to be able to send this campaign
-</span></span><span id="227" class="l"><a class="l" href="#227">227: </a><span class="php-comment">     *     - items array an array of structs explaining basically what the app's confirmation step would
-</span></span><span id="228" class="l"><a class="l" href="#228">228: </a><span class="php-comment">     *         - type string the item type - generally success, warning, or error
-</span></span><span id="229" class="l"><a class="l" href="#229">229: </a><span class="php-comment">     *         - heading string the item's heading in the app
-</span></span><span id="230" class="l"><a class="l" href="#230">230: </a><span class="php-comment">     *         - details string the item's details from the app, sans any html tags/links
-</span></span><span id="231" class="l"><a class="l" href="#231">231: </a><span class="php-comment">     */</span>
-</span><span id="232" class="l"><a class="l" href="#232">232: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_ready" href="#_ready">ready</a>(<span class="php-var">$cid</span>) {
-</span><span id="233" class="l"><a class="l" href="#233">233: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>);
-</span><span id="234" class="l"><a class="l" href="#234">234: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/ready'</span>, <span class="php-var">$_params</span>);
-</span><span id="235" class="l"><a class="l" href="#235">235: </a>    }
-</span><span id="236" class="l"><a class="l" href="#236">236: </a>
-</span><span id="237" class="l"><a class="l" href="#237">237: </a>    <span class="php-comment">/**
-</span></span><span id="238" class="l"><a class="l" href="#238">238: </a><span class="php-comment">     * Replicate a campaign.
-</span></span><span id="239" class="l"><a class="l" href="#239">239: </a><span class="php-comment">     * @param string $cid
-</span></span><span id="240" class="l"><a class="l" href="#240">240: </a><span class="php-comment">     * @return associative_array the matching campaign's details - will return same data as single campaign from campaigns/list()
-</span></span><span id="241" class="l"><a class="l" href="#241">241: </a><span class="php-comment">     */</span>
-</span><span id="242" class="l"><a class="l" href="#242">242: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_replicate" href="#_replicate">replicate</a>(<span class="php-var">$cid</span>) {
-</span><span id="243" class="l"><a class="l" href="#243">243: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>);
-</span><span id="244" class="l"><a class="l" href="#244">244: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/replicate'</span>, <span class="php-var">$_params</span>);
-</span><span id="245" class="l"><a class="l" href="#245">245: </a>    }
-</span><span id="246" class="l"><a class="l" href="#246">246: </a>
-</span><span id="247" class="l"><a class="l" href="#247">247: </a>    <span class="php-comment">/**
-</span></span><span id="248" class="l"><a class="l" href="#248">248: </a><span class="php-comment">     * Resume sending an AutoResponder or RSS campaign
-</span></span><span id="249" class="l"><a class="l" href="#249">249: </a><span class="php-comment">     * @param string $cid
-</span></span><span id="250" class="l"><a class="l" href="#250">250: </a><span class="php-comment">     * @return associative_array with a single entry:
-</span></span><span id="251" class="l"><a class="l" href="#251">251: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
-</span></span><span id="252" class="l"><a class="l" href="#252">252: </a><span class="php-comment">     */</span>
-</span><span id="253" class="l"><a class="l" href="#253">253: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_resume" href="#_resume">resume</a>(<span class="php-var">$cid</span>) {
-</span><span id="254" class="l"><a class="l" href="#254">254: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>);
-</span><span id="255" class="l"><a class="l" href="#255">255: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/resume'</span>, <span class="php-var">$_params</span>);
-</span><span id="256" class="l"><a class="l" href="#256">256: </a>    }
-</span><span id="257" class="l"><a class="l" href="#257">257: </a>
-</span><span id="258" class="l"><a class="l" href="#258">258: </a>    <span class="php-comment">/**
-</span></span><span id="259" class="l"><a class="l" href="#259">259: </a><span class="php-comment">     * Schedule a campaign to be sent in the future
-</span></span><span id="260" class="l"><a class="l" href="#260">260: </a><span class="php-comment">     * @param string $cid
-</span></span><span id="261" class="l"><a class="l" href="#261">261: </a><span class="php-comment">     * @param string $schedule_time
-</span></span><span id="262" class="l"><a class="l" href="#262">262: </a><span class="php-comment">     * @param string $schedule_time_b
-</span></span><span id="263" class="l"><a class="l" href="#263">263: </a><span class="php-comment">     * @return associative_array with a single entry:
-</span></span><span id="264" class="l"><a class="l" href="#264">264: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
-</span></span><span id="265" class="l"><a class="l" href="#265">265: </a><span class="php-comment">     */</span>
-</span><span id="266" class="l"><a class="l" href="#266">266: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_schedule" href="#_schedule">schedule</a>(<span class="php-var">$cid</span>, <span class="php-var">$schedule_time</span>, <span class="php-var">$schedule_time_b</span>=<span class="php-keyword1">null</span>) {
-</span><span id="267" class="l"><a class="l" href="#267">267: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>, <span class="php-quote">&quot;schedule_time&quot;</span> =&gt; <span class="php-var">$schedule_time</span>, <span class="php-quote">&quot;schedule_time_b&quot;</span> =&gt; <span class="php-var">$schedule_time_b</span>);
-</span><span id="268" class="l"><a class="l" href="#268">268: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/schedule'</span>, <span class="php-var">$_params</span>);
-</span><span id="269" class="l"><a class="l" href="#269">269: </a>    }
-</span><span id="270" class="l"><a class="l" href="#270">270: </a>
-</span><span id="271" class="l"><a class="l" href="#271">271: </a>    <span class="php-comment">/**
-</span></span><span id="272" class="l"><a class="l" href="#272">272: </a><span class="php-comment">     * Schedule a campaign to be sent in batches sometime in the future. Only valid for &quot;regular&quot; campaigns
-</span></span><span id="273" class="l"><a class="l" href="#273">273: </a><span class="php-comment">     * @param string $cid
-</span></span><span id="274" class="l"><a class="l" href="#274">274: </a><span class="php-comment">     * @param string $schedule_time
-</span></span><span id="275" class="l"><a class="l" href="#275">275: </a><span class="php-comment">     * @param int $num_batches
-</span></span><span id="276" class="l"><a class="l" href="#276">276: </a><span class="php-comment">     * @param int $stagger_mins
-</span></span><span id="277" class="l"><a class="l" href="#277">277: </a><span class="php-comment">     * @return associative_array with a single entry:
-</span></span><span id="278" class="l"><a class="l" href="#278">278: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
-</span></span><span id="279" class="l"><a class="l" href="#279">279: </a><span class="php-comment">     */</span>
-</span><span id="280" class="l"><a class="l" href="#280">280: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_scheduleBatch" href="#_scheduleBatch">scheduleBatch</a>(<span class="php-var">$cid</span>, <span class="php-var">$schedule_time</span>, <span class="php-var">$num_batches</span>=<span class="php-num">2</span>, <span class="php-var">$stagger_mins</span>=<span class="php-num">5</span>) {
-</span><span id="281" class="l"><a class="l" href="#281">281: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>, <span class="php-quote">&quot;schedule_time&quot;</span> =&gt; <span class="php-var">$schedule_time</span>, <span class="php-quote">&quot;num_batches&quot;</span> =&gt; <span class="php-var">$num_batches</span>, <span class="php-quote">&quot;stagger_mins&quot;</span> =&gt; <span class="php-var">$stagger_mins</span>);
-</span><span id="282" class="l"><a class="l" href="#282">282: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/schedule-batch'</span>, <span class="php-var">$_params</span>);
-</span><span id="283" class="l"><a class="l" href="#283">283: </a>    }
-</span><span id="284" class="l"><a class="l" href="#284">284: </a>
-</span><span id="285" class="l"><a class="l" href="#285">285: </a>    <span class="php-comment">/**
-</span></span><span id="286" class="l"><a class="l" href="#286">286: </a><span class="php-comment">     * Allows one to test their segmentation rules before creating a campaign using them
-</span></span><span id="287" class="l"><a class="l" href="#287">287: </a><span class="php-comment">     * @param string $list_id
-</span></span><span id="288" class="l"><a class="l" href="#288">288: </a><span class="php-comment">     * @param associative_array $options
-</span></span><span id="289" class="l"><a class="l" href="#289">289: </a><span class="php-comment">     *     - match string controls whether to use AND or OR when applying your options - expects &quot;&lt;strong&gt;any&lt;/strong&gt;&quot; (for OR) or &quot;&lt;strong&gt;all&lt;/strong&gt;&quot; (for AND)
-</span></span><span id="290" class="l"><a class="l" href="#290">290: </a><span class="php-comment">     *     - conditions array of up to 5 structs for different criteria to apply while segmenting. Each criteria row must contain 3 keys - &quot;&lt;strong&gt;field&lt;/strong&gt;&quot;, &quot;&lt;strong&gt;op&lt;/strong&gt;&quot;, and &quot;&lt;strong&gt;value&lt;/strong&gt;&quot; - and possibly a fourth, &quot;&lt;strong&gt;extra&lt;/strong&gt;&quot;, based on these definitions:
-</span></span><span id="291" class="l"><a class="l" href="#291">291: </a><span class="php-comment">     * @return associative_array with a single entry:
-</span></span><span id="292" class="l"><a class="l" href="#292">292: </a><span class="php-comment">     *     - total int The total number of subscribers matching your segmentation options
-</span></span><span id="293" class="l"><a class="l" href="#293">293: </a><span class="php-comment">     */</span>
-</span><span id="294" class="l"><a class="l" href="#294">294: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_segmentTest" href="#_segmentTest">segmentTest</a>(<span class="php-var">$list_id</span>, <span class="php-var">$options</span>) {
-</span><span id="295" class="l"><a class="l" href="#295">295: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;list_id&quot;</span> =&gt; <span class="php-var">$list_id</span>, <span class="php-quote">&quot;options&quot;</span> =&gt; <span class="php-var">$options</span>);
-</span><span id="296" class="l"><a class="l" href="#296">296: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/segment-test'</span>, <span class="php-var">$_params</span>);
-</span><span id="297" class="l"><a class="l" href="#297">297: </a>    }
-</span><span id="298" class="l"><a class="l" href="#298">298: </a>
-</span><span id="299" class="l"><a class="l" href="#299">299: </a>    <span class="php-comment">/**
-</span></span><span id="300" class="l"><a class="l" href="#300">300: </a><span class="php-comment">     * Send a given campaign immediately. For RSS campaigns, this will &quot;start&quot; them.
-</span></span><span id="301" class="l"><a class="l" href="#301">301: </a><span class="php-comment">     * @param string $cid
-</span></span><span id="302" class="l"><a class="l" href="#302">302: </a><span class="php-comment">     * @return associative_array with a single entry:
-</span></span><span id="303" class="l"><a class="l" href="#303">303: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
-</span></span><span id="304" class="l"><a class="l" href="#304">304: </a><span class="php-comment">     */</span>
-</span><span id="305" class="l"><a class="l" href="#305">305: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_send" href="#_send">send</a>(<span class="php-var">$cid</span>) {
-</span><span id="306" class="l"><a class="l" href="#306">306: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>);
-</span><span id="307" class="l"><a class="l" href="#307">307: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/send'</span>, <span class="php-var">$_params</span>);
-</span><span id="308" class="l"><a class="l" href="#308">308: </a>    }
-</span><span id="309" class="l"><a class="l" href="#309">309: </a>
-</span><span id="310" class="l"><a class="l" href="#310">310: </a>    <span class="php-comment">/**
-</span></span><span id="311" class="l"><a class="l" href="#311">311: </a><span class="php-comment">     * Send a test of this campaign to the provided email addresses
-</span></span><span id="312" class="l"><a class="l" href="#312">312: </a><span class="php-comment">     * @param string $cid
-</span></span><span id="313" class="l"><a class="l" href="#313">313: </a><span class="php-comment">     * @param array $test_emails
-</span></span><span id="314" class="l"><a class="l" href="#314">314: </a><span class="php-comment">     * @param string $send_type
-</span></span><span id="315" class="l"><a class="l" href="#315">315: </a><span class="php-comment">     * @return associative_array with a single entry:
-</span></span><span id="316" class="l"><a class="l" href="#316">316: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
-</span></span><span id="317" class="l"><a class="l" href="#317">317: </a><span class="php-comment">     */</span>
-</span><span id="318" class="l"><a class="l" href="#318">318: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_sendTest" href="#_sendTest">sendTest</a>(<span class="php-var">$cid</span>, <span class="php-var">$test_emails</span>=<span class="php-keyword1">array</span>(), <span class="php-var">$send_type</span>=<span class="php-quote">'html'</span>) {
-</span><span id="319" class="l"><a class="l" href="#319">319: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>, <span class="php-quote">&quot;test_emails&quot;</span> =&gt; <span class="php-var">$test_emails</span>, <span class="php-quote">&quot;send_type&quot;</span> =&gt; <span class="php-var">$send_type</span>);
-</span><span id="320" class="l"><a class="l" href="#320">320: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/send-test'</span>, <span class="php-var">$_params</span>);
-</span><span id="321" class="l"><a class="l" href="#321">321: </a>    }
-</span><span id="322" class="l"><a class="l" href="#322">322: </a>
-</span><span id="323" class="l"><a class="l" href="#323">323: </a>    <span class="php-comment">/**
-</span></span><span id="324" class="l"><a class="l" href="#324">324: </a><span class="php-comment">     * Get the HTML template content sections for a campaign. Note that this &lt;strong&gt;will&lt;/strong&gt; return very jagged, non-standard results based on the template
-</span></span><span id="325" class="l"><a class="l" href="#325">325: </a><span class="php-comment">a campaign is using. You only want to use this if you want to allow editing template sections in your application.
-</span></span><span id="326" class="l"><a class="l" href="#326">326: </a><span class="php-comment">     * @param string $cid
-</span></span><span id="327" class="l"><a class="l" href="#327">327: </a><span class="php-comment">     * @return associative_array content containing all content section for the campaign - section name are dependent upon the template used and thus can't be documented
-</span></span><span id="328" class="l"><a class="l" href="#328">328: </a><span class="php-comment">     */</span>
-</span><span id="329" class="l"><a class="l" href="#329">329: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_templateContent" href="#_templateContent">templateContent</a>(<span class="php-var">$cid</span>) {
-</span><span id="330" class="l"><a class="l" href="#330">330: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>);
-</span><span id="331" class="l"><a class="l" href="#331">331: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/template-content'</span>, <span class="php-var">$_params</span>);
-</span><span id="332" class="l"><a class="l" href="#332">332: </a>    }
-</span><span id="333" class="l"><a class="l" href="#333">333: </a>
-</span><span id="334" class="l"><a class="l" href="#334">334: </a>    <span class="php-comment">/**
-</span></span><span id="335" class="l"><a class="l" href="#335">335: </a><span class="php-comment">     * Unschedule a campaign that is scheduled to be sent in the future
-</span></span><span id="336" class="l"><a class="l" href="#336">336: </a><span class="php-comment">     * @param string $cid
-</span></span><span id="337" class="l"><a class="l" href="#337">337: </a><span class="php-comment">     * @return associative_array with a single entry:
-</span></span><span id="338" class="l"><a class="l" href="#338">338: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
-</span></span><span id="339" class="l"><a class="l" href="#339">339: </a><span class="php-comment">     */</span>
-</span><span id="340" class="l"><a class="l" href="#340">340: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_unschedule" href="#_unschedule">unschedule</a>(<span class="php-var">$cid</span>) {
-</span><span id="341" class="l"><a class="l" href="#341">341: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>);
-</span><span id="342" class="l"><a class="l" href="#342">342: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/unschedule'</span>, <span class="php-var">$_params</span>);
-</span><span id="343" class="l"><a class="l" href="#343">343: </a>    }
-</span><span id="344" class="l"><a class="l" href="#344">344: </a>
-</span><span id="345" class="l"><a class="l" href="#345">345: </a>    <span class="php-comment">/**
-</span></span><span id="346" class="l"><a class="l" href="#346">346: </a><span class="php-comment">     * Update just about any setting besides type for a campaign that has &lt;em&gt;not&lt;/em&gt; been sent. See campaign/create for details.
-</span></span><span id="347" class="l"><a class="l" href="#347">347: </a><span class="php-comment">Caveats:&lt;br/&gt;&lt;ul class='bullets'&gt;
-</span></span><span id="348" class="l"><a class="l" href="#348">348: </a><span class="php-comment">&lt;li&gt;If you set a new list_id, all segmentation options will be deleted and must be re-added.&lt;/li&gt;
-</span></span><span id="349" class="l"><a class="l" href="#349">349: </a><span class="php-comment">&lt;li&gt;If you set template_id, you need to follow that up by setting it's 'content'&lt;/li&gt;
-</span></span><span id="350" class="l"><a class="l" href="#350">350: </a><span class="php-comment">&lt;li&gt;If you set segment_opts, you should have tested your options against campaign/segment-test().&lt;/li&gt;
-</span></span><span id="351" class="l"><a class="l" href="#351">351: </a><span class="php-comment">&lt;li&gt;To clear/unset segment_opts, pass an empty string or array as the value. Various wrappers may require one or the other.&lt;/li&gt;
-</span></span><span id="352" class="l"><a class="l" href="#352">352: </a><span class="php-comment">&lt;/ul&gt;
-</span></span><span id="353" class="l"><a class="l" href="#353">353: </a><span class="php-comment">     * @param string $cid
-</span></span><span id="354" class="l"><a class="l" href="#354">354: </a><span class="php-comment">     * @param string $name
-</span></span><span id="355" class="l"><a class="l" href="#355">355: </a><span class="php-comment">     * @param array $value
-</span></span><span id="356" class="l"><a class="l" href="#356">356: </a><span class="php-comment">     * @return associative_array updated campaign details and any errors
-</span></span><span id="357" class="l"><a class="l" href="#357">357: </a><span class="php-comment">     *     - data associative_array the update campaign details - will return same data as single campaign from campaigns/list()
-</span></span><span id="358" class="l"><a class="l" href="#358">358: </a><span class="php-comment">     *     - errors array for &quot;options&quot; only - structs containing:
-</span></span><span id="359" class="l"><a class="l" href="#359">359: </a><span class="php-comment">     *         - code int the error code
-</span></span><span id="360" class="l"><a class="l" href="#360">360: </a><span class="php-comment">     *         - message string the full error message
-</span></span><span id="361" class="l"><a class="l" href="#361">361: </a><span class="php-comment">     *         - name string the parameter name that failed
-</span></span><span id="362" class="l"><a class="l" href="#362">362: </a><span class="php-comment">     */</span>
-</span><span id="363" class="l"><a class="l" href="#363">363: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_update" href="#_update">update</a>(<span class="php-var">$cid</span>, <span class="php-var">$name</span>, <span class="php-var">$value</span>) {
-</span><span id="364" class="l"><a class="l" href="#364">364: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>, <span class="php-quote">&quot;name&quot;</span> =&gt; <span class="php-var">$name</span>, <span class="php-quote">&quot;value&quot;</span> =&gt; <span class="php-var">$value</span>);
-</span><span id="365" class="l"><a class="l" href="#365">365: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/update'</span>, <span class="php-var">$_params</span>);
-</span><span id="366" class="l"><a class="l" href="#366">366: </a>    }
-</span><span id="367" class="l"><a class="l" href="#367">367: </a>
-</span><span id="368" class="l"><a class="l" href="#368">368: </a>}
-</span><span id="369" class="l"><a class="l" href="#369">369: </a>
-</span><span id="370" class="l"><a class="l" href="#370">370: </a>
-</span><span id="371" class="l"><a class="l" href="#371">371: </a></span></code></pre>
+</span></span><span id="190" class="l"><a class="l" href="#190">190: </a><span class="php-comment">     *         - tests_sent string tests sent
+</span></span><span id="191" class="l"><a class="l" href="#191">191: </a><span class="php-comment">     *         - tests_remain string test sends remaining
+</span></span><span id="192" class="l"><a class="l" href="#192">192: </a><span class="php-comment">     *         - tracking associative_array the various tracking options used
+</span></span><span id="193" class="l"><a class="l" href="#193">193: </a><span class="php-comment">     *             - html_clicks boolean whether or not tracking for html clicks was enabled.
+</span></span><span id="194" class="l"><a class="l" href="#194">194: </a><span class="php-comment">     *             - text_clicks boolean whether or not tracking for text clicks was enabled.
+</span></span><span id="195" class="l"><a class="l" href="#195">195: </a><span class="php-comment">     *             - opens boolean whether or not opens tracking was enabled.
+</span></span><span id="196" class="l"><a class="l" href="#196">196: </a><span class="php-comment">     *         - segment_text string a string marked-up with HTML explaining the segment used for the campaign in plain English
+</span></span><span id="197" class="l"><a class="l" href="#197">197: </a><span class="php-comment">     *         - segment_opts array the segment used for the campaign - can be passed to campaigns/segment-test or campaigns/create()
+</span></span><span id="198" class="l"><a class="l" href="#198">198: </a><span class="php-comment">     *         - saved_segment associative_array if a saved segment was used (match+conditions returned above):
+</span></span><span id="199" class="l"><a class="l" href="#199">199: </a><span class="php-comment">     *             - id associative_array the saved segment id
+</span></span><span id="200" class="l"><a class="l" href="#200">200: </a><span class="php-comment">     *             - type associative_array the saved segment type
+</span></span><span id="201" class="l"><a class="l" href="#201">201: </a><span class="php-comment">     *             - name associative_array the saved segment name
+</span></span><span id="202" class="l"><a class="l" href="#202">202: </a><span class="php-comment">     *         - type_opts associative_array the type-specific options for the campaign - can be passed to campaigns/create()
+</span></span><span id="203" class="l"><a class="l" href="#203">203: </a><span class="php-comment">     *         - comments_total int total number of comments left on this campaign
+</span></span><span id="204" class="l"><a class="l" href="#204">204: </a><span class="php-comment">     *         - comments_unread int total number of unread comments for this campaign based on the login the apikey belongs to
+</span></span><span id="205" class="l"><a class="l" href="#205">205: </a><span class="php-comment">     *         - summary associative_array if available, the basic aggregate stats returned by reports/summary
+</span></span><span id="206" class="l"><a class="l" href="#206">206: </a><span class="php-comment">     *     - errors array structs of any errors found while loading lists - usually just from providing invalid list ids
+</span></span><span id="207" class="l"><a class="l" href="#207">207: </a><span class="php-comment">     *         - filter string the filter that caused the failure
+</span></span><span id="208" class="l"><a class="l" href="#208">208: </a><span class="php-comment">     *         - value string the filter value that caused the failure
+</span></span><span id="209" class="l"><a class="l" href="#209">209: </a><span class="php-comment">     *         - code int the error code
+</span></span><span id="210" class="l"><a class="l" href="#210">210: </a><span class="php-comment">     *         - error int the error message
+</span></span><span id="211" class="l"><a class="l" href="#211">211: </a><span class="php-comment">     */</span>
+</span><span id="212" class="l"><a class="l" href="#212">212: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getList" href="#_getList">getList</a>(<span class="php-var">$filters</span>=<span class="php-keyword1">array</span>(), <span class="php-var">$start</span>=<span class="php-num">0</span>, <span class="php-var">$limit</span>=<span class="php-num">25</span>, <span class="php-var">$sort_field</span>=<span class="php-quote">'create_time'</span>, <span class="php-var">$sort_dir</span>=<span class="php-quote">'DESC'</span>) {
+</span><span id="213" class="l"><a class="l" href="#213">213: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;filters&quot;</span> =&gt; <span class="php-var">$filters</span>, <span class="php-quote">&quot;start&quot;</span> =&gt; <span class="php-var">$start</span>, <span class="php-quote">&quot;limit&quot;</span> =&gt; <span class="php-var">$limit</span>, <span class="php-quote">&quot;sort_field&quot;</span> =&gt; <span class="php-var">$sort_field</span>, <span class="php-quote">&quot;sort_dir&quot;</span> =&gt; <span class="php-var">$sort_dir</span>);
+</span><span id="214" class="l"><a class="l" href="#214">214: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/list'</span>, <span class="php-var">$_params</span>);
+</span><span id="215" class="l"><a class="l" href="#215">215: </a>    }
+</span><span id="216" class="l"><a class="l" href="#216">216: </a>
+</span><span id="217" class="l"><a class="l" href="#217">217: </a>    <span class="php-comment">/**
+</span></span><span id="218" class="l"><a class="l" href="#218">218: </a><span class="php-comment">     * Pause an AutoResponder or RSS campaign from sending
+</span></span><span id="219" class="l"><a class="l" href="#219">219: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="220" class="l"><a class="l" href="#220">220: </a><span class="php-comment">     * @return associative_array with a single entry:
+</span></span><span id="221" class="l"><a class="l" href="#221">221: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
+</span></span><span id="222" class="l"><a class="l" href="#222">222: </a><span class="php-comment">     */</span>
+</span><span id="223" class="l"><a class="l" href="#223">223: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_pause" href="#_pause">pause</a>(<span class="php-var">$cid</span>) {
+</span><span id="224" class="l"><a class="l" href="#224">224: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>);
+</span><span id="225" class="l"><a class="l" href="#225">225: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/pause'</span>, <span class="php-var">$_params</span>);
+</span><span id="226" class="l"><a class="l" href="#226">226: </a>    }
+</span><span id="227" class="l"><a class="l" href="#227">227: </a>
+</span><span id="228" class="l"><a class="l" href="#228">228: </a>    <span class="php-comment">/**
+</span></span><span id="229" class="l"><a class="l" href="#229">229: </a><span class="php-comment">     * Returns information on whether a campaign is ready to send and possible issues we may have detected with it - very similar to the confirmation step in the app.
+</span></span><span id="230" class="l"><a class="l" href="#230">230: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="231" class="l"><a class="l" href="#231">231: </a><span class="php-comment">     * @return associative_array containing:
+</span></span><span id="232" class="l"><a class="l" href="#232">232: </a><span class="php-comment">     *     - is_ready bool whether or not you're going to be able to send this campaign
+</span></span><span id="233" class="l"><a class="l" href="#233">233: </a><span class="php-comment">     *     - items array an array of structs explaining basically what the app's confirmation step would
+</span></span><span id="234" class="l"><a class="l" href="#234">234: </a><span class="php-comment">     *         - type string the item type - generally success, warning, or error
+</span></span><span id="235" class="l"><a class="l" href="#235">235: </a><span class="php-comment">     *         - heading string the item's heading in the app
+</span></span><span id="236" class="l"><a class="l" href="#236">236: </a><span class="php-comment">     *         - details string the item's details from the app, sans any html tags/links
+</span></span><span id="237" class="l"><a class="l" href="#237">237: </a><span class="php-comment">     */</span>
+</span><span id="238" class="l"><a class="l" href="#238">238: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_ready" href="#_ready">ready</a>(<span class="php-var">$cid</span>) {
+</span><span id="239" class="l"><a class="l" href="#239">239: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>);
+</span><span id="240" class="l"><a class="l" href="#240">240: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/ready'</span>, <span class="php-var">$_params</span>);
+</span><span id="241" class="l"><a class="l" href="#241">241: </a>    }
+</span><span id="242" class="l"><a class="l" href="#242">242: </a>
+</span><span id="243" class="l"><a class="l" href="#243">243: </a>    <span class="php-comment">/**
+</span></span><span id="244" class="l"><a class="l" href="#244">244: </a><span class="php-comment">     * Replicate a campaign.
+</span></span><span id="245" class="l"><a class="l" href="#245">245: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="246" class="l"><a class="l" href="#246">246: </a><span class="php-comment">     * @return associative_array the matching campaign's details - will return same data as single campaign from campaigns/list()
+</span></span><span id="247" class="l"><a class="l" href="#247">247: </a><span class="php-comment">     */</span>
+</span><span id="248" class="l"><a class="l" href="#248">248: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_replicate" href="#_replicate">replicate</a>(<span class="php-var">$cid</span>) {
+</span><span id="249" class="l"><a class="l" href="#249">249: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>);
+</span><span id="250" class="l"><a class="l" href="#250">250: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/replicate'</span>, <span class="php-var">$_params</span>);
+</span><span id="251" class="l"><a class="l" href="#251">251: </a>    }
+</span><span id="252" class="l"><a class="l" href="#252">252: </a>
+</span><span id="253" class="l"><a class="l" href="#253">253: </a>    <span class="php-comment">/**
+</span></span><span id="254" class="l"><a class="l" href="#254">254: </a><span class="php-comment">     * Resume sending an AutoResponder or RSS campaign
+</span></span><span id="255" class="l"><a class="l" href="#255">255: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="256" class="l"><a class="l" href="#256">256: </a><span class="php-comment">     * @return associative_array with a single entry:
+</span></span><span id="257" class="l"><a class="l" href="#257">257: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
+</span></span><span id="258" class="l"><a class="l" href="#258">258: </a><span class="php-comment">     */</span>
+</span><span id="259" class="l"><a class="l" href="#259">259: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_resume" href="#_resume">resume</a>(<span class="php-var">$cid</span>) {
+</span><span id="260" class="l"><a class="l" href="#260">260: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>);
+</span><span id="261" class="l"><a class="l" href="#261">261: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/resume'</span>, <span class="php-var">$_params</span>);
+</span><span id="262" class="l"><a class="l" href="#262">262: </a>    }
+</span><span id="263" class="l"><a class="l" href="#263">263: </a>
+</span><span id="264" class="l"><a class="l" href="#264">264: </a>    <span class="php-comment">/**
+</span></span><span id="265" class="l"><a class="l" href="#265">265: </a><span class="php-comment">     * Schedule a campaign to be sent in the future
+</span></span><span id="266" class="l"><a class="l" href="#266">266: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="267" class="l"><a class="l" href="#267">267: </a><span class="php-comment">     * @param string $schedule_time
+</span></span><span id="268" class="l"><a class="l" href="#268">268: </a><span class="php-comment">     * @param string $schedule_time_b
+</span></span><span id="269" class="l"><a class="l" href="#269">269: </a><span class="php-comment">     * @return associative_array with a single entry:
+</span></span><span id="270" class="l"><a class="l" href="#270">270: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
+</span></span><span id="271" class="l"><a class="l" href="#271">271: </a><span class="php-comment">     */</span>
+</span><span id="272" class="l"><a class="l" href="#272">272: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_schedule" href="#_schedule">schedule</a>(<span class="php-var">$cid</span>, <span class="php-var">$schedule_time</span>, <span class="php-var">$schedule_time_b</span>=<span class="php-keyword1">null</span>) {
+</span><span id="273" class="l"><a class="l" href="#273">273: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>, <span class="php-quote">&quot;schedule_time&quot;</span> =&gt; <span class="php-var">$schedule_time</span>, <span class="php-quote">&quot;schedule_time_b&quot;</span> =&gt; <span class="php-var">$schedule_time_b</span>);
+</span><span id="274" class="l"><a class="l" href="#274">274: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/schedule'</span>, <span class="php-var">$_params</span>);
+</span><span id="275" class="l"><a class="l" href="#275">275: </a>    }
+</span><span id="276" class="l"><a class="l" href="#276">276: </a>
+</span><span id="277" class="l"><a class="l" href="#277">277: </a>    <span class="php-comment">/**
+</span></span><span id="278" class="l"><a class="l" href="#278">278: </a><span class="php-comment">     * Schedule a campaign to be sent in batches sometime in the future. Only valid for &quot;regular&quot; campaigns
+</span></span><span id="279" class="l"><a class="l" href="#279">279: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="280" class="l"><a class="l" href="#280">280: </a><span class="php-comment">     * @param string $schedule_time
+</span></span><span id="281" class="l"><a class="l" href="#281">281: </a><span class="php-comment">     * @param int $num_batches
+</span></span><span id="282" class="l"><a class="l" href="#282">282: </a><span class="php-comment">     * @param int $stagger_mins
+</span></span><span id="283" class="l"><a class="l" href="#283">283: </a><span class="php-comment">     * @return associative_array with a single entry:
+</span></span><span id="284" class="l"><a class="l" href="#284">284: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
+</span></span><span id="285" class="l"><a class="l" href="#285">285: </a><span class="php-comment">     */</span>
+</span><span id="286" class="l"><a class="l" href="#286">286: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_scheduleBatch" href="#_scheduleBatch">scheduleBatch</a>(<span class="php-var">$cid</span>, <span class="php-var">$schedule_time</span>, <span class="php-var">$num_batches</span>=<span class="php-num">2</span>, <span class="php-var">$stagger_mins</span>=<span class="php-num">5</span>) {
+</span><span id="287" class="l"><a class="l" href="#287">287: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>, <span class="php-quote">&quot;schedule_time&quot;</span> =&gt; <span class="php-var">$schedule_time</span>, <span class="php-quote">&quot;num_batches&quot;</span> =&gt; <span class="php-var">$num_batches</span>, <span class="php-quote">&quot;stagger_mins&quot;</span> =&gt; <span class="php-var">$stagger_mins</span>);
+</span><span id="288" class="l"><a class="l" href="#288">288: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/schedule-batch'</span>, <span class="php-var">$_params</span>);
+</span><span id="289" class="l"><a class="l" href="#289">289: </a>    }
+</span><span id="290" class="l"><a class="l" href="#290">290: </a>
+</span><span id="291" class="l"><a class="l" href="#291">291: </a>    <span class="php-comment">/**
+</span></span><span id="292" class="l"><a class="l" href="#292">292: </a><span class="php-comment">     * Allows one to test their segmentation rules before creating a campaign using them
+</span></span><span id="293" class="l"><a class="l" href="#293">293: </a><span class="php-comment">     * @param string $list_id
+</span></span><span id="294" class="l"><a class="l" href="#294">294: </a><span class="php-comment">     * @param associative_array $options
+</span></span><span id="295" class="l"><a class="l" href="#295">295: </a><span class="php-comment">     *     - saved_segment_id string a saved segment id from lists/segments() - this will take precendence, otherwise the match+conditions are required.
+</span></span><span id="296" class="l"><a class="l" href="#296">296: </a><span class="php-comment">     *     - match string controls whether to use AND or OR when applying your options - expects &quot;&lt;strong&gt;any&lt;/strong&gt;&quot; (for OR) or &quot;&lt;strong&gt;all&lt;/strong&gt;&quot; (for AND)
+</span></span><span id="297" class="l"><a class="l" href="#297">297: </a><span class="php-comment">     *     - conditions array of up to 5 structs for different criteria to apply while segmenting. Each criteria row must contain 3 keys - &quot;&lt;strong&gt;field&lt;/strong&gt;&quot;, &quot;&lt;strong&gt;op&lt;/strong&gt;&quot;, and &quot;&lt;strong&gt;value&lt;/strong&gt;&quot; - and possibly a fourth, &quot;&lt;strong&gt;extra&lt;/strong&gt;&quot;, based on these definitions:
+</span></span><span id="298" class="l"><a class="l" href="#298">298: </a><span class="php-comment">     * @return associative_array with a single entry:
+</span></span><span id="299" class="l"><a class="l" href="#299">299: </a><span class="php-comment">     *     - total int The total number of subscribers matching your segmentation options
+</span></span><span id="300" class="l"><a class="l" href="#300">300: </a><span class="php-comment">     */</span>
+</span><span id="301" class="l"><a class="l" href="#301">301: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_segmentTest" href="#_segmentTest">segmentTest</a>(<span class="php-var">$list_id</span>, <span class="php-var">$options</span>) {
+</span><span id="302" class="l"><a class="l" href="#302">302: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;list_id&quot;</span> =&gt; <span class="php-var">$list_id</span>, <span class="php-quote">&quot;options&quot;</span> =&gt; <span class="php-var">$options</span>);
+</span><span id="303" class="l"><a class="l" href="#303">303: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/segment-test'</span>, <span class="php-var">$_params</span>);
+</span><span id="304" class="l"><a class="l" href="#304">304: </a>    }
+</span><span id="305" class="l"><a class="l" href="#305">305: </a>
+</span><span id="306" class="l"><a class="l" href="#306">306: </a>    <span class="php-comment">/**
+</span></span><span id="307" class="l"><a class="l" href="#307">307: </a><span class="php-comment">     * Send a given campaign immediately. For RSS campaigns, this will &quot;start&quot; them.
+</span></span><span id="308" class="l"><a class="l" href="#308">308: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="309" class="l"><a class="l" href="#309">309: </a><span class="php-comment">     * @return associative_array with a single entry:
+</span></span><span id="310" class="l"><a class="l" href="#310">310: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
+</span></span><span id="311" class="l"><a class="l" href="#311">311: </a><span class="php-comment">     */</span>
+</span><span id="312" class="l"><a class="l" href="#312">312: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_send" href="#_send">send</a>(<span class="php-var">$cid</span>) {
+</span><span id="313" class="l"><a class="l" href="#313">313: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>);
+</span><span id="314" class="l"><a class="l" href="#314">314: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/send'</span>, <span class="php-var">$_params</span>);
+</span><span id="315" class="l"><a class="l" href="#315">315: </a>    }
+</span><span id="316" class="l"><a class="l" href="#316">316: </a>
+</span><span id="317" class="l"><a class="l" href="#317">317: </a>    <span class="php-comment">/**
+</span></span><span id="318" class="l"><a class="l" href="#318">318: </a><span class="php-comment">     * Send a test of this campaign to the provided email addresses
+</span></span><span id="319" class="l"><a class="l" href="#319">319: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="320" class="l"><a class="l" href="#320">320: </a><span class="php-comment">     * @param array $test_emails
+</span></span><span id="321" class="l"><a class="l" href="#321">321: </a><span class="php-comment">     * @param string $send_type
+</span></span><span id="322" class="l"><a class="l" href="#322">322: </a><span class="php-comment">     * @return associative_array with a single entry:
+</span></span><span id="323" class="l"><a class="l" href="#323">323: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
+</span></span><span id="324" class="l"><a class="l" href="#324">324: </a><span class="php-comment">     */</span>
+</span><span id="325" class="l"><a class="l" href="#325">325: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_sendTest" href="#_sendTest">sendTest</a>(<span class="php-var">$cid</span>, <span class="php-var">$test_emails</span>=<span class="php-keyword1">array</span>(), <span class="php-var">$send_type</span>=<span class="php-quote">'html'</span>) {
+</span><span id="326" class="l"><a class="l" href="#326">326: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>, <span class="php-quote">&quot;test_emails&quot;</span> =&gt; <span class="php-var">$test_emails</span>, <span class="php-quote">&quot;send_type&quot;</span> =&gt; <span class="php-var">$send_type</span>);
+</span><span id="327" class="l"><a class="l" href="#327">327: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/send-test'</span>, <span class="php-var">$_params</span>);
+</span><span id="328" class="l"><a class="l" href="#328">328: </a>    }
+</span><span id="329" class="l"><a class="l" href="#329">329: </a>
+</span><span id="330" class="l"><a class="l" href="#330">330: </a>    <span class="php-comment">/**
+</span></span><span id="331" class="l"><a class="l" href="#331">331: </a><span class="php-comment">     * Get the HTML template content sections for a campaign. Note that this &lt;strong&gt;will&lt;/strong&gt; return very jagged, non-standard results based on the template
+</span></span><span id="332" class="l"><a class="l" href="#332">332: </a><span class="php-comment">a campaign is using. You only want to use this if you want to allow editing template sections in your application.
+</span></span><span id="333" class="l"><a class="l" href="#333">333: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="334" class="l"><a class="l" href="#334">334: </a><span class="php-comment">     * @return associative_array content containing all content section for the campaign - section name are dependent upon the template used and thus can't be documented
+</span></span><span id="335" class="l"><a class="l" href="#335">335: </a><span class="php-comment">     */</span>
+</span><span id="336" class="l"><a class="l" href="#336">336: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_templateContent" href="#_templateContent">templateContent</a>(<span class="php-var">$cid</span>) {
+</span><span id="337" class="l"><a class="l" href="#337">337: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>);
+</span><span id="338" class="l"><a class="l" href="#338">338: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/template-content'</span>, <span class="php-var">$_params</span>);
+</span><span id="339" class="l"><a class="l" href="#339">339: </a>    }
+</span><span id="340" class="l"><a class="l" href="#340">340: </a>
+</span><span id="341" class="l"><a class="l" href="#341">341: </a>    <span class="php-comment">/**
+</span></span><span id="342" class="l"><a class="l" href="#342">342: </a><span class="php-comment">     * Unschedule a campaign that is scheduled to be sent in the future
+</span></span><span id="343" class="l"><a class="l" href="#343">343: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="344" class="l"><a class="l" href="#344">344: </a><span class="php-comment">     * @return associative_array with a single entry:
+</span></span><span id="345" class="l"><a class="l" href="#345">345: </a><span class="php-comment">     *     - complete bool whether the call worked. reallistically this will always be true as errors will be thrown otherwise.
+</span></span><span id="346" class="l"><a class="l" href="#346">346: </a><span class="php-comment">     */</span>
+</span><span id="347" class="l"><a class="l" href="#347">347: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_unschedule" href="#_unschedule">unschedule</a>(<span class="php-var">$cid</span>) {
+</span><span id="348" class="l"><a class="l" href="#348">348: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>);
+</span><span id="349" class="l"><a class="l" href="#349">349: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/unschedule'</span>, <span class="php-var">$_params</span>);
+</span><span id="350" class="l"><a class="l" href="#350">350: </a>    }
+</span><span id="351" class="l"><a class="l" href="#351">351: </a>
+</span><span id="352" class="l"><a class="l" href="#352">352: </a>    <span class="php-comment">/**
+</span></span><span id="353" class="l"><a class="l" href="#353">353: </a><span class="php-comment">     * Update just about any setting besides type for a campaign that has &lt;em&gt;not&lt;/em&gt; been sent. See campaigns/create() for details.
+</span></span><span id="354" class="l"><a class="l" href="#354">354: </a><span class="php-comment">Caveats:&lt;br/&gt;&lt;ul class='bullets'&gt;
+</span></span><span id="355" class="l"><a class="l" href="#355">355: </a><span class="php-comment">&lt;li&gt;If you set a new list_id, all segmentation options will be deleted and must be re-added.&lt;/li&gt;
+</span></span><span id="356" class="l"><a class="l" href="#356">356: </a><span class="php-comment">&lt;li&gt;If you set template_id, you need to follow that up by setting it's 'content'&lt;/li&gt;
+</span></span><span id="357" class="l"><a class="l" href="#357">357: </a><span class="php-comment">&lt;li&gt;If you set segment_opts, you should have tested your options against campaigns/segment-test().&lt;/li&gt;
+</span></span><span id="358" class="l"><a class="l" href="#358">358: </a><span class="php-comment">&lt;li&gt;To clear/unset segment_opts, pass an empty string or array as the value. Various wrappers may require one or the other.&lt;/li&gt;
+</span></span><span id="359" class="l"><a class="l" href="#359">359: </a><span class="php-comment">&lt;/ul&gt;
+</span></span><span id="360" class="l"><a class="l" href="#360">360: </a><span class="php-comment">     * @param string $cid
+</span></span><span id="361" class="l"><a class="l" href="#361">361: </a><span class="php-comment">     * @param string $name
+</span></span><span id="362" class="l"><a class="l" href="#362">362: </a><span class="php-comment">     * @param array $value
+</span></span><span id="363" class="l"><a class="l" href="#363">363: </a><span class="php-comment">     * @return associative_array updated campaign details and any errors
+</span></span><span id="364" class="l"><a class="l" href="#364">364: </a><span class="php-comment">     *     - data associative_array the update campaign details - will return same data as single campaign from campaigns/list()
+</span></span><span id="365" class="l"><a class="l" href="#365">365: </a><span class="php-comment">     *     - errors array for &quot;options&quot; only - structs containing:
+</span></span><span id="366" class="l"><a class="l" href="#366">366: </a><span class="php-comment">     *         - code int the error code
+</span></span><span id="367" class="l"><a class="l" href="#367">367: </a><span class="php-comment">     *         - message string the full error message
+</span></span><span id="368" class="l"><a class="l" href="#368">368: </a><span class="php-comment">     *         - name string the parameter name that failed
+</span></span><span id="369" class="l"><a class="l" href="#369">369: </a><span class="php-comment">     */</span>
+</span><span id="370" class="l"><a class="l" href="#370">370: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_update" href="#_update">update</a>(<span class="php-var">$cid</span>, <span class="php-var">$name</span>, <span class="php-var">$value</span>) {
+</span><span id="371" class="l"><a class="l" href="#371">371: </a>        <span class="php-var">$_params</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;cid&quot;</span> =&gt; <span class="php-var">$cid</span>, <span class="php-quote">&quot;name&quot;</span> =&gt; <span class="php-var">$name</span>, <span class="php-quote">&quot;value&quot;</span> =&gt; <span class="php-var">$value</span>);
+</span><span id="372" class="l"><a class="l" href="#372">372: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;master-&gt;call(<span class="php-quote">'campaigns/update'</span>, <span class="php-var">$_params</span>);
+</span><span id="373" class="l"><a class="l" href="#373">373: </a>    }
+</span><span id="374" class="l"><a class="l" href="#374">374: </a>
+</span><span id="375" class="l"><a class="l" href="#375">375: </a>}
+</span><span id="376" class="l"><a class="l" href="#376">376: </a>
+</span><span id="377" class="l"><a class="l" href="#377">377: </a>
+</span><span id="378" class="l"><a class="l" href="#378">378: </a></span></code></pre>
 
 	<div id="footer">
 		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

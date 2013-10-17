@@ -199,7 +199,7 @@
 		
 		
 
-		<b>Located at</b> <a href="source-class-Mailchimp_Users.html#3-83" title="Go to source code">Mailchimp/Users.php</a><br />
+		<b>Located at</b> <a href="source-class-Mailchimp_Users.html#3-98" title="Go to source code">Mailchimp/Users.php</a><br />
 	</div>
 
 
@@ -488,6 +488,48 @@ it completed. Otherwise an error is thrown.<br />
 				<h4>Returns</h4>
 				<div class="list">
 					<code>array</code><br>structs for each user, including: - id int the login id for this login -
+username string the username used to log in - name string a display name for the
+account - empty first/last names will return the username - email string the
+email tied to the account used for passwords resets and the ilk - role string
+the role assigned to the account - avatar string if available, the url for the
+login's avatar<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="profile" id="_profile">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_profile">#</a>
+		<code><a href="source-class-Mailchimp_Users.html#83-96" title="Go to source code">profile</a>( )</code>
+
+		<div class="description short">
+			
+<p>Retrieve the profile for the login owning the provided API Key</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Retrieve the profile for the login owning the provided API Key</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>the current user's details, including: - id int the login id for this login -
 username string the username used to log in - name string a display name for the
 account - empty first/last names will return the username - email string the
 email tied to the account used for passwords resets and the ilk - role string

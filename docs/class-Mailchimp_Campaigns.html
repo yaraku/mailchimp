@@ -199,7 +199,7 @@
 		
 		
 
-		<b>Located at</b> <a href="source-class-Mailchimp_Campaigns.html#3-368" title="Go to source code">Mailchimp/Campaigns.php</a><br />
+		<b>Located at</b> <a href="source-class-Mailchimp_Campaigns.html#3-375" title="Go to source code">Mailchimp/Campaigns.php</a><br />
 	</div>
 
 
@@ -326,33 +326,33 @@ have more than 32,000 campaigns in your account.</p>
 					<dd><code>string</code><br>$type</dd>
 					<dt><var>$options</var></dt>
 					<dd><code>associative_array</code><br>$options - list_id string the list to send this campaign to- get lists using
-lists() - subject string the subject line for your campaign message - from_email
-string the From: email address for your campaign message - from_name string the
-From: name for your campaign message (not an email address) - to_name string the
-To: name recipients will see (not email address) - template_id int optional -
-use this user-created template to generate the HTML content of the campaign
-(takes precendence over other template options) - gallery_template_id int
-optional - use a template from the public gallery to generate the HTML content
-of the campaign (takes precendence over base template options) -
+lists/list() - subject string the subject line for your campaign message -
+from_email string the From: email address for your campaign message - from_name
+string the From: name for your campaign message (not an email address) - to_name
+string the To: name recipients will see (not email address) - template_id int
+optional - use this user-created template to generate the HTML content of the
+campaign (takes precendence over other template options) - gallery_template_id
+int optional - use a template from the public gallery to generate the HTML
+content of the campaign (takes precendence over base template options) -
 base_template_id int optional - use this a base/start-from-scratch template to
 generate the HTML content of the campaign - folder_id int optional -
-automatically file the new campaign in the folder_id passed. Get using folders()
-- note that Campaigns and Autoresponders have separate folder setupsn - tracking
-associative_array optional - set which recipient actions will be tracked. Click
-tracking can not be disabled for Free accounts. - opens bool whether to track
-opens, defaults to true - html_clicks bool whether to track clicks in HTML
-content, defaults to true - text_clicks bool whether to track clicks in Text
-content, defaults to false - title string optional - an internal name to use for
-this campaign. By default, the campaign subject will be used. - authenticate
-boolean optional - set to true to enable SenderID, DomainKeys, and DKIM
-authentication, defaults to false. - analytics associative_array optional - one
-or more of these keys set to the tag to use - that can be any custom text (up to
-50 bytes) - google string for Google Analytics tracking - clicktale string for
-ClickTale tracking - gooal string for Goo.al tracking - auto_footer boolean
-optional Whether or not we should auto-generate the footer for your content.
-Mostly useful for content from URLs or Imports - inline_css boolean optional
-Whether or not css should be automatically inlined when this campaign is sent,
-defaults to false. - generate_text boolean optional Whether of not to
+automatically file the new campaign in the folder_id passed. Get using
+folders/list() - note that Campaigns and Autoresponders have separate folder
+setups - tracking associative_array optional - set which recipient actions will
+be tracked. Click tracking can not be disabled for Free accounts. - opens bool
+whether to track opens, defaults to true - html_clicks bool whether to track
+clicks in HTML content, defaults to true - text_clicks bool whether to track
+clicks in Text content, defaults to false - title string optional - an internal
+name to use for this campaign. By default, the campaign subject will be used. -
+authenticate boolean optional - set to true to enable SenderID, DomainKeys, and
+DKIM authentication, defaults to false. - analytics associative_array optional -
+one or more of these keys set to the tag to use - that can be any custom text
+(up to 50 bytes) - google string for Google Analytics tracking - clicktale
+string for ClickTale tracking - gooal string for Goo.al tracking - auto_footer
+boolean optional Whether or not we should auto-generate the footer for your
+content. Mostly useful for content from URLs or Imports - inline_css boolean
+optional Whether or not css should be automatically inlined when this campaign
+is sent, defaults to false. - generate_text boolean optional Whether of not to
 auto-generate your Text content from the HTML content. Note that this will be
 ignored if the Text part of the content passed is not empty, defaults to false.
 - auto_tweet boolean optional If set, this campaign will be auto-tweeted when it
@@ -415,7 +415,7 @@ defaults to true - 6 bool optional Saturday, defaults to true - 7 bool optional
 Sunday, defaults to true - absplit associative_array For A/B Split campaigns,
 this struct should contain: - split_test string The values to segment based on.
 Currently, one of: "subject", "from_name", "schedule". NOTE, for "schedule", you
-will need to call campaignSchedule() separately! - pick_winner string How the
+will need to call campaigns/schedule() separately! - pick_winner string How the
 winner will be picked, one of: "opens" (by the open_rate), "clicks" (by the
 click rate), "manual" (you pick manually) - wait_units int optional the default
 time unit to wait before auto-selecting a winner - use "3600" for hours, "86400"
@@ -524,7 +524,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getList">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#137-209" title="Go to source code">getList</a>( <span>associative_array <var>$filters</var> = <span class="php-keyword1">array</span>()</span>, <span>integer <var>$start</var> = <span class="php-num">0</span></span>, <span>integer <var>$limit</var> = <span class="php-num">25</span></span>, <span>string <var>$sort_field</var> = <span class="php-quote">'create_time'</span></span>, <span>string <var>$sort_dir</var> = <span class="php-quote">'DESC'</span></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#137-215" title="Go to source code">getList</a>( <span>associative_array <var>$filters</var> = <span class="php-keyword1">array</span>()</span>, <span>integer <var>$start</var> = <span class="php-num">0</span></span>, <span>integer <var>$limit</var> = <span class="php-num">25</span></span>, <span>string <var>$sort_field</var> = <span class="php-quote">'create_time'</span></span>, <span>string <var>$sort_dir</var> = <span class="php-quote">'DESC'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -548,31 +548,31 @@ campaign_id. Accepts multiples separated by commas when not using exact
 matching. - parent_id string optional - return the child campaigns using a known
 parent campaign_id. Accepts multiples separated by commas when not using exact
 matching. - list_id string optional - the list to send this campaign to - get
-lists using lists(). Accepts multiples separated by commas when not using exact
-matching. - folder_id int optional - only show campaigns from this folder id -
-get folders using campaignFolders(). Accepts multiples separated by commas when
-not using exact matching. - template_id int optional - only show campaigns using
-this template id - get templates using templates(). Accepts multiples separated
-by commas when not using exact matching. - status string optional - return
-campaigns of a specific status - one of "sent", "save", "paused", "schedule",
-"sending". Accepts multiples separated by commas when not using exact matching.
-- type string optional - return campaigns of a specific type - one of "regular",
-"plaintext", "absplit", "rss", "auto". Accepts multiples separated by commas
-when not using exact matching. - from_name string optional - only show campaigns
-that have this "From Name" - from_email string optional - only show campaigns
-that have this "Reply-to Email" - title string optional - only show campaigns
-that have this title - subject string optional - only show campaigns that have
-this subject - sendtime_start string optional - only show campaigns that have
-been sent since this date/time (in GMT) - - 24 hour format in
-&lt;strong&gt;GMT&lt;/strong&gt;, eg "2013-12-30 20:30:00" - if this is invalid
-the whole call fails - sendtime_end string optional - only show campaigns that
-have been sent before this date/time (in GMT) - - 24 hour format in
-&lt;strong&gt;GMT&lt;/strong&gt;, eg "2013-12-30 20:30:00" - if this is invalid
-the whole call fails - uses_segment boolean - whether to return just campaigns
-with or without segments - exact boolean optional - flag for whether to filter
-on exact values when filtering, or search within content for filter values -
-defaults to true. Using this disables the use of any filters that accept
-multiples.</dd>
+lists using lists/list(). Accepts multiples separated by commas when not using
+exact matching. - folder_id int optional - only show campaigns from this folder
+id - get folders using folders/list(). Accepts multiples separated by commas
+when not using exact matching. - template_id int optional - only show campaigns
+using this template id - get templates using templates/list(). Accepts multiples
+separated by commas when not using exact matching. - status string optional -
+return campaigns of a specific status - one of "sent", "save", "paused",
+"schedule", "sending". Accepts multiples separated by commas when not using
+exact matching. - type string optional - return campaigns of a specific type -
+one of "regular", "plaintext", "absplit", "rss", "auto". Accepts multiples
+separated by commas when not using exact matching. - from_name string optional -
+only show campaigns that have this "From Name" - from_email string optional -
+only show campaigns that have this "Reply-to Email" - title string optional -
+only show campaigns that have this title - subject string optional - only show
+campaigns that have this subject - sendtime_start string optional - only show
+campaigns that have been sent since this date/time (in GMT) - - 24 hour format
+in &lt;strong&gt;GMT&lt;/strong&gt;, eg "2013-12-30 20:30:00" - if this is
+invalid the whole call fails - sendtime_end string optional - only show
+campaigns that have been sent before this date/time (in GMT) - - 24 hour format
+in &lt;strong&gt;GMT&lt;/strong&gt;, eg "2013-12-30 20:30:00" - if this is
+invalid the whole call fails - uses_segment boolean - whether to return just
+campaigns with or without segments - exact boolean optional - flag for whether
+to filter on exact values when filtering, or search within content for filter
+values - defaults to true. Using this disables the use of any filters that
+accept multiples.</dd>
 					<dt><var>$start</var></dt>
 					<dd><code>integer</code><br>$start</dd>
 					<dt><var>$limit</var></dt>
@@ -615,17 +615,21 @@ Whether or not the campaign used Timewarp - timewarp_schedule string The time,
 in GMT, that the Timewarp campaign is being sent. For A/B Split campaigns, this
 is blank and is instead in their schedule_a and schedule_b in the type_opts
 array - parent_id string the unique id of the parent campaign (currently only
-valid for rss children) - tracking associative_array the various tracking
-options used - html_clicks boolean whether or not tracking for html clicks was
-enabled. - text_clicks boolean whether or not tracking for text clicks was
-enabled. - opens boolean whether or not opens tracking was enabled. -
-segment_text string a string marked-up with HTML explaining the segment used for
-the campaign in plain English - segment_opts array the segment used for the
-campaign - can be passed to campaigns/segment-test or campaigns/create -
-type_opts associative_array the type-specific options for the campaign - can be
-passed to campaigns/create - comments_total int total number of comments left on
-this campaign - comments_unread int total number of unread comments for this
-campaign based on the login the apikey belongs to - summary associative_array if
+valid for rss children) - tests_sent string tests sent - tests_remain string
+test sends remaining - tracking associative_array the various tracking options
+used - html_clicks boolean whether or not tracking for html clicks was enabled.
+- text_clicks boolean whether or not tracking for text clicks was enabled. -
+opens boolean whether or not opens tracking was enabled. - segment_text string a
+string marked-up with HTML explaining the segment used for the campaign in plain
+English - segment_opts array the segment used for the campaign - can be passed
+to campaigns/segment-test or campaigns/create() - saved_segment
+associative_array if a saved segment was used (match+conditions returned above):
+- id associative_array the saved segment id - type associative_array the saved
+segment type - name associative_array the saved segment name - type_opts
+associative_array the type-specific options for the campaign - can be passed to
+campaigns/create() - comments_total int total number of comments left on this
+campaign - comments_unread int total number of unread comments for this campaign
+based on the login the apikey belongs to - summary associative_array if
 available, the basic aggregate stats returned by reports/summary - errors array
 structs of any errors found while loading lists - usually just from providing
 invalid list ids - filter string the filter that caused the failure - value
@@ -650,7 +654,7 @@ error int the error message<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_pause">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#211-220" title="Go to source code">pause</a>( <span>string <var>$cid</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#217-226" title="Go to source code">pause</a>( <span>string <var>$cid</var></span> )</code>
 
 		<div class="description short">
 			
@@ -693,7 +697,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_ready">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#222-235" title="Go to source code">ready</a>( <span>string <var>$cid</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#228-241" title="Go to source code">ready</a>( <span>string <var>$cid</var></span> )</code>
 
 		<div class="description short">
 			
@@ -743,7 +747,7 @@ string the item's details from the app, sans any html tags/links<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_replicate">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#237-245" title="Go to source code">replicate</a>( <span>string <var>$cid</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#243-251" title="Go to source code">replicate</a>( <span>string <var>$cid</var></span> )</code>
 
 		<div class="description short">
 			
@@ -786,7 +790,7 @@ campaigns/list()<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_resume">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#247-256" title="Go to source code">resume</a>( <span>string <var>$cid</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#253-262" title="Go to source code">resume</a>( <span>string <var>$cid</var></span> )</code>
 
 		<div class="description short">
 			
@@ -829,7 +833,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_schedule">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#258-269" title="Go to source code">schedule</a>( <span>string <var>$cid</var></span>, <span>string <var>$schedule_time</var></span>, <span>string <var>$schedule_time_b</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#264-275" title="Go to source code">schedule</a>( <span>string <var>$cid</var></span>, <span>string <var>$schedule_time</var></span>, <span>string <var>$schedule_time_b</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -876,7 +880,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_scheduleBatch">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#271-283" title="Go to source code">scheduleBatch</a>( <span>string <var>$cid</var></span>, <span>string <var>$schedule_time</var></span>, <span>integer <var>$num_batches</var> = <span class="php-num">2</span></span>, <span>integer <var>$stagger_mins</var> = <span class="php-num">5</span></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#277-289" title="Go to source code">scheduleBatch</a>( <span>string <var>$cid</var></span>, <span>string <var>$schedule_time</var></span>, <span>integer <var>$num_batches</var> = <span class="php-num">2</span></span>, <span>integer <var>$stagger_mins</var> = <span class="php-num">5</span></span> )</code>
 
 		<div class="description short">
 			
@@ -927,7 +931,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_segmentTest">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#285-297" title="Go to source code">segmentTest</a>( <span>string <var>$list_id</var></span>, <span>associative_array <var>$options</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#291-304" title="Go to source code">segmentTest</a>( <span>string <var>$list_id</var></span>, <span>associative_array <var>$options</var></span> )</code>
 
 		<div class="description short">
 			
@@ -948,8 +952,10 @@ them</p>
 					<dt><var>$list_id</var></dt>
 					<dd><code>string</code><br>$list_id</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>associative_array</code><br>$options - match string controls whether to use AND or OR when applying your
-options - expects "&lt;strong&gt;any&lt;/strong&gt;" (for OR) or
+					<dd><code>associative_array</code><br>$options - saved_segment_id string a saved segment id from lists/segments() -
+this will take precendence, otherwise the match+conditions are required. - match
+string controls whether to use AND or OR when applying your options - expects
+"&lt;strong&gt;any&lt;/strong&gt;" (for OR) or
 "&lt;strong&gt;all&lt;/strong&gt;" (for AND) - conditions array of up to 5
 structs for different criteria to apply while segmenting. Each criteria row must
 contain 3 keys - "&lt;strong&gt;field&lt;/strong&gt;",
@@ -981,7 +987,7 @@ segmentation options<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_send">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#299-308" title="Go to source code">send</a>( <span>string <var>$cid</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#306-315" title="Go to source code">send</a>( <span>string <var>$cid</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1026,7 +1032,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sendTest">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#310-321" title="Go to source code">sendTest</a>( <span>string <var>$cid</var></span>, <span>array <var>$test_emails</var> = <span class="php-keyword1">array</span>()</span>, <span>string <var>$send_type</var> = <span class="php-quote">'html'</span></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#317-328" title="Go to source code">sendTest</a>( <span>string <var>$cid</var></span>, <span>array <var>$test_emails</var> = <span class="php-keyword1">array</span>()</span>, <span>string <var>$send_type</var> = <span class="php-quote">'html'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1073,7 +1079,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_templateContent">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#323-332" title="Go to source code">templateContent</a>( <span>string <var>$cid</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#330-339" title="Go to source code">templateContent</a>( <span>string <var>$cid</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1122,7 +1128,7 @@ dependent upon the template used and thus can't be documented<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_unschedule">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#334-343" title="Go to source code">unschedule</a>( <span>string <var>$cid</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#341-350" title="Go to source code">unschedule</a>( <span>string <var>$cid</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1165,12 +1171,12 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_update">#</a>
-		<code><a href="source-class-Mailchimp_Campaigns.html#345-366" title="Go to source code">update</a>( <span>string <var>$cid</var></span>, <span>string <var>$name</var></span>, <span>array <var>$value</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Campaigns.html#352-373" title="Go to source code">update</a>( <span>string <var>$cid</var></span>, <span>string <var>$name</var></span>, <span>array <var>$value</var></span> )</code>
 
 		<div class="description short">
 			Update just about any setting besides type for a campaign that has
-&lt;em&gt;not&lt;/em&gt; been sent. See campaign/create for details. Caveats:<br
-/>
+&lt;em&gt;not&lt;/em&gt; been sent. See campaigns/create() for details.
+Caveats:<br />
 
 <ul class="bullets">
 	<li>If you set a new list_id, all segmentation options will be deleted and must
@@ -1180,7 +1186,7 @@ this will always be true as errors will be thrown otherwise.<br />
 	'content'</li>
 
 	<li>If you set segment_opts, you should have tested your options against
-	campaign/segment-test().</li>
+	campaigns/segment-test().</li>
 
 	<li>To clear/unset segment_opts, pass an empty string or array as the value.
 	Various wrappers may require one or the other.</li>
@@ -1190,8 +1196,8 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<div class="description detailed hidden">
 			Update just about any setting besides type for a campaign that has
-&lt;em&gt;not&lt;/em&gt; been sent. See campaign/create for details. Caveats:<br
-/>
+&lt;em&gt;not&lt;/em&gt; been sent. See campaigns/create() for details.
+Caveats:<br />
 
 <ul class="bullets">
 	<li>If you set a new list_id, all segmentation options will be deleted and must
@@ -1201,7 +1207,7 @@ this will always be true as errors will be thrown otherwise.<br />
 	'content'</li>
 
 	<li>If you set segment_opts, you should have tested your options against
-	campaign/segment-test().</li>
+	campaigns/segment-test().</li>
 
 	<li>To clear/unset segment_opts, pass an empty string or array as the value.
 	Various wrappers may require one or the other.</li>

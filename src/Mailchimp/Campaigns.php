@@ -27,7 +27,7 @@ class Mailchimp_Campaigns {
      * Create a new draft campaign to send. You <strong>can not</strong> have more than 32,000 campaigns in your account.
      * @param string $type
      * @param associative_array $options
-     *     - list_id string the list to send this campaign to- get lists using lists()
+     *     - list_id string the list to send this campaign to- get lists using lists/list()
      *     - subject string the subject line for your campaign message
      *     - from_email string the From: email address for your campaign message
      *     - from_name string the From: name for your campaign message (not an email address)
@@ -35,7 +35,7 @@ class Mailchimp_Campaigns {
      *     - template_id int optional - use this user-created template to generate the HTML content of the campaign (takes precendence over other template options)
      *     - gallery_template_id int optional - use a template from the public gallery to generate the HTML content of the campaign (takes precendence over base template options)
      *     - base_template_id int optional - use this a base/start-from-scratch template to generate the HTML content of the campaign
-     *     - folder_id int optional - automatically file the new campaign in the folder_id passed. Get using folders() - note that Campaigns and Autoresponders have separate folder setupsn
+     *     - folder_id int optional - automatically file the new campaign in the folder_id passed. Get using folders/list() - note that Campaigns and Autoresponders have separate folder setups
      *     - tracking associative_array optional - set which recipient actions will be tracked. Click tracking can not be disabled for Free accounts.
      *         - opens bool whether to track opens, defaults to true
      *         - html_clicks bool whether to track clicks in HTML content, defaults to true
@@ -87,7 +87,7 @@ class Mailchimp_Campaigns {
      *             - 6 bool optional Saturday, defaults to true
      *             - 7 bool optional Sunday, defaults to true
      *     - absplit associative_array For A/B Split campaigns, this struct should contain:
-     *         - split_test string The values to segment based on. Currently, one of: "subject", "from_name", "schedule". NOTE, for "schedule", you will need to call campaignSchedule() separately!
+     *         - split_test string The values to segment based on. Currently, one of: "subject", "from_name", "schedule". NOTE, for "schedule", you will need to call campaigns/schedule() separately!
      *         - pick_winner string How the winner will be picked, one of: "opens" (by the open_rate), "clicks" (by the click rate), "manual" (you pick manually)
      *         - wait_units int optional the default time unit to wait before auto-selecting a winner - use "3600" for hours, "86400" for days. Defaults to 86400.
      *         - wait_time int optional the number of units to wait before auto-selecting a winner - defaults to 1, so if not set, a winner will be selected after 1 Day.
@@ -139,9 +139,9 @@ class Mailchimp_Campaigns {
      * @param associative_array $filters
      *     - campaign_id string optional - return the campaign using a know campaign_id.  Accepts multiples separated by commas when not using exact matching.
      *     - parent_id string optional - return the child campaigns using a known parent campaign_id.  Accepts multiples separated by commas when not using exact matching.
-     *     - list_id string optional - the list to send this campaign to - get lists using lists(). Accepts multiples separated by commas when not using exact matching.
-     *     - folder_id int optional - only show campaigns from this folder id - get folders using campaignFolders(). Accepts multiples separated by commas when not using exact matching.
-     *     - template_id int optional - only show campaigns using this template id - get templates using templates(). Accepts multiples separated by commas when not using exact matching.
+     *     - list_id string optional - the list to send this campaign to - get lists using lists/list(). Accepts multiples separated by commas when not using exact matching.
+     *     - folder_id int optional - only show campaigns from this folder id - get folders using folders/list(). Accepts multiples separated by commas when not using exact matching.
+     *     - template_id int optional - only show campaigns using this template id - get templates using templates/list(). Accepts multiples separated by commas when not using exact matching.
      *     - status string optional - return campaigns of a specific status - one of "sent", "save", "paused", "schedule", "sending". Accepts multiples separated by commas when not using exact matching.
      *     - type string optional - return campaigns of a specific type - one of "regular", "plaintext", "absplit", "rss", "auto". Accepts multiples separated by commas when not using exact matching.
      *     - from_name string optional - only show campaigns that have this "From Name"
@@ -187,13 +187,19 @@ class Mailchimp_Campaigns {
      *         - timewarp boolean Whether or not the campaign used Timewarp
      *         - timewarp_schedule string The time, in GMT, that the Timewarp campaign is being sent. For A/B Split campaigns, this is blank and is instead in their schedule_a and schedule_b in the type_opts array
      *         - parent_id string the unique id of the parent campaign (currently only valid for rss children)
+     *         - tests_sent string tests sent
+     *         - tests_remain string test sends remaining
      *         - tracking associative_array the various tracking options used
      *             - html_clicks boolean whether or not tracking for html clicks was enabled.
      *             - text_clicks boolean whether or not tracking for text clicks was enabled.
      *             - opens boolean whether or not opens tracking was enabled.
      *         - segment_text string a string marked-up with HTML explaining the segment used for the campaign in plain English
-     *         - segment_opts array the segment used for the campaign - can be passed to campaigns/segment-test or campaigns/create
-     *         - type_opts associative_array the type-specific options for the campaign - can be passed to campaigns/create
+     *         - segment_opts array the segment used for the campaign - can be passed to campaigns/segment-test or campaigns/create()
+     *         - saved_segment associative_array if a saved segment was used (match+conditions returned above):
+     *             - id associative_array the saved segment id
+     *             - type associative_array the saved segment type
+     *             - name associative_array the saved segment name
+     *         - type_opts associative_array the type-specific options for the campaign - can be passed to campaigns/create()
      *         - comments_total int total number of comments left on this campaign
      *         - comments_unread int total number of unread comments for this campaign based on the login the apikey belongs to
      *         - summary associative_array if available, the basic aggregate stats returned by reports/summary
@@ -286,6 +292,7 @@ class Mailchimp_Campaigns {
      * Allows one to test their segmentation rules before creating a campaign using them
      * @param string $list_id
      * @param associative_array $options
+     *     - saved_segment_id string a saved segment id from lists/segments() - this will take precendence, otherwise the match+conditions are required.
      *     - match string controls whether to use AND or OR when applying your options - expects "<strong>any</strong>" (for OR) or "<strong>all</strong>" (for AND)
      *     - conditions array of up to 5 structs for different criteria to apply while segmenting. Each criteria row must contain 3 keys - "<strong>field</strong>", "<strong>op</strong>", and "<strong>value</strong>" - and possibly a fourth, "<strong>extra</strong>", based on these definitions:
      * @return associative_array with a single entry:
@@ -343,11 +350,11 @@ a campaign is using. You only want to use this if you want to allow editing temp
     }
 
     /**
-     * Update just about any setting besides type for a campaign that has <em>not</em> been sent. See campaign/create for details.
+     * Update just about any setting besides type for a campaign that has <em>not</em> been sent. See campaigns/create() for details.
 Caveats:<br/><ul class='bullets'>
 <li>If you set a new list_id, all segmentation options will be deleted and must be re-added.</li>
 <li>If you set template_id, you need to follow that up by setting it's 'content'</li>
-<li>If you set segment_opts, you should have tested your options against campaign/segment-test().</li>
+<li>If you set segment_opts, you should have tested your options against campaigns/segment-test().</li>
 <li>To clear/unset segment_opts, pass an empty string or array as the value. Various wrappers may require one or the other.</li>
 </ul>
      * @param string $cid

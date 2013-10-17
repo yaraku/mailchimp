@@ -199,7 +199,7 @@
 		
 		
 
-		<b>Located at</b> <a href="source-class-Mailchimp_Lists.html#3-815" title="Go to source code">Mailchimp/Lists.php</a><br />
+		<b>Located at</b> <a href="source-class-Mailchimp_Lists.html#3-893" title="Go to source code">Mailchimp/Lists.php</a><br />
 	</div>
 
 
@@ -276,11 +276,11 @@
 				<div class="list">
 					<code>associative_array</code><br>the total of all reports and the specific reports reports this page - total int
 the total number of matching abuse reports - data array structs for the actual
-data for each reports, including: - date string date/time the abuse report was
+data for each reports, including: - date string date+time the abuse report was
 received and processed - email string the email address that reported abuse -
 campaign_id string the unique id for the campaign that report was made against -
-type string an internal type generally specifying the orginating mail provider -
-may not be useful outside of filling report views<br />
+type string an internal type generally specifying the originating mail provider
+- may not be useful outside of filling report views<br />
 				</div>
 
 
@@ -1024,7 +1024,7 @@ unique id - activity array an array of structs containing the activity,
 including: - action string The action name, one of: open, click, bounce, unsub,
 abuse, sent, queued, ecomm, mandrill_send, mandrill_hard_bounce,
 mandrill_soft_bounce, mandrill_open, mandrill_click, mandrill_spam,
-mandrill_unsub, mandrill_reject - timestamp string The date/time of the action
+mandrill_unsub, mandrill_reject - timestamp string The date+time of the action
 (GMT) - url string For click actions, the url clicked, otherwise this is empty -
 type string If there's extra bounce, unsub, etc data it will show up here. -
 campaign_id string The campaign id the action was related to, if it exists -
@@ -1095,15 +1095,15 @@ groups array structs for each group in the grouping - name string the group name
 subscription status for this email address, either pending, subscribed,
 unsubscribed, or cleaned - ip_signup string IP Address this address signed up
 from. This may be blank if single optin is used. - timestamp_signup string The
-date/time the double optin was initiated. This may be blank if single optin is
+date+time the double optin was initiated. This may be blank if single optin is
 used. - ip_opt string IP Address this address opted in from. - timestamp_opt
-string The date/time the optin completed - member_rating int the rating of the
+string The date+time the optin completed - member_rating int the rating of the
 subscriber. This will be 1 - 5 as described <a href="http://eepurl.com/f-2P"
 target="_blank">here</a> - campaign_id string If the user is unsubscribed and
 they unsubscribed from a specific campaign, that campaign_id will be listed,
 otherwise this is not returned. - lists array An array of structs for the other
 lists this member belongs to - id string the list id - status string the members
-status on that list - timestamp string The date/time this email address entered
+status on that list - timestamp string The date+time this email address entered
 it's current status - info_changed string The last time this record was changed.
 If the record is old enough, this may be blank. - web_id int The Member id used
 in our web app, allows you to create a link directly to it - leid int The Member
@@ -1156,7 +1156,7 @@ change as users update their profile.<br />
 <p>Get all of the list members for a list that are of a particular status and
 potentially matching a segment. This will cause locking, so don't run multiples
 at once. Are you trying to get a dump including lots of merge data or specific
-members of a list? If so, checkout the <a href="export/1.0/list.func.php">List
+members of a list? If so, checkout the <a href="/export/1.0/list.func.php">List
 Export API</a></p>
 
 		</div>
@@ -1166,7 +1166,7 @@ Export API</a></p>
 <p>Get all of the list members for a list that are of a particular status and
 potentially matching a segment. This will cause locking, so don't run multiples
 at once. Are you trying to get a dump including lots of merge data or specific
-members of a list? If so, checkout the <a href="export/1.0/list.func.php">List
+members of a list? If so, checkout the <a href="/export/1.0/list.func.php">List
 Export API</a></p>
 
 
@@ -1212,7 +1212,7 @@ by member-info<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_mergeVarAdd">#</a>
-		<code><a href="source-class-Mailchimp_Lists.html#383-417" title="Go to source code">mergeVarAdd</a>( <span>string <var>$id</var></span>, <span>string <var>$tag</var></span>, <span>string <var>$name</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-Mailchimp_Lists.html#383-417" title="Go to source code">mergeVarAdd</a>( <span>string <var>$id</var></span>, <span>string <var>$tag</var></span>, <span>string <var>$name</var></span>, <span>associative_array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -1235,7 +1235,7 @@ by member-info<br />
 					<dt><var>$name</var></dt>
 					<dd><code>string</code><br>$name</dd>
 					<dt><var>$options</var></dt>
-					<dd><code>array</code><br>$options - field_type string optional one of: text, number, radio, dropdown,
+					<dd><code>associative_array</code><br>$options - field_type string optional one of: text, number, radio, dropdown,
 date, address, phone, url, imageurl, zip, birthday - defaults to text - req
 boolean optional indicates whether the field is required - defaults to false -
 public boolean optional indicates whether the field is displayed in public -
@@ -1243,8 +1243,8 @@ defaults to true - show boolean optional indicates whether the field is
 displayed in the app's list member view - defaults to true - order int The order
 this merge tag should be displayed in - this will cause existing values to be
 reset so this fits - default_value string optional the default value for the
-field. See subscribe() for formatting info. Defaults to blank - max 255 bytes -
-helptext string optional the help text to be used with some newer forms.
+field. See lists/subscribe() for formatting info. Defaults to blank - max 255
+bytes - helptext string optional the help text to be used with some newer forms.
 Defaults to blank - max 255 bytes - choices array optional kind of - an array of
 strings to use as the choices for radio and dropdown type fields - dateformat
 string optional only valid for birthday and date fields. For birthday type, must
@@ -1268,8 +1268,9 @@ imageurl - public bool Whether or not this field is visible to list subscribers
 The order this field displays in on forms - default string The default value for
 this field - helptext string The helptext for this field - size string The width
 of the field to be used - tag string The merge tag that's used for forms and
-subscribe() and updateMember() - choices array the options available for radio
-and dropdown field types - id int an unchanging id for the merge var<br />
+lists/subscribe() and lists/update-member() - choices array the options
+available for radio and dropdown field types - id int an unchanging id for the
+merge var<br />
 				</div>
 
 
@@ -1477,8 +1478,9 @@ imageurl - public bool Whether or not this field is visible to list subscribers
 The order this field to displays in on forms - default string The default value
 for this field - helptext string The helptext for this field - size string The
 width of the field to be used - tag string The merge tag that's used for forms
-and subscribe() and updateMember() - choices array the options available for
-radio and dropdown field types - id int an unchanging id for the merge var<br />
+and lists/subscribe() and lists/update-member() - choices array the options
+available for radio and dropdown field types - id int an unchanging id for the
+merge var<br />
 				</div>
 
 
@@ -1535,11 +1537,280 @@ list dashboard - order string The order the list owner has set this field to
 display in - default string The default value the list owner has set for this
 field - helptext string The helptext for this field - size string The width of
 the field to be used - tag string The merge tag that's used for forms and
-listSubscribe() and listUpdateMember() - choices array For radio and dropdown
+lists/subscribe() and listUpdateMember() - choices array For radio and dropdown
 field types, an array of the options available - id int an unchanging id for the
 merge var - errors array of error structs - id string the passed list id that
 failed - code int the resulting error code - msg string the resulting error
 message<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="segments" id="_segments">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_segments">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#514-526" title="Go to source code">segments</a>( <span>string <var>$id</var></span>, <span>string <var>$type</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Retrieve all of Segments for a list.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Retrieve all of Segments for a list.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$type</var></dt>
+					<dd><code>string</code><br>$type</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with 2 keys: - static.id int the id of the segment - created_date string the
+date+time the segment was created - last_update string the date+time the segment
+was last updated (add or del)<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="segmentAdd" id="_segmentAdd">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_segmentAdd">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#528-547" title="Go to source code">segmentAdd</a>( <span>string <var>$id</var></span>, <span>associative_array <var>$opts</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Save a segment against a list for later use. There is no limit to the number
+of segments which can be saved. Static Segments &lt;strong&gt;are
+not&lt;/strong&gt; tied to any merge data, interest groups, etc. They
+essentially allow you to configure an unlimited number of custom segments which
+will have standard performance. When using proper segments, Static Segments are
+one of the available options for segmentation just as if you used a merge var
+(and they can be used with other segmentation options), though performance may
+degrade at that point. Saved Segments (called "auto-updating" in the app) are
+essentially just the match+conditions typically used.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Save a segment against a list for later use. There is no limit to the number
+of segments which can be saved. Static Segments &lt;strong&gt;are
+not&lt;/strong&gt; tied to any merge data, interest groups, etc. They
+essentially allow you to configure an unlimited number of custom segments which
+will have standard performance. When using proper segments, Static Segments are
+one of the available options for segmentation just as if you used a merge var
+(and they can be used with other segmentation options), though performance may
+degrade at that point. Saved Segments (called "auto-updating" in the app) are
+essentially just the match+conditions typically used.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$opts</var></dt>
+					<dd><code>associative_array</code><br>$opts - type string either "static" or "saved" - name string a unique name per
+list for the segment - 100 byte maximum length, anything longer will throw an
+error - segment_opts associative_array for "saved" only, the standard segment
+match+conditions, just like campaigns/segment-test - match string "any" or "all"
+- conditions array structs for each condition, just like campaigns/segment-test</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with a single entry: - id int the id of the new segment, otherwise an error will
+be thrown.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="segmentDel" id="_segmentDel">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_segmentDel">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#549-559" title="Go to source code">segmentDel</a>( <span>string <var>$id</var></span>, <span>integer <var>$seg_id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Delete a segment. Note that this will, of course, remove any member
+affiliations with any static segments deleted</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Delete a segment. Note that this will, of course, remove any member
+affiliations with any static segments deleted</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$seg_id</var></dt>
+					<dd><code>integer</code><br>$seg_id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
+this will always be true as errors will be thrown otherwise.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="segmentTest" id="_segmentTest">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_segmentTest">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#561-575" title="Go to source code">segmentTest</a>( <span>string <var>$list_id</var></span>, <span>associative_array <var>$options</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Allows one to test their segmentation rules before creating a campaign using
+them - this is no different from campaigns/segment-test() and will eventually
+replace it. For the time being, the crazy segmenting condition documentation
+will continue to live over there.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Allows one to test their segmentation rules before creating a campaign using
+them - this is no different from campaigns/segment-test() and will eventually
+replace it. For the time being, the crazy segmenting condition documentation
+will continue to live over there.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$list_id</var></dt>
+					<dd><code>string</code><br>$list_id</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>associative_array</code><br>$options - saved_segment_id string a saved segment id from lists/segments() -
+this will take precendence, otherwise the match+conditions are required. - match
+string controls whether to use AND or OR when applying your options - expects
+"&lt;strong&gt;any&lt;/strong&gt;" (for OR) or
+"&lt;strong&gt;all&lt;/strong&gt;" (for AND) - conditions array of up to 5
+structs for different criteria to apply while segmenting. Each criteria row must
+contain 3 keys - "&lt;strong&gt;field&lt;/strong&gt;",
+"&lt;strong&gt;op&lt;/strong&gt;", and "&lt;strong&gt;value&lt;/strong&gt;" -
+and possibly a fourth, "&lt;strong&gt;extra&lt;/strong&gt;", based on these
+definitions:</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with a single entry: - total int The total number of subscribers matching your
+segmentation options<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="segmentUpdate" id="_segmentUpdate">
+
+		<td class="attributes"><code>
+			 public 
+			associative_array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_segmentUpdate">#</a>
+		<code><a href="source-class-Mailchimp_Lists.html#577-592" title="Go to source code">segmentUpdate</a>( <span>string <var>$id</var></span>, <span>integer <var>$seg_id</var></span>, <span>associative_array <var>$opts</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Update an existing segment. The list and type can not be changed.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Update an existing segment. The list and type can not be changed.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id</dd>
+					<dt><var>$seg_id</var></dt>
+					<dd><code>integer</code><br>$seg_id</dd>
+					<dt><var>$opts</var></dt>
+					<dd><code>associative_array</code><br>$opts - name string a unique name per list for the segment - 100 byte maximum
+length, anything longer will throw an error - segment_opts associative_array for
+"saved" only, the standard segment match+conditions, just like
+campaigns/segment-test - match associative_array "any" or "all" - conditions
+array structs for each condition, just like campaigns/segment-test</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>associative_array</code><br>with a single entry: - complete bool whether the call worked. reallistically
+this will always be true as errors will be thrown otherwise.<br />
 				</div>
 
 
@@ -1559,7 +1830,7 @@ message<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_staticSegmentAdd">#</a>
-		<code><a href="source-class-Mailchimp_Lists.html#514-527" title="Go to source code">staticSegmentAdd</a>( <span>string <var>$id</var></span>, <span>string <var>$name</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Lists.html#594-607" title="Go to source code">staticSegmentAdd</a>( <span>string <var>$id</var></span>, <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1618,7 +1889,7 @@ be thrown.<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_staticSegmentDel">#</a>
-		<code><a href="source-class-Mailchimp_Lists.html#529-539" title="Go to source code">staticSegmentDel</a>( <span>string <var>$id</var></span>, <span>integer <var>$seg_id</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Lists.html#609-619" title="Go to source code">staticSegmentDel</a>( <span>string <var>$id</var></span>, <span>integer <var>$seg_id</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1665,7 +1936,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_staticSegmentMembersAdd">#</a>
-		<code><a href="source-class-Mailchimp_Lists.html#541-564" title="Go to source code">staticSegmentMembersAdd</a>( <span>string <var>$id</var></span>, <span>integer <var>$seg_id</var></span>, <span>array <var>$batch</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Lists.html#621-643" title="Go to source code">staticSegmentMembersAdd</a>( <span>string <var>$id</var></span>, <span>integer <var>$seg_id</var></span>, <span>array <var>$batch</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1692,13 +1963,11 @@ subscribe them to the list!</p>
 					<dt><var>$seg_id</var></dt>
 					<dd><code>integer</code><br>$seg_id</dd>
 					<dt><var>$batch</var></dt>
-					<dd><code>array</code><br>$batch - email associative_array a struct with one of the following keys -
-failing to provide anything will produce an error relating to the email address.
-Provide multiples and we'll use the first we see in this same order. - email
-string an email address - euid string the unique id for an email address (not
-list related) - the email "id" returned from listMemberInfo, Webhooks,
-Campaigns, etc. - leid string the list email id (previously called web_id) for a
-list-member-info type call. this doesn't change when the email address changes</dd>
+					<dd><code>array</code><br>$batch - email string an email address - euid string the unique id for an email
+address (not list related) - the email "id" returned from listMemberInfo,
+Webhooks, Campaigns, etc. - leid string the list email id (previously called
+web_id) for a list-member-info type call. this doesn't change when the email
+address changes</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1728,7 +1997,7 @@ the error code - error string the full error message<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_staticSegmentMembersDel">#</a>
-		<code><a href="source-class-Mailchimp_Lists.html#566-590" title="Go to source code">staticSegmentMembersDel</a>( <span>string <var>$id</var></span>, <span>integer <var>$seg_id</var></span>, <span>array <var>$batch</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Lists.html#645-668" title="Go to source code">staticSegmentMembersDel</a>( <span>string <var>$id</var></span>, <span>integer <var>$seg_id</var></span>, <span>array <var>$batch</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1755,13 +2024,11 @@ unsubscribe them from the list!</p>
 					<dt><var>$seg_id</var></dt>
 					<dd><code>integer</code><br>$seg_id</dd>
 					<dt><var>$batch</var></dt>
-					<dd><code>array</code><br>$batch - email associative_array a struct with one of the following keys -
-failing to provide anything will produce an error relating to the email address.
-Provide multiples and we'll use the first we see in this same order. - email
-string an email address - euid string the unique id for an email address (not
-list related) - the email "id" returned from listMemberInfo, Webhooks,
-Campaigns, etc. - leid string the list email id (previously called web_id) for a
-list-member-info type call. this doesn't change when the email address changes</dd>
+					<dd><code>array</code><br>$batch - email string an email address - euid string the unique id for an email
+address (not list related) - the email "id" returned from listMemberInfo,
+Webhooks, Campaigns, etc. - leid string the list email id (previously called
+web_id) for a list-member-info type call. this doesn't change when the email
+address changes</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1791,7 +2058,7 @@ unique id - code string the error code - error string the full error message<br 
 
 		<td class="name"><div>
 		<a class="anchor" href="#_staticSegmentReset">#</a>
-		<code><a href="source-class-Mailchimp_Lists.html#592-602" title="Go to source code">staticSegmentReset</a>( <span>string <var>$id</var></span>, <span>integer <var>$seg_id</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Lists.html#670-680" title="Go to source code">staticSegmentReset</a>( <span>string <var>$id</var></span>, <span>integer <var>$seg_id</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1838,7 +2105,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_staticSegments">#</a>
-		<code><a href="source-class-Mailchimp_Lists.html#604-618" title="Go to source code">staticSegments</a>( <span>string <var>$id</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Lists.html#682-696" title="Go to source code">staticSegments</a>( <span>string <var>$id</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1862,9 +2129,9 @@ this will always be true as errors will be thrown otherwise.<br />
 				<div class="list">
 					<code>array</code><br>an of structs with data for each static segment - id int the id of the segment -
 name string the name for the segment - member_count int the total number of
-subscribed members currently in a segment - created_date string the date/time
-the segment was created - last_update string the date/time the segment was last
-updated (add or del) - last_reset string the date/time the segment was last
+subscribed members currently in a segment - created_date string the date+time
+the segment was created - last_update string the date+time the segment was last
+updated (add or del) - last_reset string the date+time the segment was last
 reset (ie had all members cleared from it)<br />
 				</div>
 
@@ -1885,7 +2152,7 @@ reset (ie had all members cleared from it)<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_subscribe">#</a>
-		<code><a href="source-class-Mailchimp_Lists.html#620-657" title="Go to source code">subscribe</a>( <span>string <var>$id</var></span>, <span>associative_array <var>$email</var></span>, <span>associative_array <var>$merge_vars</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$email_type</var> = <span class="php-quote">'html'</span></span>, <span>boolean <var>$double_optin</var> = <span class="php-keyword1">true</span></span>, <span>boolean <var>$update_existing</var> = <span class="php-keyword1">false</span></span>, <span>boolean <var>$replace_interests</var> = <span class="php-keyword1">true</span></span>, <span>boolean <var>$send_welcome</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Mailchimp_Lists.html#698-735" title="Go to source code">subscribe</a>( <span>string <var>$id</var></span>, <span>associative_array <var>$email</var></span>, <span>associative_array <var>$merge_vars</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$email_type</var> = <span class="php-quote">'html'</span></span>, <span>boolean <var>$double_optin</var> = <span class="php-keyword1">true</span></span>, <span>boolean <var>$update_existing</var> = <span class="php-keyword1">false</span></span>, <span>boolean <var>$replace_interests</var> = <span class="php-keyword1">true</span></span>, <span>boolean <var>$send_welcome</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1983,7 +2250,7 @@ the email unique id - leid string the list member's truly unique id<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_unsubscribe">#</a>
-		<code><a href="source-class-Mailchimp_Lists.html#659-675" title="Go to source code">unsubscribe</a>( <span>string <var>$id</var></span>, <span>associative_array <var>$email</var></span>, <span>boolean <var>$delete_member</var> = <span class="php-keyword1">false</span></span>, <span>boolean <var>$send_goodbye</var> = <span class="php-keyword1">true</span></span>, <span>boolean <var>$send_notify</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-Mailchimp_Lists.html#737-753" title="Go to source code">unsubscribe</a>( <span>string <var>$id</var></span>, <span>associative_array <var>$email</var></span>, <span>boolean <var>$delete_member</var> = <span class="php-keyword1">false</span></span>, <span>boolean <var>$send_goodbye</var> = <span class="php-keyword1">true</span></span>, <span>boolean <var>$send_notify</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2038,13 +2305,13 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_updateMember">#</a>
-		<code><a href="source-class-Mailchimp_Lists.html#677-696" title="Go to source code">updateMember</a>( <span>string <var>$id</var></span>, <span>associative_array <var>$email</var></span>, <span>array <var>$merge_vars</var></span>, <span>string <var>$email_type</var> = <span class="php-quote">''</span></span>, <span>boolean <var>$replace_interests</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-Mailchimp_Lists.html#755-774" title="Go to source code">updateMember</a>( <span>string <var>$id</var></span>, <span>associative_array <var>$email</var></span>, <span>array <var>$merge_vars</var></span>, <span>string <var>$email_type</var> = <span class="php-quote">''</span></span>, <span>boolean <var>$replace_interests</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
 <p>Edit the email address, merge fields, and interest groups for a list member.
 If you are doing a batch update on lots of users, consider using
-listBatchSubscribe() with the update_existing and possible replace_interests
+lists/batch-subscribe() with the update_existing and possible replace_interests
 parameter.</p>
 
 		</div>
@@ -2053,7 +2320,7 @@ parameter.</p>
 			
 <p>Edit the email address, merge fields, and interest groups for a list member.
 If you are doing a batch update on lots of users, consider using
-listBatchSubscribe() with the update_existing and possible replace_interests
+lists/batch-subscribe() with the update_existing and possible replace_interests
 parameter.</p>
 
 
@@ -2099,7 +2366,7 @@ the email unique id - leid string the list member's truly unique id<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_webhookAdd">#</a>
-		<code><a href="source-class-Mailchimp_Lists.html#698-719" title="Go to source code">webhookAdd</a>( <span>string <var>$id</var></span>, <span>string <var>$url</var></span>, <span>associative_array <var>$actions</var> = <span class="php-keyword1">array</span>()</span>, <span>associative_array <var>$sources</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-Mailchimp_Lists.html#776-797" title="Go to source code">webhookAdd</a>( <span>string <var>$id</var></span>, <span>string <var>$url</var></span>, <span>associative_array <var>$actions</var> = <span class="php-keyword1">array</span>()</span>, <span>associative_array <var>$sources</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -2155,7 +2422,7 @@ be thrown.<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_webhookDel">#</a>
-		<code><a href="source-class-Mailchimp_Lists.html#721-731" title="Go to source code">webhookDel</a>( <span>string <var>$id</var></span>, <span>string <var>$url</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Lists.html#799-809" title="Go to source code">webhookDel</a>( <span>string <var>$id</var></span>, <span>string <var>$url</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2200,7 +2467,7 @@ this will always be true as errors will be thrown otherwise.<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_webhooks">#</a>
-		<code><a href="source-class-Mailchimp_Lists.html#733-753" title="Go to source code">webhooks</a>( <span>string <var>$id</var></span> )</code>
+		<code><a href="source-class-Mailchimp_Lists.html#811-831" title="Go to source code">webhooks</a>( <span>string <var>$id</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2252,7 +2519,7 @@ actions are returned<br />
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getList">#</a>
-		<code><a href="source-class-Mailchimp_Lists.html#755-813" title="Go to source code">getList</a>( <span>associative_array <var>$filters</var> = <span class="php-keyword1">array</span>()</span>, <span>integer <var>$start</var> = <span class="php-num">0</span></span>, <span>integer <var>$limit</var> = <span class="php-num">25</span></span>, <span>string <var>$sort_field</var> = <span class="php-quote">'created'</span></span>, <span>string <var>$sort_dir</var> = <span class="php-quote">'DESC'</span></span> )</code>
+		<code><a href="source-class-Mailchimp_Lists.html#833-891" title="Go to source code">getList</a>( <span>associative_array <var>$filters</var> = <span class="php-keyword1">array</span>()</span>, <span>integer <var>$start</var> = <span class="php-num">0</span></span>, <span>integer <var>$limit</var> = <span class="php-num">25</span></span>, <span>string <var>$sort_field</var> = <span class="php-quote">'created'</span></span>, <span>string <var>$sort_dir</var> = <span class="php-quote">'DESC'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -2276,9 +2543,9 @@ only lists that have a default from name matching this - from_email string
 optional - only lists that have a default from email matching this -
 from_subject string optional - only lists that have a default from email
 matching this - created_before string optional - only show lists that were
-created before this date/time - 24 hour format in
+created before this date+time - 24 hour format in
 &lt;strong&gt;GMT&lt;/strong&gt;, eg "2013-12-30 20:30:00" - created_after
-string optional - only show lists that were created since this date/time - 24
+string optional - only show lists that were created since this date+time - 24
 hour format in &lt;strong&gt;GMT&lt;/strong&gt;, eg "2013-12-30 20:30:00" -
 exact boolean optional - flag for whether to filter on exact values when
 filtering, or search within content for filter values - defaults to true</dd>
