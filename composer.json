@@ -10,6 +10,9 @@
     "require": {
         "php": ">=5.2.0"
     },
+    "require-dev": {
+        "apigen/apigen": "dev-master"
+    },
     "autoload": {
         "psr-0": {
             "Mailchimp": "src/"
