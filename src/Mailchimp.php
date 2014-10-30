@@ -184,7 +184,9 @@ class Mailchimp {
     }
 
     public function __destruct() {
-        curl_close($this->ch);
+        if(is_resource($this->ch)) {
+            curl_close($this->ch);
+        }
     }
 
     public function call($url, $params) {
