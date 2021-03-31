@@ -2,7 +2,7 @@
     "name": "mailchimp/mailchimp",
     "type": "library",
     "version": "2.0.6",
-    "description": "Deprecated API 2.0 client library for the MailChimp bulk email as a service platform - Find current SDKs at https://mailchimp.com/developer/tools/",
+    "description": "Deprecated API 2.0 client library for the MailChimp bulk email as a service platform",
     "keywords": ["email", "api"],
     "homepage": "https://bitbucket.org/mailchimp/mailchimp-api-php",
     "license": "MIT",
