@@ -1,3 +1,9 @@
+Deprecated
+=============================================
+This SDK and Mailchimp API 2.0 are deprecated.
+
+[See the current Mailchimp SDKs](https://mailchimp.com/developer/tools/)
+
 Overview
 =============================================
 A PHP 5.2+ API client for [v2 of the MailChimp API](http://apidocs.mailchimp.com/api/2.0/). Please note that we generate this client/wrapper, so while we're happy to look at any pull requests, ultimately we can't technically accept them. We will, however comment on any additions or changes made due to them before closing them.
