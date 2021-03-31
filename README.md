@@ -2,7 +2,7 @@ Deprecated
 =============================================
 This SDK and Mailchimp API 2.0 are deprecated.
 
-[See the current Mailchimp SDKs](https://mailchimp.com/developer/tools/)
+[See the current Mailchimp Marketing SDKs](https://mailchimp.com/developer/tools/)
 
 Overview
 =============================================
