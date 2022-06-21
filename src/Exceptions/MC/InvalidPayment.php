@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\MC
+namespace Mailchimp\Exceptions\MC;
 
-class InvalidPayment extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class InvalidPayment extends Error
 {}

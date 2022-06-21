@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\List
+namespace Mailchimp\Exceptions\List;
 
-class InvalidInterestGroup extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class InvalidInterestGroup extends Error
 {}

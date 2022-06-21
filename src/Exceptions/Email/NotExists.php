@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\Email
+namespace Mailchimp\Exceptions\Email;
 
-class NotExists extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class NotExists extends Error
 {}

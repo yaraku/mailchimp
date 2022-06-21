@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\Absplit
+namespace Mailchimp\Exceptions\Absplit;
 
-class UnknownWinnerType extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class UnknownWinnerType extends Error
 {}

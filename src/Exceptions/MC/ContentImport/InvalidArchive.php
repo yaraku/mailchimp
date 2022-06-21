@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\MC\ContentImport
+namespace Mailchimp\Exceptions\MC\ContentImport;
 
-class InvalidArchive extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class InvalidArchive extends Error
 {}

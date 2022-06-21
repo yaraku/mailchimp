@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\Avesta\Db
+namespace Mailchimp\Exceptions\Avesta\Db;
 
-class Exception extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class Exception extends Error
 {}

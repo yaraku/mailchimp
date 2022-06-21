@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\Campaign
+namespace Mailchimp\Exceptions\Campaign;
 
-class InvalidTemplate extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class InvalidTemplate extends Error
 {}

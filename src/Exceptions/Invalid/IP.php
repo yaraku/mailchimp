@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\Invalid
+namespace Mailchimp\Exceptions\Invalid;
 
-class IP extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class IP extends Error
 {}

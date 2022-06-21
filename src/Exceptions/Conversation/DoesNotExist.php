@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\Conversation
+namespace Mailchimp\Exceptions\Conversation;
 
-class DoesNotExist extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class DoesNotExist extends Error
 {}

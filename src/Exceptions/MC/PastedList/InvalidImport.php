@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\MC\PastedList
+namespace Mailchimp\Exceptions\MC\PastedList;
 
-class InvalidImport extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class InvalidImport extends Error
 {}

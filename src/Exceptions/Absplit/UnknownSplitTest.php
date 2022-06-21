@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\Absplit
+namespace Mailchimp\Exceptions\Absplit;
 
-class UnknownSplitTest extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class UnknownSplitTest extends Error
 {}

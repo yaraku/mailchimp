@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\Order
+namespace Mailchimp\Exceptions\Order;
 
-class TypeUnknown extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class TypeUnknown extends Error
 {}

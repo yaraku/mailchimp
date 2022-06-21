@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\Request
+namespace Mailchimp\Exceptions\Request;
 
-class TimedOut extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class TimedOut extends Error
 {}

@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\Conversation
+namespace Mailchimp\Exceptions\Conversation;
 
-class ReplySaveFailed extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class ReplySaveFailed extends Error
 {}

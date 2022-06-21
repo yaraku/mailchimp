@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\User
+namespace Mailchimp\Exceptions\User;
 
-class MissingModuleOutbox extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class MissingModuleOutbox extends Error
 {}

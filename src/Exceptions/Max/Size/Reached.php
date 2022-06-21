@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\Max\Size
+namespace Mailchimp\Exceptions\Max\Size;
 
-class Reached extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class Reached extends Error
 {}

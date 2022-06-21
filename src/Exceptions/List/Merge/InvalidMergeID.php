@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\List\Merge
+namespace Mailchimp\Exceptions\List\Merge;
 
-class InvalidMergeID extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class InvalidMergeID extends Error
 {}

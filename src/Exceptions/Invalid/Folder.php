@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\Invalid
+namespace Mailchimp\Exceptions\Invalid;
 
-class Folder extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class Folder extends Error
 {}

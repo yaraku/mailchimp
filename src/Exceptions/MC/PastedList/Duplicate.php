@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\MC\PastedList
+namespace Mailchimp\Exceptions\MC\PastedList;
 
-class Duplicate extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class Duplicate extends Error
 {}

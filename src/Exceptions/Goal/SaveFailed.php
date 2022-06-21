@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\Goal
+namespace Mailchimp\Exceptions\Goal;
 
-class SaveFailed extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class SaveFailed extends Error
 {}

@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\Unknown
+namespace Mailchimp\Exceptions\Unknown;
 
-class Exception extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class Exception extends Error
 {}

@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\User
+namespace Mailchimp\Exceptions\User;
 
-class InvalidRole extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class InvalidRole extends Error
 {}

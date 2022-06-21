@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\Absplit
+namespace Mailchimp\Exceptions\Absplit;
 
-class WinnerNotSelected extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class WinnerNotSelected extends Error
 {}

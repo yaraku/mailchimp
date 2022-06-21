@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\User
+namespace Mailchimp\Exceptions\User;
 
-class ModuleNotPurchased extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class ModuleNotPurchased extends Error
 {}

@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\List
+namespace Mailchimp\Exceptions\List;
 
-class AlreadySubscribed extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class AlreadySubscribed extends Error
 {}

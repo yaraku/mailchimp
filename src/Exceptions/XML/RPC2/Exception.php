@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\XML\RPC2
+namespace Mailchimp\Exceptions\XML\RPC2;
 
-class Exception extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class Exception extends Error
 {}

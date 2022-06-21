@@ -4,6 +4,6 @@ namespace Mailchimp\Exceptions;
 
 use Mailchimp\Exceptions\Error;
 
-class TooManyConnections extends Error
+class FolderExistsException extends Error
 {
 }

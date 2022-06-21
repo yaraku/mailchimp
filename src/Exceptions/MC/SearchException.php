@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\MC
+namespace Mailchimp\Exceptions\MC;
 
-class SearchException extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class SearchException extends Error
 {}

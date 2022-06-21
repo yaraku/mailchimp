@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\Absplit
+namespace Mailchimp\Exceptions\Absplit;
 
-class UnknownWaitUnit extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class UnknownWaitUnit extends Error
 {}

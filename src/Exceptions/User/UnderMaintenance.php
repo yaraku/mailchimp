@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\User
+namespace Mailchimp\Exceptions\User;
 
-class UnderMaintenance extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class UnderMaintenance extends Error
 {}

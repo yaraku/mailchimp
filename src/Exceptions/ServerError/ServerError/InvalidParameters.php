@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\ServerError\ServerError
+namespace Mailchimp\Exceptions\ServerError\ServerError;
 
-class InvalidParameters extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class InvalidParameters extends Error
 {}

@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\User
+namespace Mailchimp\Exceptions\User;
 
-class NotEnoughCredit extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class NotEnoughCredit extends Error
 {}

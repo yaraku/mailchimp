@@ -1,6 +1,9 @@
 <?php
 
-namespace Mailchimp\Exceptions\
+namespace Mailchimp\Exceptions;
 
-class PDOException extends Mailchimp\Exceptions\Error
-{}
+use Mailchimp\Exceptions\Error;
+
+class PDOException extends Error
+{
+}

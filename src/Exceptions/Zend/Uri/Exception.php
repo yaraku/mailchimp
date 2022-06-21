@@ -1,6 +1,8 @@
 <?php
 
-namespace Mailchimp\Exceptions\Zend\Uri
+namespace Mailchimp\Exceptions\Zend\Uri;
 
-class Exception extends Mailchimp\Exceptions\Error
+use Mailchimp\Exceptions\Error;
+
+class Exception extends Error
 {}
