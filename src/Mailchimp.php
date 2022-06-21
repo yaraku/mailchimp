@@ -2,6 +2,8 @@
 
 namespace Mailchimp;
 
+use Mailchimp\Exceptions;
+
 class Mailchimp
 {
     public $apikey;
@@ -10,99 +12,99 @@ class Mailchimp
     public $debug = false;
 
     public static $error_map = array(
-        "ValidationError" => Mailchimp\Exceptions\ValidationError::class,
-        "ServerError_MethodUnknown" => Mailchimp\Exceptions\ServerError\MethodUnknown::class,
-        "ServerError_InvalidParameters" => Mailchimp\Exceptions\ServerError\InvalidParameters::class,
-        "Unknown_Exception" => Mailchimp\Exceptions\Unknown\Exception::class,
-        "Request_TimedOut" => Mailchimp\Exceptions\Request\TimedOut::class,
-        "Zend_Uri_Exception" => Mailchimp\Exceptions\Zend\Uri\Exception::class,
-        "PDOException" => Mailchimp\Exceptions\PDOException::class,
-        "Avesta_Db_Exception" => Mailchimp\Exceptions\Avesta\Db\Exception::class,
-        "XML_RPC2_Exception" => Mailchimp\Exceptions\XML\RPC2\Exception::class,
-        "XML_RPC2_FaultException" => Mailchimp\Exceptions\XML\RPC2\FaultException::class,
-        "Too_Many_Connections" => Mailchimp\Exceptions\Too\Many\Connections::class,
-        "Parse_Exception" => Mailchimp\Exceptions\Parse\Exception::class,
-        "User_Unknown" => Mailchimp\Exceptions\User\Unknown::class,
-        "User_Disabled" => Mailchimp\Exceptions\User\Disabled::class,
-        "User_DoesNotExist" => Mailchimp\Exceptions\User\DoesNotExist::class,
-        "User_NotApproved" => Mailchimp\Exceptions\User\NotApproved::class,
-        "Invalid_ApiKey" => Mailchimp\Exceptions\Invalid\ApiKey::class,
-        "User_UnderMaintenance" => Mailchimp\Exceptions\User\UnderMaintenance::class,
-        "Invalid_AppKey" => Mailchimp\Exceptions\Invalid\AppKey::class,
-        "Invalid_IP" => Mailchimp\Exceptions\Invalid\IP::class,
-        "User_DoesExist" => Mailchimp\Exceptions\User\DoesExist::class,
-        "User_InvalidRole" => Mailchimp\Exceptions\User\InvalidRole::class,
-        "User_InvalidAction" => Mailchimp\Exceptions\User\InvalidAction::class,
-        "User_MissingEmail" => Mailchimp\Exceptions\User\MissingEmail::class,
-        "User_CannotSendCampaign" => Mailchimp\Exceptions\User\CannotSendCampaign::class,
-        "User_MissingModuleOutbox" => Mailchimp\Exceptions\User\MissingModuleOutbox::class,
-        "User_ModuleAlreadyPurchased" => Mailchimp\Exceptions\User\ModuleAlreadyPurchased::class,
-        "User_ModuleNotPurchased" => Mailchimp\Exceptions\User\ModuleNotPurchased::class,
-        "User_NotEnoughCredit" => Mailchimp\Exceptions\User\NotEnoughCredit::class,
-        "MC_InvalidPayment" => Mailchimp\Exceptions\MC\InvalidPayment::class,
-        "List_DoesNotExist" => Mailchimp\Exceptions\List\DoesNotExist::class,
-        "List_InvalidInterestFieldType" => Mailchimp\Exceptions\List\InvalidInterestFieldType::class,
-        "List_InvalidOption" => Mailchimp\Exceptions\List\InvalidOption::class,
-        "List_InvalidUnsubMember" => Mailchimp\Exceptions\List\InvalidUnsubMember::class,
-        "List_InvalidBounceMember" => Mailchimp\Exceptions\List\InvalidBounceMember::class,
-        "List_AlreadySubscribed" => Mailchimp\Exceptions\List\AlreadySubscribed::class,
-        "List_NotSubscribed" => Mailchimp\Exceptions\List\NotSubscribed::class,
-        "List_InvalidImport" => Mailchimp\Exceptions\List\InvalidImport::class,
-        "MC_PastedList_Duplicate" => Mailchimp\Exceptions\MC\PastedList\Duplicate::class,
-        "MC_PastedList_InvalidImport" => Mailchimp\Exceptions\MC\PastedList\InvalidImport::class,
-        "Email_AlreadySubscribed" => Mailchimp\Exceptions\Email\AlreadySubscribed::class,
-        "Email_AlreadyUnsubscribed" => Mailchimp\Exceptions\Email\AlreadyUnsubscribed::class,
-        "Email_NotExists" => Mailchimp\Exceptions\Email\NotExists::class,
-        "Email_NotSubscribed" => Mailchimp\Exceptions\Email\NotSubscribed::class,
-        "List_MergeFieldRequired" => Mailchimp\Exceptions\List\MergeFieldRequired::class,
-        "List_CannotRemoveEmailMerge" => Mailchimp\Exceptions\List\CannotRemoveEmailMerge::class,
-        "List_Merge_InvalidMergeID" => Mailchimp\Exceptions\List\Merge\InvalidMergeID::class,
-        "List_TooManyMergeFields" => Mailchimp\Exceptions\List\TooManyMergeFields::class,
-        "List_InvalidMergeField" => Mailchimp\Exceptions\List\InvalidMergeField::class,
-        "List_InvalidInterestGroup" => Mailchimp\Exceptions\List\InvalidInterestGroup::class,
-        "List_TooManyInterestGroups" => Mailchimp\Exceptions\List\TooManyInterestGroups::class,
-        "Campaign_DoesNotExist" => Mailchimp\Exceptions\Campaign\DoesNotExist::class,
-        "Campaign_StatsNotAvailable" => Mailchimp\Exceptions\Campaign\StatsNotAvailable::class,
-        "Campaign_InvalidAbsplit" => Mailchimp\Exceptions\Campaign\InvalidAbsplit::class,
-        "Campaign_InvalidContent" => Mailchimp\Exceptions\Campaign\InvalidContent::class,
-        "Campaign_InvalidOption" => Mailchimp\Exceptions\Campaign\InvalidOption::class,
-        "Campaign_InvalidStatus" => Mailchimp\Exceptions\Campaign\InvalidStatus::class,
-        "Campaign_NotSaved" => Mailchimp\Exceptions\Campaign\NotSaved::class,
-        "Campaign_InvalidSegment" => Mailchimp\Exceptions\Campaign\InvalidSegment::class,
-        "Campaign_InvalidRss" => Mailchimp\Exceptions\Campaign\InvalidRss::class,
-        "Campaign_InvalidAuto" => Mailchimp\Exceptions\Campaign\InvalidAuto::class,
-        "MC_ContentImport_InvalidArchive" => Mailchimp\Exceptions\MC\ContentImport\InvalidArchive::class,
-        "Campaign_BounceMissing" => Mailchimp\Exceptions\Campaign\BounceMissing::class,
-        "Campaign_InvalidTemplate" => Mailchimp\Exceptions\Campaign\InvalidTemplate::class,
-        "Invalid_EcommOrder" => Mailchimp\Exceptions\Invalid\EcommOrder::class,
-        "Absplit_UnknownError" => Mailchimp\Exceptions\Absplit\UnknownError::class,
-        "Absplit_UnknownSplitTest" => Mailchimp\Exceptions\Absplit\UnknownSplitTest::class,
-        "Absplit_UnknownTestType" => Mailchimp\Exceptions\Absplit\UnknownTestType::class,
-        "Absplit_UnknownWaitUnit" => Mailchimp\Exceptions\Absplit\UnknownWaitUnit::class,
-        "Absplit_UnknownWinnerType" => Mailchimp\Exceptions\Absplit\UnknownWinnerType::class,
-        "Absplit_WinnerNotSelected" => Mailchimp\Exceptions\Absplit\WinnerNotSelected::class,
-        "Invalid_Analytics" => Mailchimp\Exceptions\Invalid\Analytics::class,
-        "Invalid_DateTime" => Mailchimp\Exceptions\Invalid\DateTime::class,
-        "Invalid_Email" => Mailchimp\Exceptions\Invalid\Email::class,
-        "Invalid_SendType" => Mailchimp\Exceptions\Invalid\SendType::class,
-        "Invalid_Template" => Mailchimp\Exceptions\Invalid\Template::class,
-        "Invalid_TrackingOptions" => Mailchimp\Exceptions\Invalid\TrackingOptions::class,
-        "Invalid_Options" => Mailchimp\Exceptions\Invalid\Options::class,
-        "Invalid_Folder" => Mailchimp\Exceptions\Invalid\Folder::class,
-        "Invalid_URL" => Mailchimp\Exceptions\Invalid\URL::class,
-        "Module_Unknown" => Mailchimp\Exceptions\Module\Unknown::class,
-        "MonthlyPlan_Unknown" => Mailchimp\Exceptions\MonthlyPlan\Unknown::class,
-        "Order_TypeUnknown" => Mailchimp\Exceptions\Order\TypeUnknown::class,
-        "Invalid_PagingLimit" => Mailchimp\Exceptions\Invalid\PagingLimit::class,
-        "Invalid_PagingStart" => Mailchimp\Exceptions\Invalid\PagingStart::class,
-        "Max_Size_Reached" => Mailchimp\Exceptions\Max\Size\Reached::class,
-        "MC_SearchException" => Mailchimp\Exceptions\MC\SearchException::class,
-        "Goal_SaveFailed" => Mailchimp\Exceptions\Goal\SaveFailed::class,
-        "Conversation_DoesNotExist" => Mailchimp\Exceptions\Conversation\DoesNotExist::class,
-        "Conversation_ReplySaveFailed" => Mailchimp\Exceptions\Conversation\ReplySaveFailed::class,
-        "File_Not_Found_Exception" => Mailchimp\Exceptions\File\Not\Found\Exception::class,
-        "Folder_Not_Found_Exception" => Mailchimp\Exceptions\Folder\Not\Found\Exception::class,
-        "Folder_Exists_Exception" => Mailchimp\Exceptions\Folder\Exists\Exception::class,
+        "ValidationError" => Exceptions\ValidationError::class,
+        "ServerError_MethodUnknown" => Exceptions\ServerError\MethodUnknown::class,
+        "ServerError_InvalidParameters" => Exceptions\ServerError\InvalidParameters::class,
+        "Unknown_Exception" => Exceptions\Unknown\Exception::class,
+        "Request_TimedOut" => Exceptions\Request\TimedOut::class,
+        "Zend_Uri_Exception" => Exceptions\Zend\Uri\Exception::class,
+        "PDOException" => Exceptions\PDOException::class,
+        "Avesta_Db_Exception" => Exceptions\Avesta\Db\Exception::class,
+        "XML_RPC2_Exception" => Exceptions\XML\RPC2\Exception::class,
+        "XML_RPC2_FaultException" => Exceptions\XML\RPC2\FaultException::class,
+        "Too_Many_Connections" => Exceptions\Too\Many\Connections::class,
+        "Parse_Exception" => Exceptions\Parse\Exception::class,
+        "User_Unknown" => Exceptions\User\Unknown::class,
+        "User_Disabled" => Exceptions\User\Disabled::class,
+        "User_DoesNotExist" => Exceptions\User\DoesNotExist::class,
+        "User_NotApproved" => Exceptions\User\NotApproved::class,
+        "Invalid_ApiKey" => Exceptions\Invalid\ApiKey::class,
+        "User_UnderMaintenance" => Exceptions\User\UnderMaintenance::class,
+        "Invalid_AppKey" => Exceptions\Invalid\AppKey::class,
+        "Invalid_IP" => Exceptions\Invalid\IP::class,
+        "User_DoesExist" => Exceptions\User\DoesExist::class,
+        "User_InvalidRole" => Exceptions\User\InvalidRole::class,
+        "User_InvalidAction" => Exceptions\User\InvalidAction::class,
+        "User_MissingEmail" => Exceptions\User\MissingEmail::class,
+        "User_CannotSendCampaign" => Exceptions\User\CannotSendCampaign::class,
+        "User_MissingModuleOutbox" => Exceptions\User\MissingModuleOutbox::class,
+        "User_ModuleAlreadyPurchased" => Exceptions\User\ModuleAlreadyPurchased::class,
+        "User_ModuleNotPurchased" => Exceptions\User\ModuleNotPurchased::class,
+        "User_NotEnoughCredit" => Exceptions\User\NotEnoughCredit::class,
+        "MC_InvalidPayment" => Exceptions\MC\InvalidPayment::class,
+        "List_DoesNotExist" => Exceptions\List\DoesNotExist::class,
+        "List_InvalidInterestFieldType" => Exceptions\List\InvalidInterestFieldType::class,
+        "List_InvalidOption" => Exceptions\List\InvalidOption::class,
+        "List_InvalidUnsubMember" => Exceptions\List\InvalidUnsubMember::class,
+        "List_InvalidBounceMember" => Exceptions\List\InvalidBounceMember::class,
+        "List_AlreadySubscribed" => Exceptions\List\AlreadySubscribed::class,
+        "List_NotSubscribed" => Exceptions\List\NotSubscribed::class,
+        "List_InvalidImport" => Exceptions\List\InvalidImport::class,
+        "MC_PastedList_Duplicate" => Exceptions\MC\PastedList\Duplicate::class,
+        "MC_PastedList_InvalidImport" => Exceptions\MC\PastedList\InvalidImport::class,
+        "Email_AlreadySubscribed" => Exceptions\Email\AlreadySubscribed::class,
+        "Email_AlreadyUnsubscribed" => Exceptions\Email\AlreadyUnsubscribed::class,
+        "Email_NotExists" => Exceptions\Email\NotExists::class,
+        "Email_NotSubscribed" => Exceptions\Email\NotSubscribed::class,
+        "List_MergeFieldRequired" => Exceptions\List\MergeFieldRequired::class,
+        "List_CannotRemoveEmailMerge" => Exceptions\List\CannotRemoveEmailMerge::class,
+        "List_Merge_InvalidMergeID" => Exceptions\List\Merge\InvalidMergeID::class,
+        "List_TooManyMergeFields" => Exceptions\List\TooManyMergeFields::class,
+        "List_InvalidMergeField" => Exceptions\List\InvalidMergeField::class,
+        "List_InvalidInterestGroup" => Exceptions\List\InvalidInterestGroup::class,
+        "List_TooManyInterestGroups" => Exceptions\List\TooManyInterestGroups::class,
+        "Campaign_DoesNotExist" => Exceptions\Campaign\DoesNotExist::class,
+        "Campaign_StatsNotAvailable" => Exceptions\Campaign\StatsNotAvailable::class,
+        "Campaign_InvalidAbsplit" => Exceptions\Campaign\InvalidAbsplit::class,
+        "Campaign_InvalidContent" => Exceptions\Campaign\InvalidContent::class,
+        "Campaign_InvalidOption" => Exceptions\Campaign\InvalidOption::class,
+        "Campaign_InvalidStatus" => Exceptions\Campaign\InvalidStatus::class,
+        "Campaign_NotSaved" => Exceptions\Campaign\NotSaved::class,
+        "Campaign_InvalidSegment" => Exceptions\Campaign\InvalidSegment::class,
+        "Campaign_InvalidRss" => Exceptions\Campaign\InvalidRss::class,
+        "Campaign_InvalidAuto" => Exceptions\Campaign\InvalidAuto::class,
+        "MC_ContentImport_InvalidArchive" => Exceptions\MC\ContentImport\InvalidArchive::class,
+        "Campaign_BounceMissing" => Exceptions\Campaign\BounceMissing::class,
+        "Campaign_InvalidTemplate" => Exceptions\Campaign\InvalidTemplate::class,
+        "Invalid_EcommOrder" => Exceptions\Invalid\EcommOrder::class,
+        "Absplit_UnknownError" => Exceptions\Absplit\UnknownError::class,
+        "Absplit_UnknownSplitTest" => Exceptions\Absplit\UnknownSplitTest::class,
+        "Absplit_UnknownTestType" => Exceptions\Absplit\UnknownTestType::class,
+        "Absplit_UnknownWaitUnit" => Exceptions\Absplit\UnknownWaitUnit::class,
+        "Absplit_UnknownWinnerType" => Exceptions\Absplit\UnknownWinnerType::class,
+        "Absplit_WinnerNotSelected" => Exceptions\Absplit\WinnerNotSelected::class,
+        "Invalid_Analytics" => Exceptions\Invalid\Analytics::class,
+        "Invalid_DateTime" => Exceptions\Invalid\DateTime::class,
+        "Invalid_Email" => Exceptions\Invalid\Email::class,
+        "Invalid_SendType" => Exceptions\Invalid\SendType::class,
+        "Invalid_Template" => Exceptions\Invalid\Template::class,
+        "Invalid_TrackingOptions" => Exceptions\Invalid\TrackingOptions::class,
+        "Invalid_Options" => Exceptions\Invalid\Options::class,
+        "Invalid_Folder" => Exceptions\Invalid\Folder::class,
+        "Invalid_URL" => Exceptions\Invalid\URL::class,
+        "Module_Unknown" => Exceptions\Module\Unknown::class,
+        "MonthlyPlan_Unknown" => Exceptions\MonthlyPlan\Unknown::class,
+        "Order_TypeUnknown" => Exceptions\Order\TypeUnknown::class,
+        "Invalid_PagingLimit" => Exceptions\Invalid\PagingLimit::class,
+        "Invalid_PagingStart" => Exceptions\Invalid\PagingStart::class,
+        "Max_Size_Reached" => Exceptions\Max\Size\Reached::class,
+        "MC_SearchException" => Exceptions\MC\SearchException::class,
+        "Goal_SaveFailed" => Exceptions\Goal\SaveFailed::class,
+        "Conversation_DoesNotExist" => Exceptions\Conversation\DoesNotExist::class,
+        "Conversation_ReplySaveFailed" => Exceptions\Conversation\ReplySaveFailed::class,
+        "File_Not_Found_Exception" => Exceptions\File\Not\Found\Exception::class,
+        "Folder_Not_Found_Exception" => Exceptions\Folder\Not\Found\Exception::class,
+        "Folder_Exists_Exception" => Exceptions\Folder\Exists\Exception::class,
     );
 
     public function __construct($apikey = null, $opts = array())
@@ -116,7 +118,7 @@ class Mailchimp
         }
 
         if (!$apikey) {
-            throw new Mailchimp_Error('You must provide a MailChimp API key');
+            throw new Exceptions\Error('You must provide a MailChimp API key');
         }
 
         $this->apikey = $apikey;
@@ -209,7 +211,7 @@ class Mailchimp
         $this->log('Got response: ' . $response_body);
 
         if (curl_error($ch)) {
-            throw new Mailchimp_HttpError("API call to $url failed: " . curl_error($ch));
+            throw new Exceptions\HttpError("API call to $url failed: " . curl_error($ch));
         }
         $result = json_decode($response_body, true);
 
@@ -237,10 +239,10 @@ class Mailchimp
     public function castError($result)
     {
         if ($result['status'] !== 'error' || !$result['name']) {
-            throw new Mailchimp_Error('We received an unexpected error: ' . json_encode($result));
+            throw new Exceptions\Error('We received an unexpected error: ' . json_encode($result));
         }
 
-        $class = (isset(self::$error_map[$result['name']])) ? self::$error_map[$result['name']] : 'Mailchimp_Error';
+        $class = (isset(self::$error_map[$result['name']])) ? self::$error_map[$result['name']] : Exceptions\Error::class;
         return new $class($result['error'], $result['code']);
     }
 
