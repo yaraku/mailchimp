@@ -1,23 +1,9 @@
 <?php
 
-require_once 'Mailchimp/Folders.php';
-require_once 'Mailchimp/Templates.php';
-require_once 'Mailchimp/Users.php';
-require_once 'Mailchimp/Helper.php';
-require_once 'Mailchimp/Mobile.php';
-require_once 'Mailchimp/Conversations.php';
-require_once 'Mailchimp/Ecomm.php';
-require_once 'Mailchimp/Neapolitan.php';
-require_once 'Mailchimp/Lists.php';
-require_once 'Mailchimp/Campaigns.php';
-require_once 'Mailchimp/Vip.php';
-require_once 'Mailchimp/Reports.php';
-require_once 'Mailchimp/Gallery.php';
-require_once 'Mailchimp/Goal.php';
-require_once 'Mailchimp/Exceptions.php';
+namespace Mailchimp;
 
-class Mailchimp {
-    
+class Mailchimp
+{
     public $apikey;
     public $ch;
     public $root  = 'https://api.mailchimp.com/2.0';
@@ -119,7 +105,8 @@ class Mailchimp {
         "Folder_Exists_Exception" => "Mailchimp_Folder_Exists_Exception"
     );
 
-    public function __construct($apikey=null, $opts=array()) {
+    public function __construct($apikey = null, $opts = array())
+    {
         if (!$apikey) {
             $apikey = getenv('MAILCHIMP_APIKEY');
         }
@@ -135,7 +122,7 @@ class Mailchimp {
         $this->apikey = $apikey;
         $dc           = "us1";
 
-        if (strstr($this->apikey, "-")){
+        if (strstr($this->apikey, "-")) {
             list($key, $dc) = explode("-", $this->apikey, 2);
             if (!$dc) {
                 $dc = "us1";
@@ -145,10 +132,10 @@ class Mailchimp {
         $this->root = str_replace('https://api', 'https://' . $dc . '.api', $this->root);
         $this->root = rtrim($this->root, '/') . '/';
 
-        if (!isset($opts['timeout']) || !is_int($opts['timeout'])){
+        if (!isset($opts['timeout']) || !is_int($opts['timeout'])) {
             $opts['timeout'] = 600;
         }
-        if (isset($opts['debug'])){
+        if (isset($opts['debug'])) {
             $this->debug = true;
         }
 
@@ -156,7 +143,7 @@ class Mailchimp {
         $this->ch = curl_init();
 
         if (isset($opts['CURLOPT_FOLLOWLOCATION']) && $opts['CURLOPT_FOLLOWLOCATION'] === true) {
-            curl_setopt($this->ch, CURLOPT_FOLLOWLOCATION, true);    
+            curl_setopt($this->ch, CURLOPT_FOLLOWLOCATION, true);
         }
 
         curl_setopt($this->ch, CURLOPT_USERAGENT, 'MailChimp-PHP/2.0.6');
@@ -167,31 +154,33 @@ class Mailchimp {
         curl_setopt($this->ch, CURLOPT_TIMEOUT, $opts['timeout']);
 
 
-        $this->folders = new Mailchimp_Folders($this);
-        $this->templates = new Mailchimp_Templates($this);
-        $this->users = new Mailchimp_Users($this);
-        $this->helper = new Mailchimp_Helper($this);
-        $this->mobile = new Mailchimp_Mobile($this);
-        $this->conversations = new Mailchimp_Conversations($this);
-        $this->ecomm = new Mailchimp_Ecomm($this);
-        $this->neapolitan = new Mailchimp_Neapolitan($this);
-        $this->lists = new Mailchimp_Lists($this);
-        $this->campaigns = new Mailchimp_Campaigns($this);
-        $this->vip = new Mailchimp_Vip($this);
-        $this->reports = new Mailchimp_Reports($this);
-        $this->gallery = new Mailchimp_Gallery($this);
-        $this->goal = new Mailchimp_Goal($this);
+        $this->folders = new Folders($this);
+        $this->templates = new Templates($this);
+        $this->users = new Users($this);
+        $this->helper = new Helper($this);
+        $this->mobile = new Mobile($this);
+        $this->conversations = new Conversations($this);
+        $this->ecomm = new Ecomm($this);
+        $this->neapolitan = new Neapolitan($this);
+        $this->lists = new Lists($this);
+        $this->campaigns = new Campaigns($this);
+        $this->vip = new Vip($this);
+        $this->reports = new Reports($this);
+        $this->gallery = new Gallery($this);
+        $this->goal = new Goal($this);
     }
 
-    public function __destruct() {
-        if(is_resource($this->ch)) {
+    public function __destruct()
+    {
+        if (is_resource($this->ch)) {
             curl_close($this->ch);
         }
     }
 
-    public function call($url, $params) {
+    public function call($url, $params)
+    {
         $params['apikey'] = $this->apikey;
-        
+
         $params = json_encode($params);
         $ch     = $this->ch;
 
@@ -202,7 +191,7 @@ class Mailchimp {
 
         $start = microtime(true);
         $this->log('Call to ' . $this->root . $url . '.json: ' . $params);
-        if($this->debug) {
+        if ($this->debug) {
             $curl_buffer = fopen('php://memory', 'w+');
             curl_setopt($ch, CURLOPT_STDERR, $curl_buffer);
         }
@@ -211,7 +200,7 @@ class Mailchimp {
 
         $info = curl_getinfo($ch);
         $time = microtime(true) - $start;
-        if($this->debug) {
+        if ($this->debug) {
             rewind($curl_buffer);
             $this->log(stream_get_contents($curl_buffer));
             fclose($curl_buffer);
@@ -219,22 +208,23 @@ class Mailchimp {
         $this->log('Completed in ' . number_format($time * 1000, 2) . 'ms');
         $this->log('Got response: ' . $response_body);
 
-        if(curl_error($ch)) {
+        if (curl_error($ch)) {
             throw new Mailchimp_HttpError("API call to $url failed: " . curl_error($ch));
         }
         $result = json_decode($response_body, true);
-        
-        if(floor($info['http_code'] / 100) >= 4) {
+
+        if (floor($info['http_code'] / 100) >= 4) {
             throw $this->castError($result);
         }
 
         return $result;
     }
 
-    public function readConfigs() {
+    public function readConfigs()
+    {
         $paths = array('~/.mailchimp.key', '/etc/mailchimp.key');
-        foreach($paths as $path) {
-            if(file_exists($path)) {
+        foreach ($paths as $path) {
+            if (file_exists($path)) {
                 $apikey = trim(file_get_contents($path));
                 if ($apikey) {
                     return $apikey;
@@ -244,7 +234,8 @@ class Mailchimp {
         return false;
     }
 
-    public function castError($result) {
+    public function castError($result)
+    {
         if ($result['status'] !== 'error' || !$result['name']) {
             throw new Mailchimp_Error('We received an unexpected error: ' . json_encode($result));
         }
@@ -253,11 +244,10 @@ class Mailchimp {
         return new $class($result['error'], $result['code']);
     }
 
-    public function log($msg) {
+    public function log($msg)
+    {
         if ($this->debug) {
             error_log($msg);
         }
     }
 }
-
-
